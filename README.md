@@ -4,6 +4,12 @@ https://github.com/SCCapstone/DiamondCast/wiki
 
 ## External Requirements
 
+
+In order to build this project you first have to install:
+
+* [AndroidStudio](https://developer.android.com/studio/install)
+
+
 ## Setup
 
 ## Running
@@ -25,3 +31,4 @@ Will do in 492.
 # Authors
 
 Frank Habersham frankh@email.sc.edu
+Jackson Trigiani jacktrig@email.sc.edu
