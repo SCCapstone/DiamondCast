@@ -21,6 +21,9 @@ To run the application, you must open Android Studio and open the DiamondCastApp
 
 # Deployment
 
+Mobile apps will also sometimes need some instructions on how to build a "release" version, maybe how to sign it, and how to run that binary in an
+emulator or in a physical phone.
+
 # Testing
 
 Will do in 492.
