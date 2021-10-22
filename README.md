@@ -35,3 +35,4 @@ Will do in 492.
 
 Frank Habersham frankh@email.sc.edu
 Jackson Trigiani jacktrig@email.sc.edu
+Daniel McKenna mckennd@email.sc.edu
