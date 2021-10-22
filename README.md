@@ -13,7 +13,7 @@ In order to build this project you first have to install:
 ## Setup
 
 First download android studios, then open it. Select open project and open this project using the folder "DiamondCastApp". 
-Go to the AVD Manager located in the top right to download an virtual android.
+Go to the AVD Manager located in the top right to download a virtual android.
 
 ## Running
 
