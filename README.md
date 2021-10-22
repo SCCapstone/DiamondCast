@@ -2,8 +2,11 @@
 Capstone Computing Project 2021-2022
 https://github.com/SCCapstone/DiamondCast/wiki
 
-## External Requirements
+## Our Project 
 
+Our goal of our app is to bring customers in to local contractors and vendors in their area.  We plan on doing this through easily allowing users to recommend their go to contrators to friends and family or search through our network of verified contractors.  We also plan on integrating agent accounts to allow people in the real estate industry to recommend to their own clients.  Our app will allow customers to find contractors and to set up appointments through our app.  We want to streamline the stresfull process of selecting someone you can trust to work on your home.  
+
+## External Requirements
 
 In order to build this project you first have to install:
 
