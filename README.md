@@ -45,4 +45,5 @@ Will do in 492.
 * Jackson Trigiani jacktrig@email.sc.edu
 * Daniel McKenna mckennd@email.sc.edu
 * Justin Cordell cordellj@email.sc.edu
+* Jakob Brown jakobwb@email.sc.edu
 
