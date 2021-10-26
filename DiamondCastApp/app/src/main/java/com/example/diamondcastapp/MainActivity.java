@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Branch merge for Justin
         //test push
+        //Daniel Testing commit
     }
 }
