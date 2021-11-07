@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
+            android:name=".CreateAccount2"
+            android:exported="true" />
+        <activity
+            android:name=".CreateAccount1"
+            android:exported="true" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="true" />
         <activity
