@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeScreenActivity"
+            android:exported="true" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
