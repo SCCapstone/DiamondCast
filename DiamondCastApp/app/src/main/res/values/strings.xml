@@ -2,9 +2,17 @@
     <string name="app_name">DiamondCastApp</string>
     <string name="login">Login</string>
     <string name="enter">Enter</string>
-    <string name="email">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="don_t_have_an_account">Don\'t Have an account?</string>
     <string name="create_account">Create Account</string>
     <string name="forgot_password">Forgot Password</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="email">Email:</string>
+    <string name="passwordtext">Password:</string>
+    <string name="go_back">Go Back</string>
+    <string name="next_page">Next Page</string>
+    <string name="comfirm_password">Comfirm Password:</string>
+    <string name="usernameText">Username:</string>
 </resources>

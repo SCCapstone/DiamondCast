@@ -24,12 +24,12 @@
         app:layout_constraintVertical_bias="0.322" />
 
     <EditText
-        android:id="@+id/loginEmail"
+        android:id="@+id/loginUsernameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
+        android:hint="@string/username"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.847" />
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/loginPasswordInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
