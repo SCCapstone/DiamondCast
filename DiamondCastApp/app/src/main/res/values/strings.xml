@@ -15,4 +15,20 @@
     <string name="next_page">Next Page</string>
     <string name="comfirm_password">Comfirm Password:</string>
     <string name="usernameText">Username:</string>
+
+    <string name= "searching">SearchBar</string>
+    <string-array name="search_bar_array">
+        <item>Renovation</item>
+        <item>Carpenter</item>
+        <item>Electrician</item>
+        <item>Painter</item>
+        <item>Heating and Air Conditioning</item>
+        <item>Masonry</item>
+        <item>Roofer</item>
+        <item>Landscaper</item>
+        <item>Tile Setter</item>
+        <item>Flooring</item>
+        <item>Window Specialist</item>
+        <item>Concrete Specialist</item>
+    </string-array>
 </resources>
