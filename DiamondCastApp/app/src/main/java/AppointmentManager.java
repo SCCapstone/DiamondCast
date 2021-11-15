@@ -1,5 +1,5 @@
 import com.google.firebase.database.DatabaseReference;
-
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AppointmentManager {
@@ -13,7 +13,7 @@ public class AppointmentManager {
         //TODO
         return new AppointmentManager();
     }
-    public boolean appointmentExists(Appoinment appointment) {
+    public boolean appointmentExists(Appointment appointment) {
         //TODO
         return true;
     }
