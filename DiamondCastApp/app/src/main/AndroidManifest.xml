@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp" >
         <activity
+            android:name=".InboxActivity"
+            android:exported="false"
+            android:label="@string/title_activity_inbox"
+            android:theme="@style/Theme.DiamondCastApp.NoActionBar" />
+        <activity
             android:name=".CreateAccount2Activity"
             android:exported="true" />
         <activity
