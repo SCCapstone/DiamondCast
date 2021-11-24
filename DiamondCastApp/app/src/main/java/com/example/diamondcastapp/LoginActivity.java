@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void goToHomeScreenActivity (View view) {
         //if(loggingIn()) {
-            Intent intent = new Intent(this, HomeScreenActivity.class);
+            Intent intent = new Intent(this, ClientHomeScreenActivity.class);
             startActivity(intent);
         //}
     }

@@ -16,7 +16,7 @@
     <string name="comfirm_password">Comfirm Password:</string>
     <string name="usernameText">Username:</string>
 
-    <string name= "searching">SearchBar</string>
+    <string name="searching">SearchBar</string>
     <string-array name="search_bar_array">
         <item>Renovation</item>
         <item>Carpenter</item>
