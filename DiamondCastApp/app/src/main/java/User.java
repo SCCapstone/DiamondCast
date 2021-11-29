@@ -2,7 +2,7 @@ package main.java;
 
 /**************************************************************
     *User Class for CSCE490 Project 
-    *@author by Daniel McKenna
+    *@author Daniel McKenna
     *@version 1.0.0 11-28-21
     *Copyright tbd
 ***************************************************************/
@@ -25,7 +25,6 @@ public class User {
     private string phoneNumber;
     private string password;       //this is on UML but I don't want to store this without hashing 
     private Enum userType;       //add get and set
-    private bool twoFactorAuth;
 
     // Constructor
     public User() {
@@ -61,8 +60,6 @@ public class User {
     protected string getId() {
         return this.id;
     }
-
-
 
 
 
