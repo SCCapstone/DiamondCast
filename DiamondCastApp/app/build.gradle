@@ -56,4 +56,11 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //Stripe SDK
+    implementation 'com.stripe:stripe-android:18.2.0'
+
+    //http client (okhttp3)
+    //TODO Setup server
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 }
