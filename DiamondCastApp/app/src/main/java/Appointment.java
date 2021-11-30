@@ -12,6 +12,7 @@ public class Appointment {
     public Appointment() {
         this.id = "0";
         this.title = title;
+        //need to remove this is deprecated
         this.date = new Date("yyyy-MM-dd HH:mm:ss");
         this.service = "service";
         this.active = true;

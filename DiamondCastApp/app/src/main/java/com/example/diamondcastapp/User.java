@@ -7,18 +7,18 @@ package com.example.diamondcastapp;
     *Copyright tbd
 ***************************************************************/
 /* Class for a user in the app 
-    this class contains a a defualt and a normal constructor
-     and getters and setters for all instance veriables */
+    this class contains a a default and a normal constructor
+     and getters and setters for all instance variables */
 
     public class User {
 
         //instance variables 
-        private string uid;
-        private string username;
-        private string firstName;
-        private string lastName;
-        private string email;
-        private Enum userType;       
+        private String uid;
+        private String username;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private UserType userType;
     
     public User () {
         this.uid = "";
@@ -40,23 +40,23 @@ package com.example.diamondcastapp;
     }
 
     /***Setters*************************************************/
-    protected void setId(string uid) {
+    protected void setId(String uid) {
         this.uid = uid;
     }
 
-    protected void setUsername(string username) {
+    protected void setUsername(String username) {
         this.username = username;
     }
 
-    protected void setFullName(string firstName) {
+    protected void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    protected void setFullName(string lastName) {
+    protected void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    protected void setEmail(string email) {
+    protected void setEmail(String email) {
         this.email = email;
     }
 
@@ -66,28 +66,25 @@ package com.example.diamondcastapp;
 
     
     /***Getters*************************************************/
-    protected string getUid() {
+    protected String getUid() {
         return this.uid;
     }
 
-    protected string getUsername() {
+    protected String getUsername() {
         return this.getUsername();
     }
 
-    protected string getFirstName() {
+    protected String getFirstName() {
         return this.firstName;
     }
 
-    protected string getLastName(){
+    protected String getLastName(){
         return this.lastName;
     }
 
-    protected string getEmail() {
+    protected String getEmail() {
         return this.email;
     }
 
-    protected UserType getUserType() {
-        return this.userType;
-    }
-
+    protected UserType getUserType() { return this.userType; }
 }

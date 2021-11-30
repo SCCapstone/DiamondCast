@@ -1,4 +1,4 @@
-package main.java.com.example.diamondcastapp;
+package com.example.diamondcastapp;
 
 /**************************************************************
     *Class for registering a user with firebase database 
@@ -6,7 +6,8 @@ package main.java.com.example.diamondcastapp;
     *@version 1.0.0 11-28-21
     *Copyright tbd
 ***************************************************************/
-
+/*
 public class RegisterUser {
 
 }
+*/
