@@ -75,7 +75,7 @@ public class registerUser {
         this.userType = userType;
     }
 
-    public String getPasswordForCreatingAccount() {
+    public String passwordForCreatingAccount() {
         return password;
     }
 }

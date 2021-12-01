@@ -72,7 +72,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         String email = newUser.getEmail();
-        String password = newUser.getPasswordForCreatingAccount();
+        String password = newUser.passwordForCreatingAccount();
         fAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
