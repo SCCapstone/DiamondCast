@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.10625" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.10625" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1109375" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable/user_type_button_background.xml" value="0.10625" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account1.xml" value="0.33" />
-        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account2.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account2.xml" value="0.12" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_home_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_main.xml" value="0.14" />

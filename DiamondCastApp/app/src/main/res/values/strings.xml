@@ -15,6 +15,12 @@
     <string name="next_page">Next Page</string>
     <string name="comfirm_password">Comfirm Password:</string>
     <string name="usernameText">Username:</string>
+    <string name="accountTypeText">Choose your account type:</string>
+    <string-array name="accountTypes">
+        <item>Client</item>
+        <item>Agent</item>
+        <item>Contractor</item>
+    </string-array>
 
     <string name="searching">SearchBar</string>
     <string-array name="search_bar_array">
@@ -40,4 +46,5 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
 </resources>

@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 public class CreateAccount1Activity extends AppCompatActivity {
     private static final String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    private registerUser newUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,11 @@ public class CreateAccount1Activity extends AppCompatActivity {
     }
 
     public void goToCreateAccount2Activity (View view) {
-        //if (creatingAccount()) {
+        if (creatingAccount()) {
+            CreateAccount2Activity.setNewUserCreateAccount2(newUser);
             Intent intent = new Intent(this, CreateAccount2Activity.class);
             startActivity(intent);
-        //}
+        }
     }
 
     public void goToLoginActivity (View view) {
@@ -33,8 +35,10 @@ public class CreateAccount1Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean creatingAccount() {
+    private boolean creatingAccount() {
         boolean createdAccount = false;
+        int passwordMin = 6;
+        int passwordMax = 30;
 
         EditText firstNameInput = findViewById(R.id.createAccount1FirstNameInput);
         EditText lastNameInput = findViewById(R.id.createAccount1LastNameInput);
@@ -53,32 +57,41 @@ public class CreateAccount1Activity extends AppCompatActivity {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
 
-        //Try to find email and username from server here
-
-        if(firstName == "") {
+        if(firstName.isEmpty()) {
             Snackbar.make(findViewById(R.id.createAccount1FirstNameInput), "Enter your first name", Snackbar.LENGTH_SHORT).show();
-        } else if(lastName == "") {
+        } else if(lastName.isEmpty()) {
             Snackbar.make(findViewById(R.id.createAccount1LastNameInput), "Enter your last name", Snackbar.LENGTH_SHORT).show();
-        } else if(email == "") {
+        } else if(email.isEmpty()) {
             Snackbar.make(findViewById(R.id.createAccount1EmailInput), "Enter an email", Snackbar.LENGTH_SHORT).show();
         } else if(!matcher.matches()){
             Snackbar.make(findViewById(R.id.createAccount1EmailInput), "Email is invalid", Snackbar.LENGTH_SHORT).show();
-        } else if(false) {
+        } else if(false) {//TODO check if email is already in use
             Snackbar.make(findViewById(R.id.createAccount1EmailInput), "Email already in use", Snackbar.LENGTH_SHORT).show();
         } else if(username == "") {
             Snackbar.make(findViewById(R.id.createAccount1UsernameInput), "Enter a username", Snackbar.LENGTH_SHORT).show();
-        } else if(false) {
+        } else if(false) {//TODO check if username is already in use
             Snackbar.make(findViewById(R.id.createAccount1UsernameInput), "Username already in use", Snackbar.LENGTH_SHORT).show();
-        } else if(password == "") {
+        } else if(password.isEmpty()) {
             Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Enter a password", Snackbar.LENGTH_SHORT).show();
-        } else if(comfirmPassword == "") {
+        } else if(password.length()<passwordMin){
+            Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Password is too short ("+passwordMin+" characters min)", Snackbar.LENGTH_SHORT).show();
+        } else if(password.length()>passwordMax){
+            Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Password is too long ("+passwordMax+" characters max)", Snackbar.LENGTH_SHORT).show();
+        } else if(comfirmPassword.isEmpty()) {
             Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Confirm your password", Snackbar.LENGTH_SHORT).show();
-        } else if(comfirmPassword != password) {
+        } else if(!comfirmPassword.equals(password)) {
             Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Passwords do not match", Snackbar.LENGTH_SHORT).show();
         } else {
             createdAccount = true;
         }
+        //registerUser tempUser = new registerUser();
+        //tempUser = new registerUser(firstName, lastName, email, username, password , UserType.Client);
+        //newUser = tempUser;
+
+
+        newUser = new registerUser(firstName, lastName, email, username, password , UserType.Client);
         return createdAccount;
     }
+
 
 }
