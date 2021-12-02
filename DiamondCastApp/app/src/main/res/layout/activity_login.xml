@@ -24,12 +24,12 @@
         app:layout_constraintVertical_bias="0.322" />
 
     <EditText
-        android:id="@+id/loginUsernameInput"
+        android:id="@+id/loginEmailInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/username"
-        android:inputType="text"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
         android:id="@+id/loginEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="goToHomeScreenActivity"
+        android:onClick="loggingIn"
         android:text="@string/enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

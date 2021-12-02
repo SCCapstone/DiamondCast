@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAccount2Activity extends AppCompatActivity {
@@ -40,19 +42,9 @@ public class CreateAccount2Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void goToHomeScreenActivity () {
-            Class nextClass = ClientHomeScreenActivity.class;
-            UserType type = newUser.getUserType();
-            if (type == UserType.Client) {
-                nextClass = ClientHomeScreenActivity.class;
-            } else if (type == UserType.Agent) {
-                nextClass = AgentHomeScreenActivity.class;
-            } else if (type == UserType.Contractor) {
-                nextClass = ContractorHomeScreenActivity.class;
-            } else {
-                //TODO other potential user types
-            }
-            Intent intent = new Intent(this, nextClass);
+    private void goToLoginActivity () {
+        Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "User has been registered", Snackbar.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
     }
 
@@ -79,14 +71,12 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(newUser.getUserType().toString())
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        goToHomeScreenActivity();
-                                        Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "User has been registered", Snackbar.LENGTH_SHORT).show();
+                                        goToLoginActivity();
                                     } else{
                                         Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(2)", Snackbar.LENGTH_SHORT).show();
                                     }

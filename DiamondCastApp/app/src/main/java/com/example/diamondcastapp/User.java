@@ -12,14 +12,14 @@ package com.example.diamondcastapp;
 
     public class User {
 
-        //instance variables 
+        //instance variables
         private String uid;
         private String username;
         private String firstName;
         private String lastName;
         private String email;
         private UserType userType;
-    
+
     public User () {
         this.uid = "";
         this.username = "";
@@ -40,51 +40,51 @@ package com.example.diamondcastapp;
     }
 
     /***Setters*************************************************/
-    protected void setId(String uid) {
+    public void setId(String uid) {
         this.uid = uid;
     }
 
-    protected void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    protected void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    protected void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    protected void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    protected void setUserType(UserType userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 
-    
+
     /***Getters*************************************************/
-    protected String getUid() {
+    public String getUid() {
         return this.uid;
     }
 
-    protected String getUsername() {
+    public String getUsername() {
         return this.getUsername();
     }
 
-    protected String getFirstName() {
+    public String getFirstName() {
         return this.firstName;
     }
 
-    protected String getLastName(){
+    public String getLastName(){
         return this.lastName;
     }
 
-    protected String getEmail() {
+    public String getEmail() {
         return this.email;
     }
 
-    protected UserType getUserType() { return this.userType; }
+    public UserType getUserType() { return this.userType; }
 }
