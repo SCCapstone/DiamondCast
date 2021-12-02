@@ -71,7 +71,7 @@ package com.example.diamondcastapp;
     }
 
     public String getUsername() {
-        return this.getUsername();
+        return this.username;
     }
 
     public String getFirstName() {

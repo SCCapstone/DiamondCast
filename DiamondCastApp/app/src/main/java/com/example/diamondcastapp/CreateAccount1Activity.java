@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
 
 public class CreateAccount1Activity extends AppCompatActivity {
     private static final String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-    private registerUser newUser;
+    private User newUser;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
 
     public void goToCreateAccount2Activity (View view) {
         if (creatingAccount()) {
-            CreateAccount2Activity.setNewUserCreateAccount2(newUser);
+            CreateAccount2Activity.setNewUserAndPassowrdCreateAccount2(newUser, password);
             Intent intent = new Intent(this, CreateAccount2Activity.class);
             startActivity(intent);
         }
@@ -51,7 +52,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
         String lastName = lastNameInput.getText().toString();
         String email = emailInput.getText().toString();
         String username = usernameInput.getText().toString();
-        String password = passwordInput.getText().toString();
+        password = passwordInput.getText().toString();
         String comfirmPassword = comfirmPasswordInput.getText().toString();
 
         Pattern pattern = Pattern.compile(regex);
@@ -67,7 +68,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
             Snackbar.make(findViewById(R.id.createAccount1EmailInput), "Email is invalid", Snackbar.LENGTH_SHORT).show();
         } else if(false) {//TODO check if email is already in use
             Snackbar.make(findViewById(R.id.createAccount1EmailInput), "Email already in use", Snackbar.LENGTH_SHORT).show();
-        } else if(username == "") {
+        } else if(username.isEmpty()) {
             Snackbar.make(findViewById(R.id.createAccount1UsernameInput), "Enter a username", Snackbar.LENGTH_SHORT).show();
         } else if(false) {//TODO check if username is already in use
             Snackbar.make(findViewById(R.id.createAccount1UsernameInput), "Username already in use", Snackbar.LENGTH_SHORT).show();
@@ -84,12 +85,8 @@ public class CreateAccount1Activity extends AppCompatActivity {
         } else {
             createdAccount = true;
         }
-        //registerUser tempUser = new registerUser();
-        //tempUser = new registerUser(firstName, lastName, email, username, password , UserType.Client);
-        //newUser = tempUser;
 
-
-        newUser = new registerUser(firstName, lastName, email, username, password , UserType.Client);
+        newUser = new User("", firstName, lastName, email, username, UserType.Client);
         return createdAccount;
     }
 

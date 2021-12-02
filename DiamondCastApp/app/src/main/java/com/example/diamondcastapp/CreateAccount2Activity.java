@@ -21,7 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CreateAccount2Activity extends AppCompatActivity {
 
     private Spinner accountTypeSpinner;
-    private static registerUser newUser;
+    private static User newUser;
+    private static String password;
     private FirebaseAuth fAuth;
 
     @Override
@@ -37,7 +38,6 @@ public class CreateAccount2Activity extends AppCompatActivity {
     }
 
     public void goToCreateAccount1Activity (View view) {
-
         Intent intent = new Intent(this, CreateAccount1Activity.class);
         startActivity(intent);
     }
@@ -45,7 +45,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
     private void goToLoginActivity () {
         Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "User has been registered", Snackbar.LENGTH_SHORT).show();
         Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+        startActivity(intent);
     }
 
     public void createAccount (View view) {
@@ -64,15 +64,16 @@ public class CreateAccount2Activity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         String email = newUser.getEmail();
-        String password = newUser.passwordForCreatingAccount();
         fAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            newUser.setId(Uid);
                             FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    .child(Uid).setValue(newUser)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
@@ -89,8 +90,9 @@ public class CreateAccount2Activity extends AppCompatActivity {
                 });
     }
 
-    public static void setNewUserCreateAccount2(registerUser xNewUser) {
+    public static void setNewUserAndPassowrdCreateAccount2(User xNewUser, String xPassword) {
         newUser = xNewUser;
+        password = xPassword;
     }
 
 }
