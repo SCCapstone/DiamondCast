@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else if(user!=null && user.getUserType()==UserType.Contractor) {
                     goToContractorHomeScreenActivity();
                 } else {
-                    Snackbar.make(findViewById(R.id.loginEnter), "Something when wrong", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.loginEnter), "Something went wrong", Snackbar.LENGTH_SHORT).show();
                 }
          }
 
