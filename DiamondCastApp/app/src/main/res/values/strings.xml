@@ -50,5 +50,6 @@
     <string name="Past_Appointments">Past Appointments</string>
     <string name="Upcoming_Appointments">Upcoming Appointments</string>
     <string name="Home">Home</string>
+    <string name="schedule_appointment">Schedule Appointment</string>
 
 </resources>
