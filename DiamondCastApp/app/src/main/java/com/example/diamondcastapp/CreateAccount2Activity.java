@@ -77,6 +77,16 @@ public class CreateAccount2Activity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
+                                        if(newUser.getUserType() == UserType.Contractor) {
+                                            FirebaseDatabase.getInstance().getReference("Contractors")
+                                                    .child(Uid).setValue(newUser);
+                                        }
+                                        else if(newUser.getUserType() == UserType.Agent) {
+                                            FirebaseDatabase.getInstance().getReference("Agents")
+                                                    .child(Uid).setValue(newUser);
+                                        }
+
+
                                         goToLoginActivity();
                                     } else{
                                         Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(2)", Snackbar.LENGTH_SHORT).show();
