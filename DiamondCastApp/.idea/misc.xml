@@ -20,8 +20,9 @@
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox2.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/content_inbox.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_second.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_appointment_scheduler.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_appointment_scheduler.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_client_home_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.234375" />
       </map>
     </option>
   </component>
