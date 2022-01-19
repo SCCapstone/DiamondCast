@@ -38,17 +38,22 @@
         <item>Concrete Specialist</item>
     </string-array>
     <string name="title_activity_inbox">InboxActivity</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- END -->
 
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="Search">Search</string>
     <string name="Past_Appointments">Past Appointments</string>
     <string name="Upcoming_Appointments">Upcoming Appointments</string>
+    <string name="Payment">Payment</string>
+    <string name="Pay_now">Pay Now</string>
+    <string name="description">Search</string>
     <string name="Home">Home</string>
     <string name="schedule_appointment">Schedule Appointment</string>
 
