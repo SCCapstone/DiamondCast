@@ -20,18 +20,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/setDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/choose_a_date"
-        app:layout_constraintBottom_toTopOf="@+id/calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/serviceLocationInputLabel"
         android:layout_width="72dp"
         android:layout_height="48dp"
@@ -76,7 +64,7 @@
         android:layout_marginEnd="10dp"
         android:hint="@string/address_of_service_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/clientNameInputLabel"
         app:layout_constraintTop_toBottomOf="@+id/contractorNameInput" />
 
@@ -99,5 +87,39 @@
         android:hint="@string/your_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+    <TextView
+        android:id="@+id/setDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="21dp"
+        android:text="@string/choose_a_date"
+        app:layout_constraintBottom_toTopOf="@+id/calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appointmentSchedulerNextPage"
+        android:onClick="goToNextSchedulingPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/next_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceLocationInput" />
+
+    <TextView
+        android:id="@+id/appointmentSchedulerPreviousPage"
+        android:onClick="goToPreviousPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/go_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceLocationInputLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

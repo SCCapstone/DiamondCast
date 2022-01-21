@@ -27,6 +27,23 @@ public class Agent extends User {
         this.servicesOffered = servicesOffered;
         this.phone = phone;
     }
+    public Agent(User user, String agencyOf, String location,
+                      double rating, ArrayList<String> servicesOffered, String phone) {
+        super(user.getUid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        this.agencyOf = agencyOf;
+        this.location = location;
+        this.rating = rating;
+        this.servicesOffered = servicesOffered;
+        this.phone = phone;
+    }
+    public Agent(User user) {
+        super(user.getUid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        this.agencyOf = "default";
+        this.location = "default";
+        this.rating = 100;
+        this.servicesOffered.add("default");
+        this.phone = "123-456-7890";
+    }
     public String getAgencyOf() {
         return this.agencyOf;
     }

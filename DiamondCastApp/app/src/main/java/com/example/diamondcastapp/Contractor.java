@@ -27,6 +27,24 @@ public class Contractor extends User{
         this.servicesOffered = servicesOffered;
         this.paymentMethods = paymentMethods;
     }
+    public Contractor(User user, String typeOfContractor, String location,
+                      double rating, ArrayList<String> servicesOffered, ArrayList<String> paymentMethods) {
+        super(user.getUid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        this.typeOfContractor = typeOfContractor;
+        this.location = location;
+        this.rating = rating;
+        this.servicesOffered = servicesOffered;
+        this.paymentMethods = paymentMethods;
+    }
+    public Contractor(User user) {
+        super(user.getUid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        this.typeOfContractor = "default";
+        this.location = "default";
+        this.rating = 100;
+        this.servicesOffered.add("default");
+        this.paymentMethods.add("default");
+    }
+
     public String getTypeOfContractor() {
         return this.typeOfContractor;
     }

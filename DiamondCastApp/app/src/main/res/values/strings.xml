@@ -58,5 +58,8 @@
     <string name="contractor_name">Contractor name</string>
     <string name="client_name">Client Name</string>
     <string name="location_of_service">Location of Service</string>
+    <string name="appointment_details_msg">Enter more information about your appointment</string>
+    <string name="select_time">Select Time</string>
+
 
 </resources>

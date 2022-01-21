@@ -78,12 +78,12 @@ public class CreateAccount2Activity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         if(newUser.getUserType() == UserType.Contractor) {
-                                            Contractor newContractor = new Contractor();
+                                            Contractor newContractor = new Contractor(newUser);
                                             FirebaseDatabase.getInstance().getReference("Contractors")
                                                     .child(Uid).setValue(newContractor);
                                         }
                                         else if(newUser.getUserType() == UserType.Agent) {
-                                            Agent newAgent = new Agent();
+                                            Agent newAgent = new Agent(newUser);
                                             FirebaseDatabase.getInstance().getReference("Agents")
                                                     .child(Uid).setValue(newAgent);
                                         }
