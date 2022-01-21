@@ -1,29 +1,38 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.AbstractMap;
 import java.util.Date;
 
 public class Appointment {
     public String id;
     public String title;
-    public Date date;
+    public SimpleDateFormat date;
     public String service;
     public boolean active;
 
     public Appointment() {
-        this.id = "0";
+        this.id = "id";
         this.title = title;
-        //need to remove this is deprecated
-        this.date = new Date("yyyy-MM-dd HH:mm:ss");
+        this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.service = "service";
         this.active = true;
     }
+
+    public Appointment(String uid, String title, SimpleDateFormat date, String service, Boolean active) {
+        this.id = uid;
+        this.title = title;
+        this.date = date;
+        this.service = service;
+        this.active = active;
+    }
+
     public String getAppointmentID() {
         return this.id;
     }
     public String getAppointmentTitle() {
         return this.title;
     }
-    public Date getAppointmentDate() {
+    public SimpleDateFormat getAppointmentDate() {
         return this.date;
     }
     public String getAppointmentService() {
@@ -38,7 +47,7 @@ public class Appointment {
     public void setAppointmentTitle(String title) {
         this.title = title;
     }
-    public void setAppointmentDate(Date date) {
+    public void setAppointmentDate(SimpleDateFormat date) {
         this.date = date;
     }
     public void setAppointmentService(String service) {

@@ -77,6 +77,18 @@ public class CreateAccount2Activity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
+                                        if(newUser.getUserType() == UserType.Contractor) {
+                                            Contractor newContractor = new Contractor(newUser);
+                                            FirebaseDatabase.getInstance().getReference("Contractors")
+                                                    .child(Uid).setValue(newContractor);
+                                        }
+                                        else if(newUser.getUserType() == UserType.Agent) {
+                                            Agent newAgent = new Agent(newUser);
+                                            FirebaseDatabase.getInstance().getReference("Agents")
+                                                    .child(Uid).setValue(newAgent);
+                                        }
+
+
                                         goToLoginActivity();
                                     } else{
                                         Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(2)", Snackbar.LENGTH_SHORT).show();
@@ -90,7 +102,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                 });
     }
 
-    public static void setNewUserAndPassowrdCreateAccount2(User xNewUser, String xPassword) {
+    public static void setNewUserAndPasswordCreateAccount2(User xNewUser, String xPassword) {
         newUser = xNewUser;
         password = xPassword;
     }

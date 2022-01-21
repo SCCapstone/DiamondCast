@@ -25,7 +25,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
 
     public void goToCreateAccount2Activity (View view) {
         if (creatingAccount()) {
-            CreateAccount2Activity.setNewUserAndPassowrdCreateAccount2(newUser, password);
+            CreateAccount2Activity.setNewUserAndPasswordCreateAccount2(newUser, password);
             Intent intent = new Intent(this, CreateAccount2Activity.class);
             startActivity(intent);
         }
