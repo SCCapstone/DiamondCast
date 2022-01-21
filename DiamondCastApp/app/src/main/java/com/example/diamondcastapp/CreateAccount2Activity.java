@@ -78,12 +78,14 @@ public class CreateAccount2Activity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         if(newUser.getUserType() == UserType.Contractor) {
+                                            Contractor newContractor = new Contractor();
                                             FirebaseDatabase.getInstance().getReference("Contractors")
-                                                    .child(Uid).setValue(newUser);
+                                                    .child(Uid).setValue(newContractor);
                                         }
                                         else if(newUser.getUserType() == UserType.Agent) {
+                                            Agent newAgent = new Agent();
                                             FirebaseDatabase.getInstance().getReference("Agents")
-                                                    .child(Uid).setValue(newUser);
+                                                    .child(Uid).setValue(newAgent);
                                         }
 
 
@@ -100,7 +102,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                 });
     }
 
-    public static void setNewUserAndPassowrdCreateAccount2(User xNewUser, String xPassword) {
+    public static void setNewUserAndPasswordCreateAccount2(User xNewUser, String xPassword) {
         newUser = xNewUser;
         password = xPassword;
     }

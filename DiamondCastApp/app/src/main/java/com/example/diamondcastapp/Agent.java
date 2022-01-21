@@ -2,33 +2,33 @@ package com.example.diamondcastapp;
 
 import java.util.ArrayList;
 
-public class Contractor extends User{
-    private String typeOfContractor;
+public class Agent extends User {
+    private String agencyOf;
     private String location;
     private double rating;
     private ArrayList<String> servicesOffered = new ArrayList<>();
-    private ArrayList<String> paymentMethods = new ArrayList<>();
+    private String phone;
 
-    public Contractor() {
+    public Agent() {
         super();
-        this.typeOfContractor = "default";
+        this.agencyOf = "default";
         this.location = "default";
         this.rating = 100;
         this.servicesOffered.add("default");
-        this.paymentMethods.add("default");
+        this.phone = "123-456-7890";
     }
-    public Contractor(String uid, String firstNameInput, String lastNameInput, String emailInput,
-                      String usernameInput, UserType userTypeInput, String typeOfContractor, String location,
-                      double rating, ArrayList<String> servicesOffered, ArrayList<String> paymentMethods) {
+    public Agent(String uid, String firstNameInput, String lastNameInput, String emailInput,
+                 String usernameInput, UserType userTypeInput, String agencyOf, String location,
+                 double rating, ArrayList<String> servicesOffered, String phone) {
         super(uid, firstNameInput,lastNameInput,emailInput, usernameInput, userTypeInput);
-        this.typeOfContractor = typeOfContractor;
+        this.agencyOf = agencyOf;
         this.location = location;
         this.rating = rating;
         this.servicesOffered = servicesOffered;
-        this.paymentMethods = paymentMethods;
+        this.phone = phone;
     }
-    public String getTypeOfContractor() {
-        return this.typeOfContractor;
+    public String getAgencyOf() {
+        return this.agencyOf;
     }
     public String getLocation() {
         return this.location;
@@ -39,11 +39,11 @@ public class Contractor extends User{
     public ArrayList<String> getServicesOffered() {
         return this.servicesOffered;
     }
-    public ArrayList<String> getPaymentMethods() {
-        return this.paymentMethods;
+    public String getPhone() {
+        return this.phone;
     }
-    public void setTypeOfContractor(String typeOfContractor) {
-        this.typeOfContractor = typeOfContractor;
+    public void setTypeOfContractor(String agencyOf) {
+        this.agencyOf = agencyOf;
     }
     public void setLocation(String location) {
         this.location = location;
@@ -54,8 +54,7 @@ public class Contractor extends User{
     public void setServicesOffered(ArrayList<String> servicesOffered) {
         this.servicesOffered = servicesOffered;
     }
-    public void setPaymentMethods(ArrayList<String> paymentMethods) {
-        this.paymentMethods = paymentMethods;
+    public void setPaymentMethods(String phone) {
+        this.phone = phone;
     }
 }
-
