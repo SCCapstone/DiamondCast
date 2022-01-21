@@ -37,7 +37,7 @@ public class Agent extends User {
         this.servicesOffered = servicesOffered;
         this.phone = phone;
     }
-    // constructor to set only agent values, use existing user
+    // constructor to set only agent values, use existing user.
     public Agent(User user, String agencyOf, String location,
                       double rating, ArrayList<String> servicesOffered, String phone) {
         super(user.getUid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
