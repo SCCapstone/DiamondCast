@@ -86,7 +86,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
             createdAccount = true;
         }
 
-        newUser = new User(firstName, lastName, email, username, UserType.Client);
+        newUser = new User( firstName, lastName, email, username, UserType.Client);
         return createdAccount;
     }
 

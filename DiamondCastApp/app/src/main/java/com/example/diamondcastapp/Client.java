@@ -31,18 +31,7 @@ public class Client extends User {
         this.location = location;
         this.phone = phone;
     }
-    // create client default only copying uid from User
-    public Client(String uid) {
-        this.uid = uid;
-        this.location = "default";
-        this.phone = "123-456-7890";
-    }
-    // create client only copying uid from User
-    public Client(String uid, String location, String phone) {
-        this.uid = uid;
-        this.location = location;
-        this.phone = phone;
-    }
+
 
 
     public String getLocation() {
