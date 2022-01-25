@@ -75,7 +75,7 @@ public class Agent extends User {
     public void setServicesOffered(ArrayList<String> servicesOffered) {
         this.servicesOffered = servicesOffered;
     }
-    public void setPaymentMethods(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

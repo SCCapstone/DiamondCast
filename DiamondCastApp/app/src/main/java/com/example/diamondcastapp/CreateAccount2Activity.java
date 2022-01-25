@@ -69,7 +69,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); //generates UID for new users
                             newUser.setId(Uid);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(Uid).setValue(newUser)
@@ -87,8 +87,11 @@ public class CreateAccount2Activity extends AppCompatActivity {
                                             FirebaseDatabase.getInstance().getReference("Agents")
                                                     .child(Uid).setValue(newAgent);
                                         }
-
-
+                                        else {
+                                            Client newClient = new Client(newUser.getUid());
+                                            FirebaseDatabase.getInstance().getReference("Clients")
+                                                    .child(Uid).setValue(newClient);
+                                        }
                                         goToLoginActivity();
                                     } else{
                                         Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(2)", Snackbar.LENGTH_SHORT).show();
