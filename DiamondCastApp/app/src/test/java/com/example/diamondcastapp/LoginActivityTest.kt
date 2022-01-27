@@ -9,6 +9,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import junit.framework.Assert.assertNotNull
 import junit.framework.Assert.assertTrue
 import org.junit.After
@@ -17,7 +18,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 //Testing the Login Activity functionality
-@RunWith(AndroidJUnit4::class)
+
 class LoginActivityTest {
 
     private lateinit var scenario: ActivityScenario<LoginActivity>

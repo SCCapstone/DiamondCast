@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id "org.jetbrains.kotlin.android" version "1.6.10"
 }
 task wrapper(type: Wrapper){
     gradleVersion = '7.3'
@@ -71,7 +72,7 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.4.1-alpha03'
     androidTestUtil 'androidx.test:orchestrator:1.4.1'
     androidTestImplementation 'androidx.test.ext:truth:1.4.0'
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31"
 
 
 
