@@ -23,16 +23,14 @@ class LoginActivityTest {
 
     private lateinit var scenario: ActivityScenario<LoginActivity>
 
-    @Before
-    fun setup() {
-        scenario = launchActivity<LoginActivity>()
-        scenario.moveToState(Lifecycle.State.STARTED)
-    }
+
 
     @Test
     //checks whether LoginActivity.loggingin() will accept invalid email for login
     fun testInvalidUsernameLogin() {
+        scenario = launchActivity()
         onView(withId(R.id.loginEmailInput)).perform(typeText("invalid@gmail.com"))
+        Espresso.closeSoftKeyboard()
         onView(withId(R.id.loginPasswordInput)).perform(typeText("password"))
         Espresso.closeSoftKeyboard()
         onView(withId(R.id.loginEnter)).perform(click())
@@ -40,8 +38,4 @@ class LoginActivityTest {
         assertNotNull(scenario)
     }
 
-    @After
-    fun tearDown() {
-        scenario.close()
-    }
 }
