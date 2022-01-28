@@ -42,6 +42,9 @@
             android:name=".CreateAccount1Activity"
             android:exported="true" />
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="true" />
         <activity

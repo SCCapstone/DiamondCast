@@ -67,5 +67,14 @@
     <string name="select_time">Select Time</string>
     <string name="emailVerify">YOUR EMAIL IS NOT VERIFIED</string>
     <string name="verify">VERIFY NOW</string>
+    //
+
+    <string name="change_prof_pic">Change Profile Image</string>
+    <string name="logout_btn">Logout</string>
+    <string name="full_name">Full Name:</string>
+    <string name="user_type_prof">User Type:</string>
+    <string name="text_view">Your information</string>
+    <string name="email_prof">Email:</string>
+    <string name="your_profile">Your Profile</string>
 
 </resources>
