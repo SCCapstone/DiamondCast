@@ -22,8 +22,8 @@ class AppointmentSchedulerActivityTest {
     @Test
     fun isSetDateTextViewDisplayed() {
         scenario = launchActivity()
-        val formatter = SimpleDateFormat("MM-dd-yy",Locale.getDefault())
-        val date = formatter.format(Calendar.getInstance().time)
+        //val formatter = SimpleDateFormat("MM-dd-yy",Locale.getDefault())
+        //val date = formatter.format(Calendar.getInstance().time)
         onView(withId(R.id.setDate)).check(matches(withText("Choose a Date")))
 
     }
