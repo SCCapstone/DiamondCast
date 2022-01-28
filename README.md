@@ -24,8 +24,8 @@ To run the application, you must open Android Studio and open the DiamondCastApp
 
 ## Deployment
 
-Mobile apps will also sometimes need some instructions on how to build a "release" version, maybe how to sign it, and how to run that binary in an
-emulator or in a physical phone.
+To build our application and create a "release" open the DiamondCastApp in Android Studio and choose the Build > Build Bundle/APK > Build APK from the top menu bar. 
+A release can be created by uploading the APK to the appropriate github tag. 
 
 ## Testing
 
