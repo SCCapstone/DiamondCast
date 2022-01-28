@@ -30,11 +30,13 @@ A release can be created by uploading the APK to the appropriate github tag. The
 ## Testing
 
 Unit Testing Directory - app/src/test/java/com/example/diamondcastapp
+
 UI Testing Directory - app/src/androidTest/java/com/example/diamondcastapp
 
 ## Testing Technology
 
 JUnit - for unit testing
+
 Espresso - for instrumentation testing
 
 ## Running Tests
