@@ -25,6 +25,9 @@
             android:name=".AgentHomeScreenActivity"
             android:exported="true" />
         <activity
+            android:name=".SearchScreenActivity"
+            android:exported="true" />
+        <activity
             android:name=".ClientHomeScreenActivity"
             android:exported="true" />
         <activity
