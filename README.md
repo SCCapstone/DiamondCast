@@ -25,19 +25,27 @@ To run the application, you must open Android Studio and open the DiamondCastApp
 ## Deployment
 
 To build our application and create a "release" open the DiamondCastApp in Android Studio and choose the Build > Build Bundle/APK > Build APK from the top menu bar. 
-A release can be created by uploading the APK to the appropriate github tag. 
+A release can be created by uploading the APK to the appropriate github tag. The APK can be downloaded from the github release and executing this file will install the app on your device.
 
 ## Testing
 
-Will do in 492.
+Unit Testing Directory - app/src/test/java/com/example/diamondcastapp
+UI Testing Directory - app/src/androidTest/java/com/example/diamondcastapp
 
 ## Testing Technology
 
-Will do in 492.
+JUnit - for unit testing
+Espresso - for instrumentation testing
 
 ## Running Tests
 
-Will do in 492.
+If you have our project open in Android Studio, running the tests is easy:  Simply navigate through the file structure of the app and run the tests by right-clicking on each directory and choosing "run 'Tests in 'com.example...".
+
+Otherwise you can run each set of tests from the command line using:
+
+For Unit Tests:  ./gradlew test 
+
+For Instrumentation Tests: ./gradlew cAT
 
 ## Authors
 
