@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppointmentSchedulerActivity">
+
+
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="411dp"
+        android:layout_height="347dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/serviceLocationInputLabel"
+        android:layout_width="72dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/location_of_service"
+        app:layout_constraintEnd_toStartOf="@+id/clientNameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contractorNameInputLabel" />
+
+    <TextView
+        android:id="@+id/clientNameInputLabel"
+        android:layout_width="72dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/client_name"
+        app:layout_constraintEnd_toStartOf="@+id/clientNameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+    <TextView
+        android:id="@+id/contractorNameInputLabel"
+        android:layout_width="71dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/contractor_name"
+        app:layout_constraintEnd_toStartOf="@+id/contractorNameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientNameInputLabel" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/serviceLocationInput"
+        android:layout_width="306dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:hint="@string/address_of_service_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/clientNameInputLabel"
+        app:layout_constraintTop_toBottomOf="@+id/contractorNameInput" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/contractorNameInput"
+        android:layout_width="306dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/contractor_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientNameInput" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/clientNameInput"
+        android:layout_width="306dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/your_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+    <TextView
+        android:id="@+id/setDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="21dp"
+        android:text="@string/choose_a_date"
+        app:layout_constraintBottom_toTopOf="@+id/calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appointmentSchedulerNextPage"
+        android:onClick="goToNextSchedulingPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/next_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceLocationInput" />
+
+    <TextView
+        android:id="@+id/appointmentSchedulerPreviousPage"
+        android:onClick="goToPreviousPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/go_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceLocationInputLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

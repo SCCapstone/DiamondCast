@@ -10,7 +10,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".AppointmentTimeSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AppointmentDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AppointmentSchedulerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ContractorHomeScreenActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AgentHomeScreenActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SearchScreenActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ClientHomeScreenActivity"
+            android:exported="true" />
+        <activity
+            android:name=".InboxActivity"
+            android:exported="false"
+            android:label="@string/title_activity_inbox"
+            android:theme="@style/Theme.DiamondCastApp.NoActionBar" />
+        <activity
+            android:name=".CreateAccount2Activity"
+            android:exported="true" />
+        <activity
+            android:name=".CreateAccount1Activity"
+            android:exported="true" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,3 +1,71 @@
 <resources>
     <string name="app_name">DiamondCastApp</string>
+    <string name="login">Login</string>
+    <string name="enter">Enter</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t Have an account?</string>
+    <string name="create_account">Create Account</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="email">Email:</string>
+    <string name="passwordtext">Password:</string>
+    <string name="go_back">Go Back</string>
+    <string name="next_page">Next Page</string>
+    <string name="comfirm_password">Comfirm Password:</string>
+    <string name="usernameText">Username:</string>
+    <string name="accountTypeText">Choose your account type:</string>
+    <string-array name="accountTypes">
+        <item>Client</item>
+        <item>Agent</item>
+        <item>Contractor</item>
+    </string-array>
+
+    <string name="searching">SearchBar</string>
+    <string-array name="search_bar_array">
+        <item>Renovation</item>
+        <item>Carpenter</item>
+        <item>Electrician</item>
+        <item>Painter</item>
+        <item>Heating and Air Conditioning</item>
+        <item>Masonry</item>
+        <item>Roofer</item>
+        <item>Landscaper</item>
+        <item>Tile Setter</item>
+        <item>Flooring</item>
+        <item>Window Specialist</item>
+        <item>Concrete Specialist</item>
+    </string-array>
+    <string name="title_activity_inbox">InboxActivity</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- END -->
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="Search">Search</string>
+    <string name="Past_Appointments">Past Appointments</string>
+    <string name="Upcoming_Appointments">Upcoming Appointments</string>
+    <string name="Payment">Payment</string>
+    <string name="Pay_now">Pay Now</string>
+    <string name="description">Search</string>
+    <string name="Home">Home</string>
+    <string name="schedule_appointment">Schedule Appointment</string>
+    <string name="choose_a_date">Choose a Date</string>
+    <string name="textview">TextView</string>
+    <string name="your_name">your name</string>
+    <string name="address_of_service_location">Address of service location</string>
+    <string name="contractor_name">Contractor name</string>
+    <string name="client_name">Client Name</string>
+    <string name="location_of_service">Location of Service</string>
+    <string name="appointment_details_msg">Enter more information about your appointment</string>
+    <string name="select_time">Select Time</string>
+    <string name="emailVerify">YOUR EMAIL IS NOT VERIFIED</string>
+    <string name="verify">VERIFY NOW</string>
+
 </resources>

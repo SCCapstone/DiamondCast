@@ -1,16 +1,16 @@
 package com.example.diamondcastapp;
+/*import android.widget.ArrayAdapter;
+import androidx.appcompat.app.AppCompatActivity;*/
+import com.stripe.android.PaymentConfiguration;
+import android.app.Application;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends Application {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //Branch merging for frank
-        //test push
+    public void onCreate(){
+        super.onCreate();
+        PaymentConfiguration.init(
+                getApplicationContext(),
+                ""//TODO stripe key
+        );
     }
 }
