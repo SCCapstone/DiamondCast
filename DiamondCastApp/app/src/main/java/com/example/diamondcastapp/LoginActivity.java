@@ -1,14 +1,22 @@
 package com.example.diamondcastapp;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
@@ -26,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser fUser;
     private DatabaseReference dReference;
     private String userID;
+    private Button verifyButton;
+    private TextView verifyMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +60,34 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        goToHomeScreenActivity();
+                        final FirebaseUser user = fAuth.getCurrentUser();
+                        verifyButton = findViewById(R.id.verifyButton);
+                        verifyMsg = findViewById(R.id.verifyMsg);
+                        if(!user.isEmailVerified()){
+                            verifyMsg.setVisibility(View.VISIBLE);
+                            verifyButton.setVisibility(View.VISIBLE);
+                            verifyButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    verifyMsg.setVisibility(View.GONE);
+                                    verifyButton.setVisibility(View.GONE);
+                                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>(){
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(LoginActivity.this, "Verification Email has been Sent.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d("tag", "onFailure: Email not sent" +e.getMessage());
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                        if(user.isEmailVerified()) {
+                            goToHomeScreenActivity();
+                        }
                     } else {
                         Snackbar.make(findViewById(R.id.loginPasswordInput), "Login failed, check your email and password", Snackbar.LENGTH_SHORT).show();
                     }
