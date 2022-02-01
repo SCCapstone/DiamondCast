@@ -36,12 +36,13 @@ public class AppointmentSchedulerActivity extends AppCompatActivity {
 
 
                                 selectedDate
-                                        = dayOfMonth + "-"
-                                        + (month + 1) + "-" + year;
+                                        = (month + 1) + "-"
+                                        + dayOfMonth + "-" + year;
 
                                 date_view.setText(selectedDate);
                             }
                         });
+      //  calendar.getDate();
     }
 
     public void goToNextSchedulingPage(View view) {
