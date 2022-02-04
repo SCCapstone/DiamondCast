@@ -10,7 +10,7 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 public class AppointmentSchedulerActivity extends AppCompatActivity {
-
+    String selectedDate = "";
     CalendarView calendar;
     TextView date_view;
     @Override
@@ -35,17 +35,19 @@ public class AppointmentSchedulerActivity extends AppCompatActivity {
                             {
 
 
-                                String Date
-                                        = dayOfMonth + "-"
-                                        + (month + 1) + "-" + year;
+                                selectedDate
+                                        = (month + 1) + "-"
+                                        + dayOfMonth + "-" + year;
 
-                                date_view.setText(Date);
+                                date_view.setText(selectedDate);
                             }
                         });
+      //  calendar.getDate();
     }
 
     public void goToNextSchedulingPage(View view) {
-        Intent intent = new Intent(this, AppointmentTimeSelectionActivity.class);
+        Intent intent = new Intent(this, AppointmentDetailsActivity.class);
+        intent.putExtra("selectedDate", selectedDate);
         startActivity(intent);
     }
 

@@ -76,6 +76,18 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            FirebaseUser fUser = fAuth.getCurrentUser();
+                            fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>(){
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(CreateAccount2Activity.this, "Verification Email has been Sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: Email not sent" +e.getMessage());
+                                }
+                            });
                             addUserToDatabase(newUser);
                         } else{
                             Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(1)", Snackbar.LENGTH_SHORT).show();
