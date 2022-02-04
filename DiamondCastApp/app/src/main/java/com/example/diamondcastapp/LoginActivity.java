@@ -3,6 +3,7 @@ package com.example.diamondcastapp;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -33,14 +34,42 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth fAuth;
     private FirebaseUser fUser;
     private DatabaseReference dReference;
-    private String userID;
-    private Button verifyButton;
+    private String userID, mail;
+    private Button verifyButton,changePass;
     private TextView verifyMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        fAuth = FirebaseAuth.getInstance();
+
+        changePass = findViewById(R.id.loginForgotPassword);
+        changePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start
+                final EditText resetMail = new EditText(v.getContext());
+                final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+
+                passwordResetDialog.setTitle("Reset Password?");
+                passwordResetDialog.setMessage("Enter the email associated with your account: ");
+                passwordResetDialog.setView(resetMail);
+
+                passwordResetDialog.setPositiveButton("Yes", (dialog, which) -> {
+                    mail = resetMail.getText().toString();
+                    fAuth.sendPasswordResetEmail(mail).addOnSuccessListener((OnSuccessListener) (aVoid) ->{
+                        Toast.makeText(LoginActivity.this, "Reset Link Sent. Check your email.", Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener((e)-> {
+                        Toast.makeText(LoginActivity.this, "Error Link was not sent to email" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                });
+                passwordResetDialog.setNegativeButton("No", (dialog, which) -> {
+                    //CLOSE
+                });
+                passwordResetDialog.create().show();
+            }
+        });
     }
 
     public void loggingIn(View view) {
