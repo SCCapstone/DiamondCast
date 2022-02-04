@@ -8,19 +8,19 @@ import java.util.Date;
 public class Appointment {
     public String id;
     public String title;
-    public SimpleDateFormat date;
+    public String date;
     public String service;
     public boolean active;
 
     public Appointment() {
         this.id = "id";
         this.title = title;
-        this.date = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        this.date = "";
         this.service = "service";
         this.active = true;
     }
 
-    public Appointment(String uid, String title, SimpleDateFormat date, String service, Boolean active) {
+    public Appointment(String uid, String title, String date, String service, Boolean active) {
         this.id = uid;
         this.title = title;
         this.date = date;
@@ -34,7 +34,7 @@ public class Appointment {
     public String getAppointmentTitle() {
         return this.title;
     }
-    public SimpleDateFormat getAppointmentDate() {
+    public String getAppointmentDate() {
         return this.date;
     }
     public String getAppointmentService() {
@@ -49,7 +49,7 @@ public class Appointment {
     public void setAppointmentTitle(String title) {
         this.title = title;
     }
-    public void setAppointmentDate(SimpleDateFormat date) {
+    public void setAppointmentDate(String date) {
         this.date = date;
     }
     public void setAppointmentService(String service) {
