@@ -1,3 +1,4 @@
+import com.example.diamondcastapp.Appointment;
 import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.Date;
