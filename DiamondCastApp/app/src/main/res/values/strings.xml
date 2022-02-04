@@ -67,10 +67,14 @@
     <string name="select_time">Select Time</string>
     <string name="emailVerify">YOUR EMAIL IS NOT VERIFIED</string>
     <string name="verify">VERIFY NOW</string>
-    <string name="confirm_your_appointment">Confirm your appointment</string>
-    <string name="confirm_appointment">Confirm Appointment</string>
-    <string name="date_format_confirm">dd/MM/yy</string>
-    <string name="default_display_appointment_with">appointment with this person</string>
-    <string name="default_time_confirm">12:00</string>
+
+
+    <string name="change_prof_pic">Change Profile Image</string>
+    <string name="logout_btn">Logout</string>
+    <string name="full_name">Full Name:</string>
+    <string name="user_type_prof">User Type:</string>
+    <string name="text_view">Your information</string>
+    <string name="email_prof">Email:</string>
+    <string name="your_profile">Your Profile</string>
 
 </resources>

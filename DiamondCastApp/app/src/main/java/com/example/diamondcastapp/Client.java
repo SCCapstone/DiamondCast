@@ -19,8 +19,8 @@ public class Client extends User {
         this.phone = "123-456-7890";
     }
     // set all user and agent values with this constructor
-    public Client(String uid, String firstNameInput, String lastNameInput, String emailInput,
-                 String usernameInput, UserType userTypeInput, String location, ArrayList<String> servicesOffered, String phone) {
+    public Client(String firstNameInput, String lastNameInput, String emailInput,
+                 String usernameInput, UserType userTypeInput, String location, String phone) {
         super(firstNameInput,lastNameInput,emailInput, usernameInput, userTypeInput);
         this.location = location;
         this.phone = phone;

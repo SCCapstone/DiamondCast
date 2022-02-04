@@ -16,6 +16,9 @@ public class CreateAccount1Activity extends AppCompatActivity {
     private static final String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     private User newUser;
     private String password;
+    private static final int PASSWORD_MIN = 6;
+    private static final int PASSWORD_MAX = 30;
+    private CreateAccount createAccountMethods = new CreateAccount();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +49,14 @@ public class CreateAccount1Activity extends AppCompatActivity {
         EditText emailInput = findViewById(R.id.createAccount1EmailInput);
         EditText usernameInput = findViewById(R.id.createAccount1UsernameInput);
         EditText passwordInput = findViewById(R.id.createAccount1PasswordInput);
-        EditText comfirmPasswordInput = findViewById(R.id.createAccount1ComfirmPasswordInput);
+        EditText confirmPasswordInput = findViewById(R.id.createAccount1ComfirmPasswordInput);
 
         String firstName = firstNameInput.getText().toString();
         String lastName = lastNameInput.getText().toString();
         String email = emailInput.getText().toString();
         String username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
-        String comfirmPassword = comfirmPasswordInput.getText().toString();
+        String confirmPassword = confirmPasswordInput.getText().toString();
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
@@ -74,20 +77,49 @@ public class CreateAccount1Activity extends AppCompatActivity {
             Snackbar.make(findViewById(R.id.createAccount1UsernameInput), "Username already in use", Snackbar.LENGTH_SHORT).show();
         } else if(password.isEmpty()) {
             Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Enter a password", Snackbar.LENGTH_SHORT).show();
-        } else if(password.length()<passwordMin){
-            Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Password is too short ("+passwordMin+" characters min)", Snackbar.LENGTH_SHORT).show();
-        } else if(password.length()>passwordMax){
-            Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Password is too long ("+passwordMax+" characters max)", Snackbar.LENGTH_SHORT).show();
-        } else if(comfirmPassword.isEmpty()) {
-            Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Confirm your password", Snackbar.LENGTH_SHORT).show();
-        } else if(!comfirmPassword.equals(password)) {
-            Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Passwords do not match", Snackbar.LENGTH_SHORT).show();
-        } else {
+        } else if(confirmPassword.isEmpty()) {
+            Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Confirm your password.", Snackbar.LENGTH_SHORT).show();
+        } else if(!createAccountMethods.checkPasswordRequirementsMet(password)) {
+            Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Password must be between " + PASSWORD_MIN + " and " + PASSWORD_MAX + "characters.", Snackbar.LENGTH_SHORT).show();
+        } else if(!createAccountMethods.checkPasswordIsEqualToConfirmation(password, confirmPassword)) {
+            Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Confirm your password.", Snackbar.LENGTH_SHORT).show();
+        }
+        else {
             createdAccount = true;
         }
 
         newUser = new User( firstName, lastName, email, username, UserType.Client);
         return createdAccount;
+    }
+    //Determines if password requirements are met
+    // Password Requirements
+    //   - length is (6-30) characters
+    //   - more to come? (needs at least 1 number 1 uppercase)
+    // **an empty password will fail check**
+    public boolean checkPasswordRequirementsMet(String password) {
+        if (password.isEmpty()) {
+            Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Enter a password", Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(password.length() < PASSWORD_MIN || password.length() > PASSWORD_MAX) {
+            Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Password must be between " + PASSWORD_MIN + " and " + PASSWORD_MAX + "characters.", Snackbar.LENGTH_SHORT).show();
+            return false;
+       }
+        else {
+            return true;
+        }
+    }
+    //returns true if password and confirm password are equal
+    public boolean checkPasswordIsEqualToConfirmation(String password, String confirmPassword) {
+            if(confirmPassword.isEmpty()) {
+                Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Confirm your password.", Snackbar.LENGTH_SHORT).show();
+                return false;
+            }
+            else if(!(password.equals(confirmPassword))) {
+                Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Passwords do not match.", Snackbar.LENGTH_SHORT).show();
+                return false;
+            }
+            else { return true; }
     }
 
 

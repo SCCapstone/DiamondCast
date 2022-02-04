@@ -23,7 +23,12 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         ImageButton SearchBTN = (ImageButton) findViewById(R.id.goToSearchBtn);
         SearchBTN.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v1) { goToSearchActivity(); }
+            public void onClick(View v) { goToSearchActivity(); }
+        });
+        ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
+        profileBTN.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { goToProfileActivity(); }
         });
     }
     public void goToAppointmentSchedulerActivity() {
@@ -35,6 +40,9 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SearchScreenActivity.class);
         startActivity(intent);
     }
-
+    public void goToProfileActivity() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
 
 }
