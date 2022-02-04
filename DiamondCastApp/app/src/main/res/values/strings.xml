@@ -67,6 +67,7 @@
     <string name="select_time">Select Time</string>
     <string name="emailVerify">YOUR EMAIL IS NOT VERIFIED</string>
     <string name="verify">VERIFY NOW</string>
+
     <string name="confirm_your_appointment">Confirm your appointment</string>
     <string name="confirm_appointment">Confirm Appointment</string>
     <string name="date_format_confirm">dd/MM/yy</string>

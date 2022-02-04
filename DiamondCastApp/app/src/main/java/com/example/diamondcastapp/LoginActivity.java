@@ -126,10 +126,10 @@ public class LoginActivity extends AppCompatActivity {
          }
 
           @Override
-          public void onCancelled(@NonNull DatabaseError error) {
-               Snackbar.make(findViewById(R.id.loginEnter), "An error has occurred: "+error, Snackbar.LENGTH_SHORT).show();
-          }
-        });
+        public void onCancelled(@NonNull DatabaseError error) {
+            Snackbar.make(findViewById(R.id.loginEnter), "An error has occurred: "+error, Snackbar.LENGTH_SHORT).show();
+        }
+    });
     }
 
 
