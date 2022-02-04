@@ -81,4 +81,8 @@
     <string name="email_prof">Email:</string>
     <string name="your_profile">Your Profile</string>
 
+    <string name="user_settings">User Settings</string>
+    <string name="your_settings">Your Settings</string>
+    <string name="change_password">Change Password</string>
+    <string name="light_mode_dark_mode">Light Mode/Dark Mode</string>
 </resources>

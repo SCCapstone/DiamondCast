@@ -33,8 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
     TextView name, email, userType;
     FirebaseAuth fAuth;
     FirebaseUser user;
-    Button logoutBtn, changeProfileImage;
-    String userId, emailNameStr, userTypeStr, nameStr;
+    Button logout, settingsBtn, changeProfileImage;
+    String userId, emailNameStr, userTypeStr, lastNameStr, firstNameStr;
     ImageView profileImage;
 
     @Override
@@ -62,25 +62,35 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             //get name and user type from database
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                String firstNameStr = dataSnapshot.child("firstName").getValue(String.class);
-                String lastNameStr = dataSnapshot.child("lastName").getValue(String.class);
-                String userTypeStr = dataSnapshot.child("userType").getValue(String.class);
-                name.setText(firstNameStr+" "+lastNameStr);
+                firstNameStr = dataSnapshot.child("firstName").getValue(String.class);
+                lastNameStr = dataSnapshot.child("lastName").getValue(String.class);
+                userTypeStr = dataSnapshot.child("userType").getValue(String.class);
+                name.setText(firstNameStr + " " + lastNameStr);
                 userType.setText(userTypeStr);
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+            }
         };
         current_userRef.addListenerForSingleValueEvent(eventListener);
 
-        Button logout = (Button) findViewById(R.id.logoutBtn);
+        //LOGOUT BUTTON
+        logout = (Button) findViewById(R.id.logoutBtn);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToLoginPage();
             }
         });
+        //GO TO USER SETTINGS
+        settingsBtn = (Button) findViewById(R.id.userSettingBtn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToUserSettings();
+            }
+        });
+
         //setting profile image
         ActivityResultLauncher<Intent> thisActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -105,6 +115,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    //go to settings page
+    public void goToUserSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
     //logout == goes back to login page
     public void goToLoginPage() {
         Intent intent = new Intent(this, LoginActivity.class);
