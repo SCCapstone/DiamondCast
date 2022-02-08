@@ -35,8 +35,10 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         confirmAppointmentBtn = (Button) findViewById(R.id.confirm_appointment_button);
         displaySelectedDate.setText(selectedDate);
 
+        String selectedService = "service choice";
+
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Appointment appointment = new Appointment();
+        Appointment appointment = new Appointment("Appointment with Joe", selectedDate, selectedService, true);
 
         confirmAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
