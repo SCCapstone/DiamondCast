@@ -68,7 +68,7 @@ public class AppointmentSchedulerActivity extends AppCompatActivity {
 
         int style = AlertDialog.THEME_HOLO_DARK;
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute,true);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute,false);
 
         timePickerDialog.setTitle("Select Time");
         timePickerDialog.show();

@@ -18,7 +18,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v) { goToAppointmentSchedulerActivity(); }
+            public void onClick(View v) { goToAppointmentServiceSelectionActivity(); }
         });
         ImageButton SearchBTN = (ImageButton) findViewById(R.id.goToSearchBtn);
         SearchBTN.setOnClickListener( new View.OnClickListener() {
@@ -33,6 +33,10 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
     }
     public void goToAppointmentSchedulerActivity() {
         Intent intent = new Intent(this, AppointmentSchedulerActivity.class);
+        startActivity(intent);
+    }
+    public void goToAppointmentServiceSelectionActivity() {
+        Intent intent = new Intent(this, AppointmentServiceSelectionActivity.class);
         startActivity(intent);
     }
 

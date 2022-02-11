@@ -81,5 +81,7 @@
     <string name="text_view">Your information</string>
     <string name="email_prof">Email:</string>
     <string name="your_profile">Your Profile</string>
+    <string name="what_services_will_you_require">What services will you require?</string>
+    <string name="confirm_choices">Confirm choices</string>
 
 </resources>
