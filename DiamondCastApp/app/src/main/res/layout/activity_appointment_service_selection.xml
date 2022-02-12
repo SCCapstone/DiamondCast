@@ -7,7 +7,7 @@
     tools:context=".AppointmentServiceSelectionActivity">
 
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroup"
+        android:id="@+id/chipGroupServiceSelection"
         android:layout_width="342dp"
         android:layout_height="341dp"
         android:layout_marginTop="152dp"
@@ -94,5 +94,5 @@
         android:text="@string/confirm_choices"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/chipGroupServiceSelection" />
 </androidx.constraintlayout.widget.ConstraintLayout>
