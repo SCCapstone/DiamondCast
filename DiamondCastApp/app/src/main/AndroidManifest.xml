@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
+            android:name=".AppointmentServiceSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AppoinmentServiceSelectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".AppointmentTimeSelectionActivity"
             android:exported="false" />
         <activity
