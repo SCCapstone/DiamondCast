@@ -76,5 +76,6 @@
     <string name="text_view">Your information</string>
     <string name="email_prof">Email:</string>
     <string name="your_profile">Your Profile</string>
+    <string name="search_here">Search here</string>
 
 </resources>
