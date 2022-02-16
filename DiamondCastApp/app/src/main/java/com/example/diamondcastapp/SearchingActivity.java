@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -38,11 +39,6 @@ public class SearchingActivity extends AppCompatActivity {
         searchResultList.setLayoutManager(new LinearLayoutManager(this));
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query query=databaseReference.child("Users").orderByChild("name"); //.equalto ?
-        FirebaseRecyclerOptions<User> options =
-                new FirebaseRecyclerOptions.Builder<User>()
-                        .setQuery(query, User.class)
-                        .build();
 
         enterSearchField.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +50,7 @@ public class SearchingActivity extends AppCompatActivity {
     }
 
     private void firebaseUserSearch() {
-        Query query=databaseReference.child("Users").orderByChild("name"); //.equalto ?
+        Query query=databaseReference.child("Users"); //.equalto ?
         FirebaseRecyclerOptions<User> options =
                 new FirebaseRecyclerOptions.Builder<User>()
                         .setQuery(query, User.class)
@@ -68,7 +64,9 @@ public class SearchingActivity extends AppCompatActivity {
             @NonNull
             @Override
             public SearchResultsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.search_result_list, parent, false);
+                return new SearchResultsViewHolder(view);
             }
         };
         searchResultList.setAdapter(firebaseRecyclerAdapter);
