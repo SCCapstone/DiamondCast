@@ -76,7 +76,6 @@ public class SearchingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)  {
 
-                adapter.notifyDataSetChanged();
             }
         });
 
