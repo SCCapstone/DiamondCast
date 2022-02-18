@@ -56,6 +56,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'com.firebaseui:firebase-ui-database:8.0.0'
     implementation 'com.google.firebase:firebase-database:20.0.3'
     implementation 'com.firebaseui:firebase-ui-database:8.0.0'
@@ -68,9 +70,6 @@ dependencies {
     androidTestImplementation 'androidx.test:core-ktx:1.4.0'
     testImplementation 'androidx.test:core-ktx:1.4.0'
 
-
-
-
     androidTestImplementation 'androidx.test:core:1.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.1-alpha03'
@@ -78,12 +77,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:truth:1.4.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31"
 
-
-
     //Stripe SDK
     implementation 'com.stripe:stripe-android:18.2.0'
 
     //http client (okhttp3)
     //TODO Setup server
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
 }

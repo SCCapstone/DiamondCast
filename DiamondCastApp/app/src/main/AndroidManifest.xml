@@ -10,8 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
-            android:name=".SearchingActivity"
-            android:exported="false" />
+            android:name=".NavigationMenu"
+            android:exported="false"
+            android:label="@string/title_activity_navigation_menu"
+            android:theme="@style/Theme.DiamondCastApp.NoActionBar" />
+        android:name=".SearchingActivity"
+        android:exported="false" />
         <activity
             android:name=".AppointmentServiceSelectionActivity"
             android:exported="false" />
