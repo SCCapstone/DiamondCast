@@ -31,6 +31,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         User model = mList.get(position);
+        holder.avatar.setImageResource(R.drawable.avatar0);
         holder.name.setText(model.getFirstName());
         holder.services.setText(model.getLastName());
     }
@@ -48,7 +49,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            avatar = itemView.findViewById(R.id.searchProfileImage);
             name = itemView.findViewById(R.id.search_result_name);
             services = itemView.findViewById(R.id.search_result_description);
         }
