@@ -12,7 +12,7 @@ public class AgentHomeScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agent_home_screen);
+        setContentView(R.layout.nav_agent_home);
 
         ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
         profileBTN.setOnClickListener( new View.OnClickListener() {

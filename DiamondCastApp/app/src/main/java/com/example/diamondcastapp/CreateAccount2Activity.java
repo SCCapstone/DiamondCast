@@ -104,7 +104,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
     // add User to corresponding list in database
     public void addUserToDatabase(User user) {
         String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();//generates UID for new users
-
+        FirebaseDatabase.getInstance().getReference("Users").child(Uid).setValue(newUser);
         if(newUser.getUserType() == UserType.Contractor) {
             Contractor newContractor = new Contractor(newUser);
             FirebaseDatabase.getInstance().getReference("Contractors")
