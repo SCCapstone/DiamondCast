@@ -71,6 +71,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         String email = newUser.getEmail();
+        //Email Auth
         fAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -120,6 +121,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                 }
             });
         }
+
         else if(newUser.getUserType() == UserType.Agent) {
             Agent newAgent = new Agent(newUser);
             FirebaseDatabase.getInstance().getReference("Agents")
@@ -135,6 +137,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                         }
                     });
         }
+
         else {
             Client newClient = new Client(newUser);
             FirebaseDatabase.getInstance().getReference("Clients")
@@ -151,6 +154,4 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     });
         }
     }
-
-
 }
