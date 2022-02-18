@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToHomeScreenActivity () {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-        dReference = FirebaseDatabase.getInstance().getReference("Clients");
+        dReference = FirebaseDatabase.getInstance().getReference("Users");
         userID = fUser.getUid();
         dReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -161,7 +161,6 @@ public class LoginActivity extends AppCompatActivity {
     });
     }
 
-
     private void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
         startActivity(intent);
@@ -176,8 +175,4 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ContractorHomeScreenActivity.class);
         startActivity(intent);
     }
-
-
-
-
 }
