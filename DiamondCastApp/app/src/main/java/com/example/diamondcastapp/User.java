@@ -26,7 +26,10 @@ package com.example.diamondcastapp;
         this.firstName = "";
         this.lastName = "";
         this.email = "";
-        this.userType = UserType.Client; //may need to set the type somewhere else
+        this.userType = UserType.Client;
+    }
+    public User(UserType userType) {
+        this.userType = userType;
     }
 
     public User (String firstNameInput, String lastNameInput, String emailInput,

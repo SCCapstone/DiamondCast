@@ -20,10 +20,14 @@
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox2.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/content_inbox.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_second.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/search_bar_layout.xml" value="0.21" />
+
+        <entry key="app/src/main/res/layout/activity_appoinment_service_selection.xml" value="0.1" />
+
         <entry key="app/src/main/res/layout/activity_appointment_details.xml" value="0.11666666666666667" />
-        <entry key="app/src/main/res/layout/activity_appointment_scheduler.xml" value="0.16297512010680126" />
+        <entry key="app/src/main/res/layout/activity_appointment_scheduler.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_appointment_service_selection.xml" value="0.16796112060546872" />
         <entry key="app/src/main/res/layout/activity_appointment_time_selection.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_checkout.xml" value="0.14375" />
         <entry key="app/src/main/res/layout/activity_client_home_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.12604166666666666" />
@@ -37,5 +41,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

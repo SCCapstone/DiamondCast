@@ -10,7 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
-            android:name=".SearchingActivity"
+
+            android:name=".AppointmentServiceSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AppoinmentServiceSelectionActivity"
+
             android:exported="false" />
         <activity
             android:name=".AppointmentTimeSelectionActivity"
@@ -50,6 +55,9 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="true" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

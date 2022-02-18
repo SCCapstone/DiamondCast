@@ -76,6 +76,18 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            FirebaseUser fUser = fAuth.getCurrentUser();
+                            fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>(){
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(CreateAccount2Activity.this, "Verification Email has been Sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: Email not sent" +e.getMessage());
+                                }
+                            });
                             addUserToDatabase(newUser);
                         } else{
                             Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(1)", Snackbar.LENGTH_SHORT).show();
@@ -92,7 +104,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
     // add User to corresponding list in database
     public void addUserToDatabase(User user) {
         String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();//generates UID for new users
-
+        FirebaseDatabase.getInstance().getReference("Users").child(Uid).setValue(newUser);
         if(newUser.getUserType() == UserType.Contractor) {
             Contractor newContractor = new Contractor(newUser);
             FirebaseDatabase.getInstance().getReference("Contractors")
