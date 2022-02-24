@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.common.data.DataHolder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchingActivity extends AppCompatActivity {
     private EditText searchField;
@@ -75,11 +77,27 @@ public class SearchingActivity extends AppCompatActivity {
         enterSearchField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
+                filter(searchField.getText().toString());
 
             }
         });
 
 
+
+
+    }
+    void filter(String text){
+        ArrayList<User> temp = new ArrayList<>();
+        for(User d: list){
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            if(d.getFirstName().contains(text)){
+                temp.add(d);
+            }
+        }
+        //update recyclerview
+        adapter = new SearchAdapter(temp, this);
+        searchResultList.setAdapter(adapter);
     }
 
    /* private void firebaseUserSearch() {
