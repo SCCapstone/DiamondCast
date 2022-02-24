@@ -88,11 +88,9 @@ public class SearchingActivity extends AppCompatActivity {
     }
     void filter(String text){
         ArrayList<User> temp = new ArrayList<>();
-        for(User d: list){
-            //or use .equal(text) with you want equal match
-            //use .toLowerCase() for better matches
-            if(d.getFirstName().contains(text)){
-                temp.add(d);
+        for(User user: list){
+            if(user.getFirstName().contains(text)){
+                temp.add(user);
             }
         }
         //update recyclerview
