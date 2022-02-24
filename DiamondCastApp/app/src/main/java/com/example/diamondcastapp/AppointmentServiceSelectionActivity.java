@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,12 +41,12 @@ public class AppointmentServiceSelectionActivity extends AppCompatActivity {
         // need to get contractor choice from search activity
        // selectedContractor =
        // ArrayList<String> selectedContractorServiceList = selectedContractor.getServicesOffered()
-     //   chipGroupServiceSelection = findViewById(R.id.chipGroupServiceSelection);
-        //for(int i = 0; i < selectedContractorServiceList; i++) {
+        chipGroupServiceSelection = findViewById(R.id.chipGroupServiceSelection);
+
+        for(int i = 0; i < 8; i++) {
             Chip chip = new Chip(this);
-       //     chip.setText(selectedContractorServiceList.get(i));
             chipGroupServiceSelection.addView(chip);
-       // }
+        }
 
     }
 }
