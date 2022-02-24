@@ -36,7 +36,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void goToAppointmentServiceSelectionActivity() {
-        Intent intent = new Intent(this, AppointmentServiceSelectionActivity.class);
+        Intent intent = new Intent(this, AppointmentTimeAndServiceChoiceActivity.class);
         startActivity(intent);
     }
 
