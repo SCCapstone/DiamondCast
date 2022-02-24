@@ -45,6 +45,8 @@ public class AppointmentServiceSelectionActivity extends AppCompatActivity {
 
         for(int i = 0; i < 8; i++) {
             Chip chip = new Chip(this);
+            ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Choice);
+            chip.setChipDrawable(drawable);
             chipGroupServiceSelection.addView(chip);
         }
 
