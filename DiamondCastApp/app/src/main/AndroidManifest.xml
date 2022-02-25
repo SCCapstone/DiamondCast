@@ -14,18 +14,15 @@
             android:exported="false" />
         <activity
             android:name=".AppointmentCalendarActivity"
-
+            android:exported="false"/>
+        <activity
             android:name=".SearchingActivity"
             android:exported="false" />
-
-        
 
         <activity
             android:name=".AppointmentTimeAndServiceChoiceActivity"
             android:exported="false" />
-        <activity
-            android:name=".AppoinmentServiceSelectionActivity"
-            android:exported="false" />
+
         <activity
             android:name=".AppointmentTimeSelectionActivity"
             android:exported="false" />

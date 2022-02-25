@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +34,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         User model = mList.get(position);
-        holder.avatar.setImageResource(R.drawable.avatar0);
+        holder.avatar.setImageResource(R.drawable.avatar);
         holder.name.setText(model.getFirstName());
         holder.services.setText(model.getLastName());
         if (clickListener != null) {

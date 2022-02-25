@@ -87,11 +87,11 @@ public class SearchingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int position = searchResultList.getChildAdapterPosition(v);
                 selectedUser = list.get(position);
-                Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
-                startActivity(intent);
                 Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedUser.getFirstName()+ ")");
             }
         });
+
+
 
 
 
