@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.android.material.chip.Chip;
@@ -20,6 +21,10 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
     Button selectTimeButton;
     int hour, minute;
     String selectedDate;
+    TextView displaySelectedContractor;
+    TextView displaySelectedDate;
+    String selectedContractor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,13 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
         selectTimeButton = findViewById(R.id.chooseAppointmentTimeButton);
         Intent intent = getIntent();
         selectedDate = intent.getStringExtra("selectedDate");
+        selectedContractor = intent.getStringExtra("selectedContractor");
+
+        displaySelectedDate = findViewById(R.id.displaySelectedDateServiceChoice);
+        displaySelectedContractor = findViewById(R.id.displaySelectedContractorServiceChoice);
+
+        displaySelectedDate.setText(selectedDate);
+        displaySelectedContractor.setText(selectedContractor);
 
         confirmServiceSelectionBtn = findViewById(R.id.confirmServiceSelectionBtn);
 
@@ -37,6 +49,7 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), AppointmentConfirmationActivity.class);
                     intent.putExtra("selectedDate", selectedDate);
+                    intent.putExtra("selectedContractor", selectedContractor);
                     intent.putExtra("hour", hour);
                     intent.putExtra("minute", minute);
                     startActivity(intent);
@@ -81,5 +94,6 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
         detailConfirmationIntent.putExtra("selectedDate", selectedDate);
         detailConfirmationIntent.putExtra("hour",hour);
         detailConfirmationIntent.putExtra("minute", minute);
+
     }
 }

@@ -16,17 +16,22 @@ import android.widget.TimePicker;
 import java.util.Locale;
 
 public class AppointmentCalendarActivity extends AppCompatActivity {
-    String selectedDate = "";
+    String selectedDate;
     CalendarView calendar;
     TextView date_view;
-    TextView next_page;
-
+    String selectedContractor;
+    TextView displaySelectedContractor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_calendar);
+        Intent intent = getIntent();
+        selectedContractor = intent.getStringExtra("selectedContractor");
+
+        displaySelectedContractor = findViewById(R.id.selected_contractor_display_calendar);
+        displaySelectedContractor.setText(selectedContractor);
 
         calendar = (CalendarView) findViewById(R.id.calendar);
         date_view = (TextView) findViewById(R.id.setDate);
@@ -63,6 +68,7 @@ public class AppointmentCalendarActivity extends AppCompatActivity {
     public void goToTimeAndServiceChoicePage(View view) {
         Intent intent = new Intent(this, AppointmentTimeAndServiceChoiceActivity.class);
         intent.putExtra("selectedDate", selectedDate);
+        intent.putExtra("selectedContractor", selectedContractor);
         startActivity(intent);
     }
 

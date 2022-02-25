@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
     private View.OnClickListener clickListener;
-    private ArrayList<User> mList;
+    private ArrayList<Contractor> mList;
     private Context context;
 
-    public SearchAdapter(ArrayList<User> list, Context context) {
+    public SearchAdapter(ArrayList<Contractor> list, Context context) {
         this.mList = list;
         this.context = context;
     }

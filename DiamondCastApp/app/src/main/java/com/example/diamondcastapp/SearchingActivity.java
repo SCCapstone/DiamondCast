@@ -30,7 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchingActivity extends AppCompatActivity {
+
     private EditText searchField;
+
     private ImageButton enterSearchField;
 
     private RecyclerView searchResultList;
@@ -39,9 +41,9 @@ public class SearchingActivity extends AppCompatActivity {
 
     private SearchAdapter adapter;
 
-    private ArrayList<User> list;
+    private ArrayList<Contractor> list;
 
-    public User selectedUser;
+    public Contractor selectedContractor;
 
     private Button searchSelection;
 
@@ -67,8 +69,8 @@ public class SearchingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User user = dataSnapshot.getValue(User.class);
-                    list.add(user);
+                    Contractor contractor = dataSnapshot.getValue(Contractor.class);
+                    list.add(contractor);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -90,10 +92,10 @@ public class SearchingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int position = searchResultList.getChildAdapterPosition(v);
-                selectedUser = list.get(position);
-                String toScheduleWith = "Schedule with: "+selectedUser.getFirstName();
+                selectedContractor = list.get(position);
+                String toScheduleWith = "Schedule with: "+selectedContractor.getFirstName();
                 searchSelection.setText(toScheduleWith);
-                Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedUser.getFirstName()+ ")");
+                Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedContractor.getFirstName()+ ")");
             }
         });
         searchSelection.setOnClickListener(new View.OnClickListener() {
@@ -108,14 +110,15 @@ public class SearchingActivity extends AppCompatActivity {
 
     private void goToAppointmentCalendarActivity() {
         Intent intent = new Intent(this, AppointmentCalendarActivity.class);
+        intent.putExtra("selectedContractor", selectedContractor.getFirstName());
         startActivity(intent);
     }
 
     void filter(String text){
-        ArrayList<User> temp = new ArrayList<>();
-        for(User user: list){
-            if(user.getFirstName().contains(text)){
-                temp.add(user);
+        ArrayList<Contractor> temp = new ArrayList<>();
+        for(Contractor contractor: list){
+            if(contractor.getFirstName().contains(text)){
+                temp.add(contractor);
             }
         }
         //update recyclerview

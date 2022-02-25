@@ -25,23 +25,34 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     TextView displaySelectedDate;
     Button confirmAppointmentBtn;
     TextView displaySelectedTime;
+    TextView displaySelectedContractor;
+    String selectedContractor;
+    String selectedDate;
+    int selectedHour;
+    int selectedMinute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_confirmation);
         //get data passed from previous activity
         Intent intent = getIntent();
-        String selectedDate = intent.getStringExtra("selectedDate");
-        int selectedHour = intent.getIntExtra("hour", 0);
-        int selectedMinute = intent.getIntExtra("minute", 0);
+        selectedDate = intent.getStringExtra("selectedDate");
+        selectedHour = intent.getIntExtra("hour", 0);
+        selectedMinute = intent.getIntExtra("minute", 0);
+        selectedContractor = intent.getStringExtra("selectedContractor");
 
 
         //setting views and buttons to correct id
         displaySelectedDate =  findViewById(R.id.displaySelectedDateNew);
         confirmAppointmentBtn = findViewById(R.id.confirm_appointment_button);
+        displaySelectedContractor = findViewById(R.id.displaySelectedContractorConfirm);
+
         displaySelectedDate.setText(selectedDate);
         displaySelectedTime = findViewById(R.id.displaySelectedTimeNew);
         displaySelectedTime.setText(String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute));
+        String displaySelectedContractorString = "Appointment with: "+selectedContractor;
+        displaySelectedContractor.setText(displaySelectedContractorString);
 
         String selectedService = "service choice";
 
