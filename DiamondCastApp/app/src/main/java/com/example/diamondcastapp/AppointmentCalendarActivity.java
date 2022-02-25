@@ -15,17 +15,18 @@ import android.widget.TimePicker;
 
 import java.util.Locale;
 
-public class AppointmentSchedulerActivity extends AppCompatActivity {
+public class AppointmentCalendarActivity extends AppCompatActivity {
     String selectedDate = "";
     CalendarView calendar;
     TextView date_view;
-    Button selectTimeButton;
-    int hour, minute;
+    TextView next_page;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appointment_scheduler);
+        setContentView(R.layout.activity_appointment_calendar);
 
         calendar = (CalendarView) findViewById(R.id.calendar);
         date_view = (TextView) findViewById(R.id.setDate);
@@ -50,34 +51,17 @@ public class AppointmentSchedulerActivity extends AppCompatActivity {
                                 date_view.setText(selectedDate);
                             }
                         });
-      //  calendar.getDate();
+        //  calendar.getDate();
 
 
 
-        selectTimeButton = findViewById(R.id.chooseAppointmentTimeBtn);
-    }
-        public void openTimePicker(View view) {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute){
-                hour = selectedHour;
-                minute = selectedMinute;
-                selectTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-            }
-        };
-
-        int style = AlertDialog.THEME_HOLO_DARK;
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute,false);
-
-        timePickerDialog.setTitle("Select Time");
-        timePickerDialog.show();
 
     }
 
 
-    public void goToNextSchedulingPage(View view) {
-        Intent intent = new Intent(this, AppointmentDetailsActivity.class);
+
+    public void goToTimeAndServiceChoicePage(View view) {
+        Intent intent = new Intent(this, AppointmentTimeAndServiceChoiceActivity.class);
         intent.putExtra("selectedDate", selectedDate);
         startActivity(intent);
     }

@@ -32,11 +32,11 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         });
     }
     public void goToAppointmentSchedulerActivity() {
-        Intent intent = new Intent(this, AppointmentSchedulerActivity.class);
+        Intent intent = new Intent(this, AppointmentCalendarActivity.class);
         startActivity(intent);
     }
     public void goToAppointmentServiceSelectionActivity() {
-        Intent intent = new Intent(this, AppointmentServiceSelectionActivity.class);
+        Intent intent = new Intent(this, AppointmentCalendarActivity.class);
         startActivity(intent);
     }
 

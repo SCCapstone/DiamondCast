@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AppointmentDetailsActivity">
+    tools:context=".AppointmentConfirmationActivity">
 
     <TextView
         android:id="@+id/ConfirmAppointmentTitle"
@@ -34,13 +34,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/displaySelectedDate"
+        android:id="@+id/displaySelectedDateNew"
         android:layout_width="260dp"
         android:layout_height="61dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="64dp"
-        android:text="@string/date_format_confirm"
         android:textAlignment="center"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,19 +47,18 @@
         app:layout_constraintTop_toBottomOf="@+id/ConfirmAppointmentTitle" />
 
     <TextView
-        android:id="@+id/displaySelectedTime"
+        android:id="@+id/displaySelectedTimeNew"
         android:layout_width="260dp"
         android:layout_height="61dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="64dp"
-        android:text="@string/default_time_confirm"
         android:textAlignment="center"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/displaySelectedDate" />
+        app:layout_constraintTop_toBottomOf="@+id/displaySelectedDateNew" />
 
     <TextView
         android:id="@+id/displaySelectedContractor"
@@ -74,6 +72,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/displaySelectedTime" />
+        app:layout_constraintTop_toBottomOf="@+id/displaySelectedTimeNew" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
