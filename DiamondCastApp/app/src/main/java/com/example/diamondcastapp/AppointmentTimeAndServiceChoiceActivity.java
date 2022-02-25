@@ -14,6 +14,8 @@ import android.widget.TimePicker;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 
@@ -61,12 +63,12 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
             // selectedContractor =
             // ArrayList<String> selectedContractorServiceList = selectedContractor.getServicesOffered()
             chipGroup = findViewById(R.id.chipGroup);
-
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Contractors");
             for(int i = 0; i < 8; i++) {
                 Chip chip = new Chip(this);
                 ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Choice);
                 chip.setChipDrawable(drawable);
-                chip.setText("whaththathaht");
+                chip.setText("");
                 chipGroup.addView(chip);
             }
 

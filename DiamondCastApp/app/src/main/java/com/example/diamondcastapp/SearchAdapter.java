@@ -33,7 +33,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        User model = mList.get(position);
+        Contractor model = mList.get(position);
         holder.avatar.setImageResource(R.drawable.avatar);
         holder.name.setText(model.getFirstName());
         holder.services.setText(model.getLastName());

@@ -47,6 +47,8 @@ public class SearchingActivity extends AppCompatActivity {
 
     private Button searchSelection;
 
+    private String selectedContractorUID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,7 @@ public class SearchingActivity extends AppCompatActivity {
 
         searchResultList.setAdapter(adapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Contractors");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -111,6 +113,7 @@ public class SearchingActivity extends AppCompatActivity {
     private void goToAppointmentCalendarActivity() {
         Intent intent = new Intent(this, AppointmentCalendarActivity.class);
         intent.putExtra("selectedContractor", selectedContractor.getFirstName());
+        intent.putExtra("selectedContractorUID", selectedContractorUID);
         startActivity(intent);
     }
 
