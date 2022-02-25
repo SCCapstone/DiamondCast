@@ -30,7 +30,7 @@
         android:layout_below="@+id/SearchScreenTitle"
         android:layout_marginTop="45dp"
         android:iconifiedByDefault="false"
-        android:queryHint="Search for Contractors..."/>
+        android:queryHint="Search for Contractors..." />
 
 
     <ListView

@@ -41,7 +41,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
     }
 
     public void goToSearchActivity() {
-        Intent intent = new Intent(this, SearchScreenActivity.class);
+        Intent intent = new Intent(this, SearchingActivity.class);
         startActivity(intent);
     }
     public void goToProfileActivity() {

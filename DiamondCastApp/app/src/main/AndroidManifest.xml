@@ -14,7 +14,12 @@
             android:exported="false" />
         <activity
             android:name=".AppointmentCalendarActivity"
+
+            android:name=".SearchingActivity"
             android:exported="false" />
+
+        
+
         <activity
             android:name=".AppointmentTimeAndServiceChoiceActivity"
             android:exported="false" />
@@ -53,6 +58,9 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="true" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" >
