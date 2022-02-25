@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+
+import com.google.android.gms.common.data.DataHolder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +26,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchingActivity extends AppCompatActivity {
     private EditText searchField;
@@ -36,8 +40,7 @@ public class SearchingActivity extends AppCompatActivity {
 
     private ArrayList<User> list;
 
-    public SearchingActivity() {
-    }
+    public User selectedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +78,35 @@ public class SearchingActivity extends AppCompatActivity {
         enterSearchField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
+                filter(searchField.getText().toString());
 
-                adapter.notifyDataSetChanged();
+            }
+        });
+        adapter.setOnItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = searchResultList.getChildAdapterPosition(v);
+                selectedUser = list.get(position);
+                Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
+                startActivity(intent);
+                Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedUser.getFirstName()+ ")");
             }
         });
 
 
+
+
+    }
+    void filter(String text){
+        ArrayList<User> temp = new ArrayList<>();
+        for(User user: list){
+            if(user.getFirstName().contains(text)){
+                temp.add(user);
+            }
+        }
+        //update recyclerview
+        adapter = new SearchAdapter(temp, this);
+        searchResultList.setAdapter(adapter);
     }
 
    /* private void firebaseUserSearch() {

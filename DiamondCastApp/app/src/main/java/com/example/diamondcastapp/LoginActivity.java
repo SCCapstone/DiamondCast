@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToHomeScreenActivity () {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-        dReference = FirebaseDatabase.getInstance().getReference("Users");
+        dReference = FirebaseDatabase.getInstance().getReference("Clients");
         userID = fUser.getUid();
         dReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
