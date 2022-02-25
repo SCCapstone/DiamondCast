@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
-
+    private View.OnClickListener clickListener;
     private ArrayList<User> mList;
     private Context context;
 
@@ -27,6 +28,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         View v = LayoutInflater.from(context).inflate(R.layout.search_result_list, parent, false);
         return new MyViewHolder(v);
     }
+    public void setOnItemClickListener(View.OnClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -34,6 +38,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         holder.avatar.setImageResource(R.drawable.avatar0);
         holder.name.setText(model.getFirstName());
         holder.services.setText(model.getLastName());
+        if (clickListener != null) {
+            holder.itemView.setOnClickListener(clickListener);
+        }
     }
 
     @Override
