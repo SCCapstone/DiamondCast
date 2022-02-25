@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -42,11 +43,14 @@ public class SearchingActivity extends AppCompatActivity {
 
     public User selectedUser;
 
+    private Button searchSelection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searching);
 
+        searchSelection = findViewById(R.id.search_selection_btn);
         searchField = findViewById(R.id.search_bar);
         enterSearchField = findViewById(R.id.searchImageButton);
         searchResultList = findViewById(R.id.searchResults);
@@ -87,16 +91,26 @@ public class SearchingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int position = searchResultList.getChildAdapterPosition(v);
                 selectedUser = list.get(position);
+                String toScheduleWith = "Schedule with: "+selectedUser.getFirstName();
+                searchSelection.setText(toScheduleWith);
                 Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedUser.getFirstName()+ ")");
+            }
+        });
+        searchSelection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAppointmentCalendarActivity();
             }
         });
 
 
-
-
-
-
     }
+
+    private void goToAppointmentCalendarActivity() {
+        Intent intent = new Intent(this, AppointmentCalendarActivity.class);
+        startActivity(intent);
+    }
+
     void filter(String text){
         ArrayList<User> temp = new ArrayList<>();
         for(User user: list){
