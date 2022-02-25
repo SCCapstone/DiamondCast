@@ -4,24 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AppointmentSchedulerActivity">
+    tools:context=".AppointmentCalendarActivity">
 
 
-    <Button
-        android:id="@+id/chooseAppointmentTimeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:width="300dp"
-        android:height="100dp"
-        android:onClick="openTimePicker"
-        android:text="@string/select_time"
-        android:textSize="30sp"
-        app:layout_constraintBaseline_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendar" />
 
     <CalendarView
         android:id="@+id/calendar"
@@ -65,7 +50,7 @@
         android:layout_height="75dp"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="40dp"
-        android:onClick="goToNextSchedulingPage"
+        android:onClick="goToTimeAndServiceChoicePage"
         android:text="@string/next_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />

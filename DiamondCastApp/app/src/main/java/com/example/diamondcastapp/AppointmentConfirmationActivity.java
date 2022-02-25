@@ -19,21 +19,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AppointmentDetailsActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class AppointmentConfirmationActivity extends AppCompatActivity {
     TextView displaySelectedDate;
     Button confirmAppointmentBtn;
+    TextView displaySelectedTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appointment_details);
+        setContentView(R.layout.activity_appointment_confirmation);
         //get data passed from previous activity
         Intent intent = getIntent();
         String selectedDate = intent.getStringExtra("selectedDate");
+        int selectedHour = intent.getIntExtra("hour", 0);
+        int selectedMinute = intent.getIntExtra("minute", 0);
+
 
         //setting views and buttons to correct id
-        displaySelectedDate = (TextView) findViewById(R.id.displaySelectedDate);
-        confirmAppointmentBtn = (Button) findViewById(R.id.confirm_appointment_button);
+        displaySelectedDate =  findViewById(R.id.displaySelectedDateNew);
+        confirmAppointmentBtn = findViewById(R.id.confirm_appointment_button);
         displaySelectedDate.setText(selectedDate);
+        displaySelectedTime = findViewById(R.id.displaySelectedTimeNew);
+        displaySelectedTime.setText(String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute));
 
         String selectedService = "service choice";
 
@@ -87,20 +95,20 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             }
         });
     }
-        private void goToClientHomeScreenActivity() {
-            Intent intent = new Intent(this, ClientHomeScreenActivity.class);
-            startActivity(intent);
-        }
-
-        private void goToAgentHomeScreenActivity() {
-            Intent intent = new Intent(this, AgentHomeScreenActivity.class);
-            startActivity(intent);
-        }
-
-        private void goToContractorHomeScreenActivity() {
-            Intent intent = new Intent(this, ContractorHomeScreenActivity.class);
-            startActivity(intent);
-        }
-
-
+    private void goToClientHomeScreenActivity() {
+        Intent intent = new Intent(this, ClientHomeScreenActivity.class);
+        startActivity(intent);
     }
+
+    private void goToAgentHomeScreenActivity() {
+        Intent intent = new Intent(this, AgentHomeScreenActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToContractorHomeScreenActivity() {
+        Intent intent = new Intent(this, ContractorHomeScreenActivity.class);
+        startActivity(intent);
+    }
+
+
+}
