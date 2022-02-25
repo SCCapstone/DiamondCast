@@ -40,6 +40,7 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
                 Chip chip = new Chip(this);
                 ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Choice);
                 chip.setChipDrawable(drawable);
+                chip.setText("whaththathaht");
                 chipGroup.addView(chip);
             }
 
