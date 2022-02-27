@@ -31,18 +31,18 @@
         app:layout_constraintVertical_bias="0.044" />
 
     <TextView
-        android:id="@+id/upcoming_appointment_title"
+        android:id="@+id/UpcomingAppointmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-
+        android:layout_marginTop="112dp"
         android:text="@string/Upcoming_Appointments"
         android:textSize="20sp"
-
+        app:layout_constraintBottom_toTopOf="@+id/upcoming_appts_list"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.226" />
 
     <Button
         android:id="@+id/goToAppointmentBtn"
