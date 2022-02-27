@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,15 +44,16 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new HomeScreenAppointmentAdapter(list, this);
         homeScreenApptList.setAdapter(adapter);
-
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    Appointment appointment = dataSnapshot.getValue(Appointment.class);
-                    list.add(appointment);
+                    if (dataSnapshot.getKey().equals(currentUserId)) {
+                        Appointment appointment = dataSnapshot.getValue(Appointment.class);
+                        list.add(appointment);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -65,7 +67,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v) { goToAppointmentServiceSelectionActivity(); }
+            public void onClick(View v) { goToSearchActivity(); }
         });
         ImageButton SearchBTN = (ImageButton) findViewById(R.id.goToSearchBtn);
         SearchBTN.setOnClickListener( new View.OnClickListener() {
