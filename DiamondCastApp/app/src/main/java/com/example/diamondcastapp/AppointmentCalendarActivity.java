@@ -13,6 +13,7 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class AppointmentCalendarActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class AppointmentCalendarActivity extends AppCompatActivity {
     TextView date_view;
     String selectedContractor;
     TextView displaySelectedContractor;
+    ArrayList<String> selectedContractorServicesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,6 +31,7 @@ public class AppointmentCalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_appointment_calendar);
         Intent intent = getIntent();
         selectedContractor = intent.getStringExtra("selectedContractor");
+        selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
         displaySelectedContractor = findViewById(R.id.selected_contractor_display_calendar);
         displaySelectedContractor.setText(selectedContractor);
@@ -69,6 +72,7 @@ public class AppointmentCalendarActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AppointmentTimeAndServiceChoiceActivity.class);
         intent.putExtra("selectedDate", selectedDate);
         intent.putExtra("selectedContractor", selectedContractor);
+        intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
         startActivity(intent);
     }
 

@@ -47,7 +47,9 @@ public class SearchingActivity extends AppCompatActivity {
 
     private Button searchSelection;
 
-    private String selectedContractorUID;
+    //private String selectedContractorUID;
+
+    private ArrayList<String> selectedContractorServicesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,7 @@ public class SearchingActivity extends AppCompatActivity {
                 int position = searchResultList.getChildAdapterPosition(v);
                 selectedContractor = list.get(position);
                 String toScheduleWith = "Schedule with: "+selectedContractor.getFirstName();
+                selectedContractorServicesList = selectedContractor.getServicesOffered();
                 searchSelection.setText(toScheduleWith);
                 Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedContractor.getFirstName()+ ")");
             }
@@ -113,7 +116,8 @@ public class SearchingActivity extends AppCompatActivity {
     private void goToAppointmentCalendarActivity() {
         Intent intent = new Intent(this, AppointmentCalendarActivity.class);
         intent.putExtra("selectedContractor", selectedContractor.getFirstName());
-        intent.putExtra("selectedContractorUID", selectedContractorUID);
+        //intent.putExtra("selectedContractorUID", selectedContractorUID);
+        intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
         startActivity(intent);
     }
 

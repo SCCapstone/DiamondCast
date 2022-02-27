@@ -19,7 +19,7 @@ public class Agent extends User {
     }
     // default agent constructor with user already constructed
     public Agent(User user) {
-        super(user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        super(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
         this.agencyOf = "default";
         this.location = "default";
         this.rating = 100;
@@ -30,7 +30,7 @@ public class Agent extends User {
     public Agent(String uid, String firstNameInput, String lastNameInput, String emailInput,
                  String usernameInput, UserType userTypeInput, String agencyOf, String location,
                  double rating, ArrayList<String> servicesOffered, String phone) {
-        super(firstNameInput,lastNameInput,emailInput, usernameInput, userTypeInput);
+        super(uid, firstNameInput,lastNameInput,emailInput, usernameInput, userTypeInput);
         this.agencyOf = agencyOf;
         this.location = location;
         this.rating = rating;
@@ -40,7 +40,7 @@ public class Agent extends User {
     // constructor to set only agent values, use existing user.
     public Agent(User user, String agencyOf, String location,
                       double rating, ArrayList<String> servicesOffered, String phone) {
-        super(user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        super(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
         this.agencyOf = agencyOf;
         this.location = location;
         this.rating = rating;
