@@ -8,7 +8,7 @@
     tools:context=".SettingsActivity">
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/titleSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/your_settings"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <Button
         android:id="@+id/changePassword"

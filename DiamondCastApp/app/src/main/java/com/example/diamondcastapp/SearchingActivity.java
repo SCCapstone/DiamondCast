@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -29,7 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchingActivity extends AppCompatActivity {
+
     private EditText searchField;
+
     private ImageButton enterSearchField;
 
     private RecyclerView searchResultList;
@@ -38,15 +41,22 @@ public class SearchingActivity extends AppCompatActivity {
 
     private SearchAdapter adapter;
 
-    private ArrayList<User> list;
+    private ArrayList<Contractor> list;
 
-    public User selectedUser;
+    public Contractor selectedContractor;
+
+    private Button searchSelection;
+
+    //private String selectedContractorUID;
+
+    private ArrayList<String> selectedContractorServicesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searching);
 
+        searchSelection = findViewById(R.id.search_selection_btn);
         searchField = findViewById(R.id.search_bar);
         enterSearchField = findViewById(R.id.searchImageButton);
         searchResultList = findViewById(R.id.searchResults);
@@ -57,14 +67,14 @@ public class SearchingActivity extends AppCompatActivity {
 
         searchResultList.setAdapter(adapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Contractors");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User user = dataSnapshot.getValue(User.class);
-                    list.add(user);
+                    Contractor contractor = dataSnapshot.getValue(Contractor.class);
+                    list.add(contractor);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -86,22 +96,36 @@ public class SearchingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int position = searchResultList.getChildAdapterPosition(v);
-                selectedUser = list.get(position);
-                Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedUser.getFirstName()+ ")");
+                selectedContractor = list.get(position);
+                String toScheduleWith = "Schedule with: "+selectedContractor.getFirstName();
+                selectedContractorServicesList = selectedContractor.getServicesOffered();
+                searchSelection.setText(toScheduleWith);
+                Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedContractor.getFirstName()+ ")");
+            }
+        });
+        searchSelection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAppointmentCalendarActivity();
             }
         });
 
 
-
-
-
-
     }
+
+    private void goToAppointmentCalendarActivity() {
+        Intent intent = new Intent(this, AppointmentCalendarActivity.class);
+        intent.putExtra("selectedContractor", selectedContractor.getFirstName());
+        //intent.putExtra("selectedContractorUID", selectedContractorUID);
+        intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
+        startActivity(intent);
+    }
+
     void filter(String text){
-        ArrayList<User> temp = new ArrayList<>();
-        for(User user: list){
-            if(user.getFirstName().contains(text)){
-                temp.add(user);
+        ArrayList<Contractor> temp = new ArrayList<>();
+        for(Contractor contractor: list){
+            if(contractor.getFirstName().contains(text)){
+                temp.add(contractor);
             }
         }
         //update recyclerview

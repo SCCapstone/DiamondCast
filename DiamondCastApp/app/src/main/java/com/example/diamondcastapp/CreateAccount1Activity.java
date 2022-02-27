@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,6 +54,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.createAccount1PasswordInput);
         EditText confirmPasswordInput = findViewById(R.id.createAccount1ComfirmPasswordInput);
 
+
         String firstName = firstNameInput.getText().toString();
         String lastName = lastNameInput.getText().toString();
         String email = emailInput.getText().toString();
@@ -88,7 +92,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
             createdAccount = true;
         }
 
-        newUser = new User( firstName, lastName, email, username, UserType.Client);
+        newUser = new User(firstName, lastName, email, username, UserType.Client);
         return createdAccount;
     }
     //Determines if password requirements are met

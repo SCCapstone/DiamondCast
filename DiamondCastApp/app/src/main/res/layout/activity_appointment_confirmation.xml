@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/displaySelectedDateNew" />
 
     <TextView
-        android:id="@+id/displaySelectedContractor"
+        android:id="@+id/displaySelectedContractorConfirm"
         android:layout_width="260dp"
         android:layout_height="54dp"
         android:layout_marginStart="64dp"
@@ -73,5 +73,19 @@
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displaySelectedTimeNew" />
+
+    <TextView
+        android:id="@+id/displaySelectedServicesConfirm"
+        android:layout_width="260dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="64dp"
+        android:text="@string/default_service_list"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displaySelectedContractorConfirm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
