@@ -30,12 +30,13 @@
         <entry key="app/src/main/res/layout/activity_appointment_scheduler.xml" value="0.16297512010680126" />
         <entry key="app/src/main/res/layout/activity_appointment_time_and_service_choice.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_appointment_time_selection.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_client_home_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_client_home_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/activity_searching.xml" value="0.1" />
         <entry key="app/src/main/res/layout/home_screen_appointment_list.xml" value="0.115625" />
+        <entry key="app/src/main/res/layout/home_screen_card.xml" value="0.24901275634765627" />
         <entry key="app/src/main/res/layout/search_result_list.xml" value="0.1" />
       </map>
     </option>

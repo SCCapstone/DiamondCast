@@ -3,11 +3,13 @@ package com.example.diamondcastapp;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,8 +41,10 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
     ArrayList<String> selectedContractorServicesList;
     String selectedContractor;
     ArrayList<String> selectedServicesList;
+    TextView displaySelectedServices;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +58,12 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
         displaySelectedDate = findViewById(R.id.displaySelectedDateServiceChoice);
-        displaySelectedContractor = findViewById(R.id.displaySelectedContractorServiceChoice);
+        displaySelectedServices = findViewById(R.id.displaySelectedContractorServiceChoice);
+        displaySelectedContractor = findViewById(R.id.displaySelectedContractorName);
 
         displaySelectedDate.setText(selectedDate);
         displaySelectedContractor.setText(selectedContractor);
+        displaySelectedServices.setText(String.join(", ", selectedContractorServicesList));
 
         confirmServiceSelectionBtn = findViewById(R.id.confirmServiceSelectionBtn);
         chipGroup = findViewById(R.id.chipGroup);
