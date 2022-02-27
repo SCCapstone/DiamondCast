@@ -34,8 +34,8 @@ public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Appointment model = mList.get(position);
-        holder.title.setText(model.getAppointmentTitle());
-        holder.date.setText(model.getAppointmentDate());
+        holder.title.setText(model.getTitle());
+        holder.date.setText(model.getDate());
         if (clickListener != null) {
             holder.itemView.setOnClickListener(clickListener);
         }

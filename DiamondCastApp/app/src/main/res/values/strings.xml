@@ -92,6 +92,9 @@
     <string name="change_password">Change Password</string>
     <string name="light_mode_dark_mode">Light Mode/Dark Mode</string>
 
+    <string name="appointment_title">Appointment Title</string>
+    <string name="date_homescreen">Date</string>
+
     <string name="default_string">default string</string>
     <string name="contractor_first_name">contractor first name</string>
     <string name="default_service_list">default service list</string>

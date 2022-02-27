@@ -26,10 +26,6 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
 
-    private RecyclerView resultList;
-    private DatabaseReference databaseReference;
-    private HomeScreenAdapter homeScreenAdapter;
-    private ArrayList<Appointment> userAppt;
 
 
     @Override
