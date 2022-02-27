@@ -34,7 +34,8 @@ public class AppointmentCalendarActivity extends AppCompatActivity {
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
         displaySelectedContractor = findViewById(R.id.selected_contractor_display_calendar);
-        displaySelectedContractor.setText(selectedContractor);
+        String displaySelectedContractorString = "Scheduling with: "+selectedContractor;
+        displaySelectedContractor.setText(displaySelectedContractorStringg);
 
         calendar = (CalendarView) findViewById(R.id.calendar);
         date_view = (TextView) findViewById(R.id.setDate);

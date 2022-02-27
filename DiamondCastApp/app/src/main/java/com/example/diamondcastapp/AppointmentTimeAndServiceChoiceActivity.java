@@ -58,12 +58,10 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
         displaySelectedDate = findViewById(R.id.displaySelectedDateServiceChoice);
-        displaySelectedServices = findViewById(R.id.displaySelectedContractorServiceChoice);
         displaySelectedContractor = findViewById(R.id.displaySelectedContractorName);
 
         displaySelectedDate.setText(selectedDate);
         displaySelectedContractor.setText(selectedContractor);
-        displaySelectedServices.setText(String.join(", ", selectedContractorServicesList));
 
         confirmServiceSelectionBtn = findViewById(R.id.confirmServiceSelectionBtn);
         chipGroup = findViewById(R.id.chipGroup);
@@ -78,6 +76,7 @@ public class AppointmentTimeAndServiceChoiceActivity extends AppCompatActivity {
                         Chip chip = chipGroup.findViewById(selectedChipIds.get(i));
                         if (chip.isChecked()) {
                             selectedServicesList.add(chip.getText().toString());
+
                         }
                     }
                     Intent intent = new Intent(getApplicationContext(), AppointmentConfirmationActivity.class);

@@ -52,16 +52,7 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
-    <TextView
-        android:id="@+id/displaySelectedContractorServiceChoice"
-        android:layout_width="282dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/default_service_list"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/displaySelectedDateServiceChoice" />
+
 
     <Button
         android:id="@+id/chooseAppointmentTimeButton"
