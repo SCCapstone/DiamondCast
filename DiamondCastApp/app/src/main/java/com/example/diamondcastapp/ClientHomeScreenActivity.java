@@ -26,10 +26,17 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
 
+    private RecyclerView resultList;
+    private DatabaseReference databaseReference;
+    private HomeScreenAdapter homeScreenAdapter;
+    private ArrayList<Appointment> userAppt;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_home_screen);
+
 
         Intent intent = getIntent();
         createdAppointment = (Appointment) intent.getSerializableExtra("appointment");
@@ -49,6 +56,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     Appointment appointment = dataSnapshot.getValue(Appointment.class);
                     list.add(appointment);
                 }
@@ -60,6 +68,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
 
             }
         });
+
 
         Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {

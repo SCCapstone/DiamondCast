@@ -7,6 +7,7 @@
     tools:context=".ClientHomeScreenActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/past_appts_list"
         android:layout_width="409dp"
         android:layout_height="227dp"
@@ -28,8 +29,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24"
-        tools:itemCount="1" />
+        app:layout_constraintVertical_bias="0.498" />
 
     <TextView
         android:id="@+id/HomeScreenTitle"
@@ -47,12 +47,15 @@
         android:id="@+id/UpcomingAppointmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
         android:text="@string/Upcoming_Appointments"
         android:textSize="20sp"
+
         app:layout_constraintBottom_toTopOf="@+id/upcoming_appts_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.904" />
 
