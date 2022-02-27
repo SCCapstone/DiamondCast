@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     int selectedHour;
     int selectedMinute;
     ArrayList<String> selectedServicesList;
+    Appointment appointment;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -71,7 +73,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        Appointment appointment = new Appointment("Appointment with: "+selectedContractor, selectedDate, selectedTimeDisplay, selectedServicesList, true);
+        appointment = new Appointment("Appointment with: "+selectedContractor, selectedDate, selectedTimeDisplay, selectedServicesList, true);
 
         confirmAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +124,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     }
     private void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
+        intent.putExtra("appointment", appointment);
         startActivity(intent);
     }
 

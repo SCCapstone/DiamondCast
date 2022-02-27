@@ -1,12 +1,13 @@
 package com.example.diamondcastapp;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Appointment {
+public class Appointment implements Serializable {
 
     public String title;
     public String date; //not using Date because deprecated, simpleDateFormat wont map to database

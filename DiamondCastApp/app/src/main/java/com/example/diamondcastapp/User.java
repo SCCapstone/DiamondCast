@@ -32,9 +32,8 @@ package com.example.diamondcastapp;
         this.userType = userType;
     }
 
-    public User (String id, String firstNameInput, String lastNameInput, String emailInput,
+    public User (String firstNameInput, String lastNameInput, String emailInput,
                  String usernameInput, UserType userTypeInput) {
-        this.id = id;
         this.username = usernameInput;
         this.firstName = firstNameInput;
         this.lastName = lastNameInput;

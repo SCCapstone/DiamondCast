@@ -94,4 +94,6 @@
     <string name="default_string">default string</string>
     <string name="contractor_first_name">contractor first name</string>
     <string name="default_service_list">default service list</string>
+    <string name="default_date_and_time_str_home_screen">date and time</string>
+    <string name="default_home_screen_appt_service_str">services listed here</string>
 </resources>

@@ -19,7 +19,7 @@ public class Contractor extends User{
     }
 
     public Contractor(User user) { //default constructor but uses basic client details;
-        super(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        super( user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
         this.typeOfContractor = "default";
         this.location = "default";
         this.rating = 100;
@@ -30,7 +30,7 @@ public class Contractor extends User{
     public Contractor(String uid, String firstNameInput, String lastNameInput, String emailInput,
                       String usernameInput, UserType userTypeInput, String typeOfContractor, String location,
                       double rating, ArrayList<String> servicesOffered, ArrayList<String> paymentMethods) {
-        super(uid, firstNameInput,lastNameInput,emailInput, usernameInput, userTypeInput);
+        super(firstNameInput,lastNameInput,emailInput, usernameInput, userTypeInput);
         this.typeOfContractor = typeOfContractor;
         this.location = location;
         this.rating = rating;
@@ -40,7 +40,7 @@ public class Contractor extends User{
     // constructor to set contractor details when already have base user details
     public Contractor(User user, String typeOfContractor, String location,
                       double rating, ArrayList<String> servicesOffered, ArrayList<String> paymentMethods) {
-        super(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
+        super(user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(), user.getUserType());
         this.typeOfContractor = typeOfContractor;
         this.location = location;
         this.rating = rating;

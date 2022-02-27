@@ -7,19 +7,19 @@
     tools:context=".ClientHomeScreenActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/past_appts_list"
         android:layout_width="409dp"
         android:layout_height="227dp"
         android:background="#CDC5C5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/upcoming_appts_list"
         app:layout_constraintVertical_bias="0.358"
         tools:itemCount="1" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/upcoming_appts_list"
         android:layout_width="409dp"
         android:layout_height="227dp"
         android:background="#CDC5C5"
@@ -49,12 +49,12 @@
         android:layout_height="wrap_content"
         android:text="@string/Upcoming_Appointments"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/upcoming_appts_list"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.904" />
 
     <TextView
         android:id="@+id/PastAppointmentTitle"
