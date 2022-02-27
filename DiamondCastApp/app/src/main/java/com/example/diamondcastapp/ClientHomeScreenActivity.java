@@ -28,7 +28,6 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +43,9 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         homeScreenApptList.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
         adapter = new HomeScreenAppointmentAdapter(list, this);
-
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,11 +60,10 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
-
+        //Buttons
         Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override

@@ -39,6 +39,7 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
         Appointment model = mList.get(position);
         holder.appointmentWithName.setText(model.getTitle());
         holder.services.setText(String.join(", ", model.getServices()));
+        holder.dateTime.setText(model.getDate() + " at "+ model.getTime());
         if (clickListener != null) {
             holder.itemView.setOnClickListener(clickListener);
         }

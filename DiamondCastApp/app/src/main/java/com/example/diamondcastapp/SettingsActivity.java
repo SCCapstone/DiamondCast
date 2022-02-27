@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SettingsActivity extends AppCompatActivity {
     Button changePass;
     FirebaseAuth fAuth;
-    String emailNameStr,newPassword;
+    String newPassword;
     FirebaseUser currentUser;
     SwitchCompat switchCompat;
     SharedPreferences sharedPreferences = null;
@@ -32,6 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        //Light Mode / Dark Mode
         switchCompat = findViewById(R.id.darkModeSwitch);
         sharedPreferences = getSharedPreferences("night", 0);
         Boolean booleanVal = sharedPreferences.getBoolean("night_mode",false);
@@ -58,23 +59,19 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        //Password Changer
         changePass = findViewById(R.id.changePassword);
         fAuth = FirebaseAuth.getInstance();
         currentUser = fAuth.getCurrentUser();
-
         changePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Start
-
                 final EditText changePass = new EditText(v.getContext());
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
-                //emailNameStr = fAuth.getCurrentUser().getEmail();
-
+                //Reset password prompt
                 passwordResetDialog.setTitle("Reset Password?");
                 passwordResetDialog.setMessage("Enter a new password below (Over 6 characters long): ");
                 passwordResetDialog.setView(changePass);
-
                 passwordResetDialog.setPositiveButton("Yes", (dialog, which) -> {
                     newPassword = changePass.getText().toString();
                     currentUser.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
