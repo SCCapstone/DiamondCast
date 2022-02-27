@@ -36,6 +36,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     int selectedHour;
     int selectedMinute;
     ArrayList<String> selectedServicesList;
+    ArrayList<String> appointmentList;
     Appointment appointment;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
