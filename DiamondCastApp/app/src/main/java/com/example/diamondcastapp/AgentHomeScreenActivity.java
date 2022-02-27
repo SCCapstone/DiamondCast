@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,15 +38,19 @@ public class AgentHomeScreenActivity extends AppCompatActivity {
         userAppt = new ArrayList<>();
         homeScreenAdapter = new HomeScreenAdapter(userAppt, this);
         resultList.setAdapter(homeScreenAdapter);
-
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Appointment appointment= dataSnapshot.getValue(Appointment.class);
-                    userAppt.add(appointment);
+                    if (dataSnapshot.getKey().equals(currentUserId)) {
+                        Appointment appointment = dataSnapshot.getValue(Appointment.class);
+                        userAppt.add(appointment);
+                    }
                 }
+                homeScreenAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
