@@ -1,10 +1,13 @@
 package com.example.diamondcastapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,34 +22,58 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class AppointmentConfirmationActivity extends AppCompatActivity {
     TextView displaySelectedDate;
     Button confirmAppointmentBtn;
     TextView displaySelectedTime;
+    TextView displaySelectedContractor;
+    TextView displaySelectedServices;
+    String selectedContractor;
+    String selectedDate;
+    int selectedHour;
+    int selectedMinute;
+    ArrayList<String> selectedServicesList;
+    Appointment appointment;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_confirmation);
         //get data passed from previous activity
         Intent intent = getIntent();
-        String selectedDate = intent.getStringExtra("selectedDate");
-        int selectedHour = intent.getIntExtra("hour", 0);
-        int selectedMinute = intent.getIntExtra("minute", 0);
+        selectedDate = intent.getStringExtra("selectedDate");
+        selectedHour = intent.getIntExtra("hour", 0);
+        selectedMinute = intent.getIntExtra("minute", 0);
+        selectedContractor = intent.getStringExtra("selectedContractor");
+        selectedServicesList = intent.getStringArrayListExtra("selectedServices");
 
 
         //setting views and buttons to correct id
         displaySelectedDate =  findViewById(R.id.displaySelectedDateNew);
         confirmAppointmentBtn = findViewById(R.id.confirm_appointment_button);
+        displaySelectedContractor = findViewById(R.id.displaySelectedContractorConfirm);
+        displaySelectedServices = findViewById(R.id.displaySelectedServicesConfirm);
+
+        String selectedServicesDisplayString = String.join(", ", selectedServicesList);
+
+        displaySelectedServices.setText(selectedServicesDisplayString);
+
         displaySelectedDate.setText(selectedDate);
         displaySelectedTime = findViewById(R.id.displaySelectedTimeNew);
-        displaySelectedTime.setText(String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute));
+        String selectedTimeDisplay = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
+        displaySelectedTime.setText(selectedTimeDisplay);
+        String displaySelectedContractorString = "Appointment with: "+selectedContractor;
+        displaySelectedContractor.setText(displaySelectedContractorString);
 
         String selectedService = "service choice";
 
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Appointment appointment = new Appointment("Appointment with Joe", selectedDate, selectedService, true);
+
+        appointment = new Appointment("Appointment with: "+selectedContractor, selectedDate, selectedTimeDisplay, selectedServicesList, true);
 
         confirmAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +124,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     }
     private void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
+        intent.putExtra("appointment", appointment);
         startActivity(intent);
     }
 

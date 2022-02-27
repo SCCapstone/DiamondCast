@@ -13,7 +13,7 @@ package com.example.diamondcastapp;
     public class User {
 
         //instance variables
-
+        private String id;
         private String username;
         private String firstName;
         private String lastName;
@@ -21,7 +21,7 @@ package com.example.diamondcastapp;
         private UserType userType;
 
     public User () {
-
+        this.id = "";
         this.username = "";
         this.firstName = "";
         this.lastName = "";
@@ -34,7 +34,6 @@ package com.example.diamondcastapp;
 
     public User (String firstNameInput, String lastNameInput, String emailInput,
                  String usernameInput, UserType userTypeInput) {
-
         this.username = usernameInput;
         this.firstName = firstNameInput;
         this.lastName = lastNameInput;
@@ -44,7 +43,7 @@ package com.example.diamondcastapp;
 
     /***Setters*************************************************/
 
-
+    public void setId(String id) {this.id = id; }
     public void setUsername(String username) {
         this.username = username;
     }
@@ -68,7 +67,7 @@ package com.example.diamondcastapp;
 
     /***Getters*************************************************/
 
-
+    public String getId() { return this.id; }
     public String getUsername() {
         return this.username;
     }

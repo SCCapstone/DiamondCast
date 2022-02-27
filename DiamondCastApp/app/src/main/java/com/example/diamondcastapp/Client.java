@@ -3,7 +3,6 @@ package com.example.diamondcastapp;
 import java.util.ArrayList;
 
 public class Client extends User {
-    private String uid;
     private String location;
     private String phone;
 
@@ -19,7 +18,7 @@ public class Client extends User {
         this.phone = "123-456-7890";
     }
     // set all user and agent values with this constructor
-    public Client(String firstNameInput, String lastNameInput, String emailInput,
+    public Client(String uid, String firstNameInput, String lastNameInput, String emailInput,
                  String usernameInput, UserType userTypeInput, String location, String phone) {
         super(firstNameInput,lastNameInput,emailInput, usernameInput, userTypeInput);
         this.location = location;
