@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.diamondcastapp.databinding.ActivitySearchBinding;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SearchingActivity extends AppCompatActivity {
+public class SearchingActivity extends nav_menu_base {
+    ActivitySearchBinding activitySearchBinding;
+
     private EditText searchField;
     private ImageButton enterSearchField;
 
@@ -42,7 +45,9 @@ public class SearchingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_searching);
+        activitySearchBinding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(activitySearchBinding.getRoot());
+        allocateActivityTitle("Search");
 
         searchField = findViewById(R.id.search_bar);
         enterSearchField = findViewById(R.id.searchImageButton);

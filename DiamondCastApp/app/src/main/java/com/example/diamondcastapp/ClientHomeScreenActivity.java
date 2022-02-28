@@ -24,11 +24,6 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_client_home_screen);
         Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
 
-        //Navigation Menu
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_menu);
-        NavigationView navView = findViewById(R.id.nav_view);
-        NavigationUI.setupWithNavController(navView, navController);
-
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) { goToAppointmentServiceSelectionActivity(); }

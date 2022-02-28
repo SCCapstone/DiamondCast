@@ -84,8 +84,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_search">Search</string>
     <string name="what_services_will_you_require">What services will you require?</string>
     <string name="search_here">Search here</string>
     <string name="confirm_choices">Confirm choices</string>
@@ -93,4 +94,6 @@
     <string name="your_settings">Your Settings</string>
     <string name="change_password">Change Password</string>
     <string name="light_mode_dark_mode">Light Mode/Dark Mode</string>
+    <string name="nav_drawer_open">Drawer Open</string>
+    <string name="nav_drawer_close">Drawer Close</string>
 </resources>

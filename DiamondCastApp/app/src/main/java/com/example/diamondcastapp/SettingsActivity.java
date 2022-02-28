@@ -10,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.diamondcastapp.databinding.ActivityProfileBinding;
+import com.example.diamondcastapp.databinding.ActivitySettingsBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends nav_menu_base {
+    ActivitySettingsBinding activitySettingsBinding;
     Button changePass;
     FirebaseAuth fAuth;
     String emailNameStr,newPassword;
@@ -24,7 +27,9 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        activitySettingsBinding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(activitySettingsBinding.getRoot());
+        allocateActivityTitle("Settings");
         changePass = findViewById(R.id.changePassword);
         fAuth = FirebaseAuth.getInstance();
         currentUser = fAuth.getCurrentUser();
