@@ -15,14 +15,14 @@
         <activity
             android:name=".AppointmentCalendarActivity"
             android:exported="false"/>
+            android:name=".nav_menu_base"
+            android:exported="false" />
         <activity
             android:name=".SearchingActivity"
             android:exported="false" />
-
         <activity
             android:name=".AppointmentTimeAndServiceChoiceActivity"
             android:exported="false" />
-
         <activity
             android:name=".AppointmentTimeSelectionActivity"
             android:exported="false" />
@@ -31,7 +31,8 @@
             android:exported="true" />
         <activity
             android:name=".AgentHomeScreenActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".SearchScreenActivity"
             android:exported="true" />

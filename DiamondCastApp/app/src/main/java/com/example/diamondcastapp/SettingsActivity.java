@@ -14,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.example.diamondcastapp.databinding.ActivityProfileBinding;
+import com.example.diamondcastapp.databinding.ActivitySettingsBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends nav_menu_base {
+    ActivitySettingsBinding activitySettingsBinding;
     Button changePass;
     FirebaseAuth fAuth;
     String newPassword;
@@ -60,6 +63,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         //Password Changer
+        activitySettingsBinding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(activitySettingsBinding.getRoot());
+        allocateActivityTitle("Settings");
         changePass = findViewById(R.id.changePassword);
         fAuth = FirebaseAuth.getInstance();
         currentUser = fAuth.getCurrentUser();
