@@ -17,8 +17,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 
 import com.google.android.gms.common.data.DataHolder;
+=======
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+>>>>>>> parent of 3cb35c3 (Menu implemented)
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +35,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchingActivity extends AppCompatActivity {
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 3cb35c3 (Menu implemented)
     private EditText searchField;
 
     private ImageButton enterSearchField;

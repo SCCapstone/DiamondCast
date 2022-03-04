@@ -81,6 +81,20 @@
     <string name="text_view">Your information</string>
     <string name="email_prof">Email:</string>
     <string name="your_profile">Your Profile</string>
+<<<<<<< HEAD
+=======
+    <string name="title_activity_navigation_menu">NavigationMenu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="what_services_will_you_require">What services will you require?</string>
+>>>>>>> parent of 3cb35c3 (Menu implemented)
     <string name="search_here">Search here</string>
 
     <string name="what_services_will_you_require">What services will you require?</string>
@@ -91,6 +105,7 @@
     <string name="your_settings">Your Settings</string>
     <string name="change_password">Change Password</string>
     <string name="light_mode_dark_mode">Light Mode/Dark Mode</string>
+<<<<<<< HEAD
 
     <string name="appointment_title">Appointment Title</string>
     <string name="date_homescreen">Date</string>
@@ -100,4 +115,6 @@
     <string name="default_service_list">default service list</string>
     <string name="default_date_and_time_str_home_screen">date and time</string>
     <string name="default_home_screen_appt_service_str">services listed here</string>
+=======
+>>>>>>> parent of 3cb35c3 (Menu implemented)
 </resources>

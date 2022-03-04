@@ -31,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+<<<<<<< HEAD
 
         //Light Mode / Dark Mode
         switchCompat = findViewById(R.id.darkModeSwitch);
@@ -60,6 +61,8 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         //Password Changer
+=======
+>>>>>>> parent of 3cb35c3 (Menu implemented)
         changePass = findViewById(R.id.changePassword);
         fAuth = FirebaseAuth.getInstance();
         currentUser = fAuth.getCurrentUser();

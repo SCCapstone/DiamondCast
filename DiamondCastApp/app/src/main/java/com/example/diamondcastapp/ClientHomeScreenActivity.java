@@ -33,6 +33,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_home_screen);
 
+<<<<<<< HEAD
 
         Intent intent = getIntent();
         createdAppointment = (Appointment) intent.getSerializableExtra("appointment");
@@ -65,6 +66,13 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
 
         //Buttons
         Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
+=======
+        //Navigation Menu
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_menu);
+        NavigationView navView = findViewById(R.id.nav_view);
+        NavigationUI.setupWithNavController(navView, navController);
+
+>>>>>>> parent of 3cb35c3 (Menu implemented)
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) { goToSearchActivity(); }

@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp" >
         <activity
+<<<<<<< HEAD
             android:name=".AppointmentConfirmationActivity"
             android:exported="false" />
         <activity
@@ -19,6 +20,14 @@
             android:name=".SearchingActivity"
             android:exported="false" />
 
+=======
+            android:name=".NavigationMenu"
+            android:exported="false"
+            android:label="@string/title_activity_navigation_menu"
+            android:theme="@style/Theme.DiamondCastApp.NoActionBar" />
+        android:name=".SearchingActivity"
+        android:exported="false" />
+>>>>>>> parent of 3cb35c3 (Menu implemented)
         <activity
             android:name=".AppointmentTimeAndServiceChoiceActivity"
             android:exported="false" />
@@ -60,7 +69,11 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+<<<<<<< HEAD
             android:exported="true" >
+=======
+            android:exported="true">
+>>>>>>> parent of 3cb35c3 (Menu implemented)
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,15 +1,18 @@
 package com.example.diamondcastapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+<<<<<<< HEAD
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+=======
+>>>>>>> parent of 3cb35c3 (Menu implemented)
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,10 +29,14 @@ public class AgentHomeScreenActivity extends AppCompatActivity {
     public Appointment createdAppointment;
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
+=======
+public class AgentHomeScreenActivity extends AppCompatActivity {
+>>>>>>> parent of 3cb35c3 (Menu implemented)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_agent_home_screen);
 
         //Appointment RecyclerView
@@ -63,6 +70,9 @@ public class AgentHomeScreenActivity extends AppCompatActivity {
             }
         });
 
+=======
+        setContentView(R.layout.nav_agent_home);
+>>>>>>> parent of 3cb35c3 (Menu implemented)
 
         ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
         profileBTN.setOnClickListener( new View.OnClickListener() {
