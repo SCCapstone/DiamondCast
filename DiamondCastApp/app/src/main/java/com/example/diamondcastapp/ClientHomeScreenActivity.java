@@ -4,12 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,13 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import com.google.android.material.navigation.NavigationView;
-
-
-public class ClientHomeScreenActivity extends nav_menu_base {
-
-    ActivityClientHomeScreenBinding activityClientHomeScreenBinding;
-
+public class ClientHomeScreenActivity extends AppCompatActivity {
     private HomeScreenAppointmentAdapter adapter;
     private RecyclerView homeScreenApptList;
     public Appointment createdAppointment;
@@ -44,9 +31,7 @@ public class ClientHomeScreenActivity extends nav_menu_base {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityClientHomeScreenBinding = ActivityClientHomeScreenBinding.inflate(getLayoutInflater());
-        setContentView(activityClientHomeScreenBinding.getRoot());
-        allocateActivityTitle("Client Home");
+        setContentView(R.layout.activity_client_home_screen);
 
 
         Intent intent = getIntent();
@@ -80,7 +65,6 @@ public class ClientHomeScreenActivity extends nav_menu_base {
 
         //Buttons
         Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
-
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) { goToSearchActivity(); }

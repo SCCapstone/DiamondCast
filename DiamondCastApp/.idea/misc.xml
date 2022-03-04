@@ -11,22 +11,26 @@
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_agent_home_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_client_home_screen.xml" value="0.33" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_contractor_home_screen.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account1.xml" value="0.33" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account1.xml" value="0.24175824175824176" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account2.xml" value="0.12" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_home_screen.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox.xml" value="0.12" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox2.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/content_inbox.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_second.xml" value="0.1" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 20f93d4 (merged menu branch)
         <entry key="app/src/main/res/drawable/chip_selection.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/search_bar_layout.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_appoinment_service_selection.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/layout/activity_appointment_calendar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_appointment_confirmation.xml" value="0.1" />
+<<<<<<< HEAD
 
         <entry key="..\:/csce490 project/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.35625" />
         <entry key="..\:/csce490 project/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_agent_home_screen.xml" value="0.33" />
@@ -55,6 +59,8 @@
         <entry key="app/src/main/res/drawable/search_bar_layout.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_appoinment_service_selection.xml" value="0.1" />
 
+=======
+>>>>>>> parent of 20f93d4 (merged menu branch)
         <entry key="app/src/main/res/layout/activity_appointment_details.xml" value="0.11666666666666667" />
         <entry key="app/src/main/res/layout/activity_appointment_scheduler.xml" value="0.16297512010680126" />
         <entry key="app/src/main/res/layout/activity_appointment_time_and_service_choice.xml" value="0.1" />
@@ -76,6 +82,7 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+<<<<<<< HEAD
 </project>
   <component name="VisualizationToolProject">
     <option name="state">
@@ -85,3 +92,6 @@
     </option>
   </component>
 </project>
+=======
+</project>
+>>>>>>> parent of 20f93d4 (merged menu branch)

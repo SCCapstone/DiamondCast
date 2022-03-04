@@ -19,7 +19,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.diamondcastapp.databinding.ActivityProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,9 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class ProfileActivity extends nav_menu_base {
-    ActivityProfileBinding activityProfileBinding;
-
+public class ProfileActivity extends AppCompatActivity {
     private static final int GALLERY_INTENT_CODE = 1023;
     TextView name, email, userType;
     FirebaseAuth fAuth;
@@ -43,9 +40,7 @@ public class ProfileActivity extends nav_menu_base {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityProfileBinding = ActivityProfileBinding.inflate(getLayoutInflater());
-        setContentView(activityProfileBinding.getRoot());
-        allocateActivityTitle("Profile");
+        setContentView(R.layout.activity_profile);
         name = findViewById(R.id.nameOne);
         email = findViewById(R.id.emailOne);
         userType = findViewById(R.id.userTypeOne);
