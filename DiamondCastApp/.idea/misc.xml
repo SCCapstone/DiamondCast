@@ -3,13 +3,48 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.10625" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.10625" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1109375" />
-        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account1.xml" value="0.33" />
-        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account2.xml" value="0.1" />
-        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/drawable/user_type_button_background.xml" value="0.10625" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_agent_home_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_client_home_screen.xml" value="0.33" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_contractor_home_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account1.xml" value="0.24175824175824176" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account2.xml" value="0.12" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_home_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox.xml" value="0.12" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox2.xml" value="0.1" />
+        <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/content_inbox.xml" value="0.1" />
+        <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_second.xml" value="0.1" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_client_home_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/chip_selection.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/search_bar_layout.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_appoinment_service_selection.xml" value="0.11041666666666666" />
+        <entry key="app/src/main/res/layout/activity_appointment_calendar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_appointment_confirmation.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_appointment_details.xml" value="0.11666666666666667" />
+        <entry key="app/src/main/res/layout/activity_appointment_scheduler.xml" value="0.16297512010680126" />
+        <entry key="app/src/main/res/layout/activity_appointment_time_and_service_choice.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_appointment_time_selection.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_client_home_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.234375" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.12604166666666666" />
+        <entry key="app/src/main/res/layout/activity_searching.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/app_bar_navigation_menu.xml" value="0.11614583333333334" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11614583333333334" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.11614583333333334" />
+        <entry key="app/src/main/res/layout/home_screen_appointment_list.xml" value="0.115625" />
+        <entry key="app/src/main/res/layout/home_screen_card.xml" value="0.24901275634765627" />
+        <entry key="app/src/main/res/layout/nav_agent_home.xml" value="0.11614583333333334" />
+        <entry key="app/src/main/res/layout/nav_header_navigation_menu.xml" value="0.11614583333333334" />
+        <entry key="app/src/main/res/layout/search_result_list.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.11614583333333334" />
       </map>
     </option>
   </component>

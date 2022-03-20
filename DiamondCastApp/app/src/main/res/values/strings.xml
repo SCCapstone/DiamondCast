@@ -15,8 +15,14 @@
     <string name="next_page">Next Page</string>
     <string name="comfirm_password">Comfirm Password:</string>
     <string name="usernameText">Username:</string>
+    <string name="accountTypeText">Choose your account type:</string>
+    <string-array name="accountTypes">
+        <item>Client</item>
+        <item>Agent</item>
+        <item>Contractor</item>
+    </string-array>
 
-    <string name= "searching">SearchBar</string>
+    <string name="searching">SearchBar</string>
     <string-array name="search_bar_array">
         <item>Renovation</item>
         <item>Carpenter</item>
@@ -32,12 +38,81 @@
         <item>Concrete Specialist</item>
     </string-array>
     <string name="title_activity_inbox">InboxActivity</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- END -->
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="Search">Search</string>
+    <string name="Past_Appointments">Past Appointments</string>
+    <string name="Upcoming_Appointments">Upcoming Appointments</string>
+    <string name="Payment">Payment</string>
+    <string name="Pay_now">Pay Now</string>
+    <string name="description">Search</string>
+    <string name="Home">Home</string>
+    <string name="schedule_appointment">Schedule Appointment</string>
+    <string name="choose_a_date">Choose a Date</string>
+    <string name="textview">TextView</string>
+    <string name="your_name">your name</string>
+    <string name="address_of_service_location">Address of service location</string>
+    <string name="contractor_name">Contractor name</string>
+    <string name="client_name">Client Name</string>
+    <string name="location_of_service">Location of Service</string>
+    <string name="appointment_details_msg">Enter more information about your appointment</string>
+    <string name="select_time">Select Time</string>
+    <string name="emailVerify">YOUR EMAIL IS NOT VERIFIED</string>
+    <string name="verify">VERIFY NOW</string>
+
+    <string name="confirm_your_appointment">Confirm your appointment</string>
+    <string name="confirm_appointment">Confirm Appointment</string>
+    <string name="date_format_confirm">dd/MM/yy</string>
+    <string name="default_display_appointment_with">appointment with this person</string>
+    <string name="default_time_confirm">12:00</string>
+
+    <string name="change_prof_pic">Change Profile Image</string>
+    <string name="logout_btn">Logout</string>
+    <string name="full_name">Full Name:</string>
+    <string name="user_type_prof">User Type:</string>
+    <string name="text_view">Your information</string>
+    <string name="email_prof">Email:</string>
+    <string name="your_profile">Your Profile</string>
+
+    <string name="title_activity_navigation_menu">NavigationMenu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+
+    <string name="search_here">Search here</string>
+
+    <string name="what_services_will_you_require">What services will you require?</string>
+    <string name="confirm_choices">Confirm choices</string>
+
+
+    <string name="user_settings">User Settings</string>
+    <string name="your_settings">Your Settings</string>
+    <string name="change_password">Change Password</string>
+    <string name="light_mode_dark_mode">Light Mode/Dark Mode</string>
+
+
+    <string name="appointment_title">Appointment Title</string>
+    <string name="date_homescreen">Date</string>
+
+    <string name="default_string">default string</string>
+    <string name="contractor_first_name">contractor first name</string>
+    <string name="default_service_list">default service list</string>
+    <string name="default_date_and_time_str_home_screen">date and time</string>
+    <string name="default_home_screen_appt_service_str">services listed here</string>
+
 </resources>
