@@ -9,15 +9,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/upcoming_appts_list"
-        android:layout_width="412dp"
-        android:layout_height="400dp"
+        android:layout_width="413dp"
+        android:layout_height="566dp"
         android:background="#CDC5C5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/HomeScreenTitle"
         android:layout_width="wrap_content"
@@ -39,10 +36,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/upcoming_appts_list"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.115" />
 
     <Button
         android:id="@+id/goToAppointmentBtn"
