@@ -114,5 +114,6 @@
     <string name="default_service_list">default service list</string>
     <string name="default_date_and_time_str_home_screen">date and time</string>
     <string name="default_home_screen_appt_service_str">services listed here</string>
+    <string name="edit_profile">Edit Profile</string>
 
 </resources>
