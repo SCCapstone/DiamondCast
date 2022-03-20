@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,7 +66,7 @@ public class ContractorHomeScreenActivity extends AppCompatActivity {
         });
 
 
-        ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
+        Button profileBTN = (Button) findViewById(R.id.goToProfileBtn);
         profileBTN.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) { goToProfileActivity(); }

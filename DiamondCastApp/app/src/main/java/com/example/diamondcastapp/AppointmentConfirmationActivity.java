@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AppointmentConfirmationActivity extends AppCompatActivity {
+    //this will be base appointment page; will start here from "schedule appointment" and click buttons to move to new screen, then info gets ported back and do next selection
+
     TextView displaySelectedDate;
     Button confirmAppointmentBtn;
     TextView displaySelectedTime;

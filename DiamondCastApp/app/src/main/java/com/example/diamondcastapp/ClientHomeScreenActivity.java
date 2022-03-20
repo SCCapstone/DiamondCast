@@ -77,7 +77,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { goToSearchActivity(); }
         });
-        ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
+        Button profileBTN = (Button) findViewById(R.id.goToProfileBtn);
         profileBTN.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) { goToProfileActivity(); }
