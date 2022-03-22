@@ -33,6 +33,19 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/chooseAppointmentTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:onClick="openTimePicker"
+        android:text="@string/select_time"
+        android:textSize="30sp"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/displaySelectedServicesConfirm" />
+
     <TextView
         android:id="@+id/displaySelectedDateNew"
         android:layout_width="260dp"

@@ -19,6 +19,8 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
     private ArrayList<Appointment> mList;
     private Context context;
 
+
+
     public HomeScreenAppointmentAdapter(ArrayList<Appointment> list, Context context) {
         this.mList = list;
         this.context = context;
@@ -53,9 +55,11 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView appointmentWithName;
-        TextView dateTime;
-        TextView services;
+        private TextView appointmentWithName;
+        private TextView dateTime;
+        private TextView services;
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +68,7 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
             dateTime = itemView.findViewById(R.id.home_screen_client_appointment_date_time);
             services = itemView.findViewById(R.id.home_screen_client_appointment_services);
         }
+
     }
 
 }

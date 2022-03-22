@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +40,8 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     String selectedDate;
     int selectedHour;
     int selectedMinute;
+    int hour, minute;
+    Button selectTimeButton;
     ArrayList<String> selectedServicesList;
     ArrayList<String> appointmentList;
     Appointment appointment;
@@ -60,7 +65,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
         confirmAppointmentBtn = findViewById(R.id.confirm_appointment_button);
         displaySelectedContractor = findViewById(R.id.displaySelectedContractorConfirm);
         displaySelectedServices = findViewById(R.id.displaySelectedServicesConfirm);
-
+        selectTimeButton = findViewById(R.id.chooseAppointmentTimeButton);
         String selectedServicesDisplayString = String.join(", ", selectedServicesList);
 
         displaySelectedServices.setText(selectedServicesDisplayString);
@@ -124,6 +129,24 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(R.id.loginEnter), "An error has occurred: " + error, Snackbar.LENGTH_SHORT).show();
             }
         });
+    }
+    public void openTimePicker(View view) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute){
+                hour = selectedHour;
+                minute = selectedMinute;
+                selectTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+            }
+        };
+
+        int style = AlertDialog.THEME_HOLO_DARK;
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute,true);
+
+        timePickerDialog.setTitle("SelectTime");
+        timePickerDialog.show();
+
     }
     private void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
