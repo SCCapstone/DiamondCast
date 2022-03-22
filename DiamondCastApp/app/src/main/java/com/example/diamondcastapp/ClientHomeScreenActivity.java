@@ -26,6 +26,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
     public Appointment createdAppointment;
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
+    private AppointmentList appointmentList;
 
 
     @Override
@@ -42,18 +43,21 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         homeScreenApptList = findViewById(R.id.upcoming_appts_list);
         homeScreenApptList.setHasFixedSize(true);
         homeScreenApptList.setLayoutManager(new LinearLayoutManager(this));
+        appointmentList = new AppointmentList();
         list = new ArrayList<>();
         adapter = new HomeScreenAppointmentAdapter(list, this);
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
+        // retrieving appointment list from database and separating into individual appointments to display on home screen.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getKey().equals(currentUserId)) {
-                        Appointment appointment = dataSnapshot.getValue(Appointment.class);
-                        list.add(appointment);
+                        appointmentList = dataSnapshot.getValue(AppointmentList.class);
+                        for(Appointment appointment : appointmentList.getAppointmentList())
+                            list.add(appointment);
                     }
                 }
                 adapter.notifyDataSetChanged();

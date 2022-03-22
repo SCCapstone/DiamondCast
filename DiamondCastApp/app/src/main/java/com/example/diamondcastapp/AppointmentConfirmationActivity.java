@@ -43,8 +43,10 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     int hour, minute;
     Button selectTimeButton;
     ArrayList<String> selectedServicesList;
-    ArrayList<String> appointmentList;
     Appointment appointment;
+    DatabaseReference databaseReference;
+
+    private AppointmentList appointmentList;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -81,12 +83,34 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals(currentUserId)) {
+                        appointmentList = dataSnapshot.getValue(AppointmentList.class);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         appointment = new Appointment("Appointment with: "+selectedContractor, selectedDate, selectedTimeDisplay, selectedServicesList, true);
+
+
 
         confirmAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointment)
+                appointmentList.addAppointment(appointment);
+                FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentList)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
