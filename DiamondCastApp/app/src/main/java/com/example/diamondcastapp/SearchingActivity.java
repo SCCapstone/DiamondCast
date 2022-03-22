@@ -52,6 +52,9 @@ public class SearchingActivity extends AppCompatActivity {
 
     private Button searchSelection;
 
+    private String selectedContractorID;
+
+
     //private String selectedContractorUID;
 
     private ArrayList<String> selectedContractorServicesList;
@@ -78,7 +81,9 @@ public class SearchingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String contractorID = dataSnapshot.getKey();
                     Contractor contractor = dataSnapshot.getValue(Contractor.class);
+                    contractor.setId(contractorID);
                     list.add(contractor);
                 }
                 adapter.notifyDataSetChanged();
@@ -102,6 +107,7 @@ public class SearchingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int position = searchResultList.getChildAdapterPosition(v);
                 selectedContractor = list.get(position);
+                selectedContractorID = selectedContractor.getId();
                 String toScheduleWith = "Schedule with: "+selectedContractor.getFirstName();
                 selectedContractorServicesList = selectedContractor.getServicesOffered();
                 searchSelection.setText(toScheduleWith);
@@ -111,15 +117,16 @@ public class SearchingActivity extends AppCompatActivity {
         searchSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToAppointmentCalendarActivity();
+                goToAppointmentConfirmationActivity();
             }
         });
 
 
     }
 
-    private void goToAppointmentCalendarActivity() {
-        Intent intent = new Intent(this, AppointmentCalendarActivity.class);
+    private void goToAppointmentConfirmationActivity() {
+        Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
+        intent.putExtra("selectedContractorID", selectedContractorID);
         intent.putExtra("selectedContractor", selectedContractor.getFirstName());
         //intent.putExtra("selectedContractorUID", selectedContractorUID);
         intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
