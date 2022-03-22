@@ -49,7 +49,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
-        // retrieving appointment list from database and separating into individual appointments to display on home screen.
+        // retrieving appointment list (instead of appointment) from database and separating into individual appointments to display on home screen.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
