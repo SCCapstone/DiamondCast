@@ -15,6 +15,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -33,7 +34,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Array;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -45,11 +49,12 @@ import java.util.Locale;
 public class AppointmentConfirmationActivity extends AppCompatActivity {
     //this will be base appointment page; will start here from "schedule appointment" and click buttons to move to new screen, then info gets ported back and do next selection
 
-    TextView displaySelectedDate;
+    //creating variables and views that are needed in activity
+
     Button confirmAppointmentBtn;
-    TextView displaySelectedTime;
+
     TextView displaySelectedContractor;
-    TextView displaySelectedServices;
+
 
     String selectedDate;
     String selectedTime;
@@ -69,6 +74,8 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
     private String selectedContractorName;
 
+    private Button changeContractorButton;
+
 
 
     private AppointmentList appointmentList;
@@ -86,11 +93,15 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
         selectedContractorName = intent.getStringExtra("selectedContractor");
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
+        if(selectedContractorServicesList == null)
+            selectedContractorServicesList = new ArrayList<>();
+
 
         //setting views and buttons to correct id
 
         confirmAppointmentBtn = findViewById(R.id.confirm_appointment_button);
         displaySelectedContractor = findViewById(R.id.displaySelectedContractorConfirm);
+        changeContractorButton = findViewById(R.id.changeContractorButton);
 
         selectTimeButton = findViewById(R.id.chooseAppointmentTimeButton);
         selectTimeButton.setText(getCurrentTime());
@@ -110,8 +121,8 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
       //  String selectedTimeDisplay = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
        // displaySelectedTime.setText(selectedTimeDisplay);
-       // String displaySelectedContractorString = "Appointment with: "+selectedContractor;
-       // displaySelectedContractor.setText(displaySelectedContractorString);
+        String displaySelectedContractorString = "Appointment with: "+selectedContractorName;
+        displaySelectedContractor.setText(displaySelectedContractorString);
 
         String selectedService = "service choice";
 
@@ -156,6 +167,13 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
             }
         });
 
+        changeContractorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSearchingActivity();
+            }
+        });
+
         for(int i = 0; i < selectedContractorServicesList.size(); i++) {
             Chip chip = new Chip(this);
             ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Choice);
@@ -184,24 +202,37 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
                     }
                 }
-                appointment = new Appointment("Appointment with: "+selectedContractorName, selectedDate, selectedTime , selectedServicesList, true);
-                appointmentList.addAppointment(appointment);
-                FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentList)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    goToHomeScreenActivity();
-                                } else{
-                                    Snackbar.make(findViewById(R.id.confirm_appointment_button), "Failed to submit appointment", Snackbar.LENGTH_SHORT).show();
+                if(selectedTime == null) {
+                    Snackbar.make(findViewById(R.id.chooseAppointmentTimeButton), "Select a time for your appointment", Snackbar.LENGTH_SHORT).show();
+                }
+                else if(selectedDate == null) {
+                    Snackbar.make(findViewById(R.id.chooseAppointmentDateButton), "Select a date for your appointment", Snackbar.LENGTH_SHORT).show();
+                }
+                else if(selectedServicesList.isEmpty()) {
+                    Snackbar.make(findViewById(R.id.chipGroup), "Select a service for your appointment", Snackbar.LENGTH_SHORT).show();
+                }
+                else {
+                    appointment = new Appointment("Appointment with: " + selectedContractorName, selectedDate, selectedTime, selectedServicesList, true);
+                    appointmentList.addAppointment(appointment);
+                    FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentList)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        goToHomeScreenActivity();
+                                    } else {
+                                        Snackbar.make(findViewById(R.id.confirm_appointment_button), "Failed to submit appointment", Snackbar.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
 
             }
         });
 
     }
+
+
     public void openTimePicker(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -225,6 +256,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -244,6 +276,8 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+
+
     }
 
     private String makeDateString(int day, int month, int year) {
@@ -326,6 +360,11 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
         intent.putExtra("appointment", appointment);
         startActivity(intent);
     }
+    private void goToSearchingActivity() {
+        Intent intent = new Intent( this, SearchingActivity.class);
+        startActivity(intent);
+    }
+
 
     private void goToAgentHomeScreenActivity() {
         Intent intent = new Intent(this, AgentHomeScreenActivity.class);

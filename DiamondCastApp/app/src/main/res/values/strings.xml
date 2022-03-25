@@ -116,5 +116,7 @@
     <string name="default_home_screen_appt_service_str">services listed here</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="select_date">Select Date</string>
+    <string name="change_contractor">Change Contractor</string>
+    <string name="select_contractor">Select Contractor</string>
 
 </resources>

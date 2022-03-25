@@ -27,12 +27,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="64dp"
         android:text="@string/confirm_your_appointment"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,14 +51,24 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:id="@+id/changeContractorButton"
+        android:layout_width="323dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displaySelectedContractorConfirm"
+        android:text="@string/select_contractor"/>
+
+    <Button
         android:id="@+id/chooseAppointmentTimeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="328dp"
+        android:layout_marginTop="368dp"
         android:onClick="openTimePicker"
         android:text="@string/select_time"
         android:textSize="30sp"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displaySelectedContractorConfirm" />
@@ -80,13 +91,13 @@
 
     <TextView
         android:id="@+id/displaySelectedContractorConfirm"
-        android:layout_width="251dp"
-        android:layout_height="71dp"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="64dp"
         android:text="@string/default_display_appointment_with"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ConfirmAppointmentTitle" />
