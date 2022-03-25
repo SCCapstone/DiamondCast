@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -12,6 +13,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -61,8 +63,11 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     int hour, minute;
     Button selectTimeButton;
     ArrayList<String> selectedServicesList;
-    Appointment appointment;
-    DatabaseReference databaseReference;
+    Appointment appointmentClient;
+    Appointment appointmentContractor;
+    DatabaseReference databaseReferenceAppointments;
+    DatabaseReference databaseReferenceContractors;
+    DatabaseReference databaseReferenceUsers;
     String selectedContractorID;
 
     Contractor selectedContractor;
@@ -76,9 +81,14 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
     private Button changeContractorButton;
 
+    private User selectedContractorAsUser;
+
+    private User currentUser;
 
 
-    private AppointmentList appointmentList;
+
+    private AppointmentList appointmentListClient;
+    private AppointmentList appointmentListContractor;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -92,6 +102,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
         selectedContractorName = intent.getStringExtra("selectedContractor");
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
+
 
         if(selectedContractorServicesList == null)
             selectedContractorServicesList = new ArrayList<>();
@@ -127,16 +138,35 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
         String selectedService = "service choice";
 
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child("Users");
+        databaseReferenceUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if(dataSnapshot.getKey().equals(currentUserId))
+                        currentUser = snapshot.getValue(User.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReferenceAppointments = FirebaseDatabase.getInstance().getReference().child("Appointments");
+        databaseReferenceAppointments.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getKey().equals(currentUserId)) {
-                        appointmentList = dataSnapshot.getValue(AppointmentList.class);
+                        appointmentListClient = dataSnapshot.getValue(AppointmentList.class);
                     }
+                    if(dataSnapshot.getKey().equals(selectedContractorID))
+                        appointmentListContractor = dataSnapshot.getValue(AppointmentList.class);
+                        if(appointmentListContractor == null)
+                            appointmentListContractor = new AppointmentList();
                 }
 
             }
@@ -147,17 +177,31 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
             }
         });
 
+        //trying to query database by contractor name to find uid
+        DatabaseReference databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Contractors");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReferenceUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if(dataSnapshot.getKey().equals(selectedContractorID))
-                        selectedContractor = dataSnapshot.getValue(Contractor.class);
-                    if(selectedContractor != null)
-                        selectedContractorServicesList = selectedContractor.getServicesOffered();
+                    if(dataSnapshot.getKey().equals(selectedContractorName))
+                        selectedContractorAsUser = dataSnapshot.getValue(User.class);
+                    if(selectedContractorAsUser != null) {
+                        selectedContractorID = selectedContractorAsUser.getId();
+                        databaseReferenceContractors.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                    if(dataSnapshot.getKey().equals(selectedContractorID));
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
                 }
             }
 
@@ -212,14 +256,18 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(R.id.chipGroup), "Select a service for your appointment", Snackbar.LENGTH_SHORT).show();
                 }
                 else {
-                    appointment = new Appointment("Appointment with: " + selectedContractorName, selectedDate, selectedTime, selectedServicesList, true);
-                    appointmentList.addAppointment(appointment);
-                    FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentList)
+                    appointmentClient = new Appointment("Appointment with: " + selectedContractorName, selectedDate, selectedTime, selectedServicesList, true);
+                    appointmentListClient.addAppointment(appointmentClient);
+                    appointmentContractor = new Appointment("Appointment with: "+currentUser.getFirstName(), selectedDate, selectedTime, selectedServicesList,true);
+                    appointmentListContractor.addAppointment(appointmentContractor);
+                    FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentListClient)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        FirebaseDatabase.getInstance().getReference("Appointments").child(selectedContractorID).setValue(appointmentListContractor);
                                         goToHomeScreenActivity();
+
                                     } else {
                                         Snackbar.make(findViewById(R.id.confirm_appointment_button), "Failed to submit appointment", Snackbar.LENGTH_SHORT).show();
                                     }
@@ -357,7 +405,7 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
 
     private void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
-        intent.putExtra("appointment", appointment);
+        intent.putExtra("appointment", appointmentClient);
         startActivity(intent);
     }
     private void goToSearchingActivity() {

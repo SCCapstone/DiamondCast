@@ -29,6 +29,7 @@ public class AgentHomeScreenActivity extends AppCompatActivity {
     public Appointment createdAppointment;
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
+    private AppointmentList appointmentList;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -48,18 +49,20 @@ public class AgentHomeScreenActivity extends AppCompatActivity {
             list = new ArrayList<>();
             adapter = new HomeScreenAppointmentAdapter(list, this);
             homeScreenApptList.setAdapter(adapter);
-
+            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            appointmentList = new AppointmentList();
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                        Appointment appointment = dataSnapshot.getValue(Appointment.class);
-                        list.add(appointment);
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (dataSnapshot.getKey().equals(currentUserId)) {
+                            appointmentList = dataSnapshot.getValue(AppointmentList.class);
+                            for(Appointment appointment : appointmentList.getAppointmentList())
+                                list.add(appointment);
+                        }
                     }
                     adapter.notifyDataSetChanged();
-
                 }
 
                 @Override
