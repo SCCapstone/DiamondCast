@@ -49,7 +49,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
-        // retrieving appointment list from database and separating into individual appointments to display on home screen.
+        // retrieving appointment list (instead of appointment!) from database and separating into individual appointments to display on home screen.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,7 +74,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
 
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v) { goToSearchActivity(); }
+            public void onClick(View v) { goToAppointmentSchedulerActivity(); }
         });
         ImageButton SearchBTN = (ImageButton) findViewById(R.id.goToSearchBtn);
         SearchBTN.setOnClickListener( new View.OnClickListener() {
@@ -88,7 +88,7 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         });
     }
     public void goToAppointmentSchedulerActivity() {
-        Intent intent = new Intent(this, AppointmentCalendarActivity.class);
+        Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
         startActivity(intent);
     }
     public void goToAppointmentServiceSelectionActivity() {
