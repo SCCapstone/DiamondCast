@@ -36,7 +36,7 @@
         android:paddingTop="10dp"
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
-        android:text="@string/search_here"
+        android:hint="@string/search_here"
         android:textSize="16sp" />
 
     <ImageButton
