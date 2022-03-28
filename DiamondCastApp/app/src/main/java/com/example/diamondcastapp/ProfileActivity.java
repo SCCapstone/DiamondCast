@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -19,6 +20,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +30,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity {
     private static final int GALLERY_INTENT_CODE = 1023;
@@ -36,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button logout, settingsBtn, changeProfileImage;
     String userId, emailNameStr, userTypeStr, lastNameStr, firstNameStr;
     ImageView profileImage;
+    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,16 @@ public class ProfileActivity extends AppCompatActivity {
         changeProfileImage = findViewById(R.id.changeProfileImage);
 
         fAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        StorageReference profileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileImage);
+            }
+        });
+
         userId = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
 
@@ -102,8 +120,32 @@ public class ProfileActivity extends AppCompatActivity {
                             // There are no request codes
                             Intent data = result.getData();
                             Uri imageUri = data.getData();
-                            profileImage.setImageURI(imageUri);
+                            //profileImage.setImageURI(imageUri);
+                            uploadImageToFirebase(imageUri);
                         }
+                    }
+
+                    //image to firebase storage
+                    private void uploadImageToFirebase(Uri imageUri) {
+                        final StorageReference fileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+                        Toast.makeText(ProfileActivity.this, "Uploading Image...", Toast.LENGTH_SHORT).show();
+                        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Toast.makeText(ProfileActivity.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
+                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Picasso.get().load(uri).into(profileImage);
+                                    }
+                                });
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(ProfileActivity.this, "Failed Image Upload", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
 
                 });
