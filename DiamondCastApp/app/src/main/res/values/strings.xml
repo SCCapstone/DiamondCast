@@ -123,5 +123,6 @@
     <string name="profile">Profile</string>
     <string name="settings">Settings</string>
     <string name="messages">Messages</string>
+    <string name="diamondcast_app">DIAMONDCAST APP</string>
 
 </resources>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,19 +21,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ClientHomeScreenActivity extends AppCompatActivity {
+public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     private HomeScreenAppointmentAdapter adapter;
     private RecyclerView homeScreenApptList;
     public Appointment createdAppointment;
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
     private AppointmentList appointmentList;
+    ActivityClientHomeScreenBinding activityClientHomeScreenBinding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_home_screen);
+        activityClientHomeScreenBinding = ActivityClientHomeScreenBinding.inflate(getLayoutInflater());
+        setContentView(activityClientHomeScreenBinding.getRoot());
 
 
 
