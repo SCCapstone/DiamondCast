@@ -6,12 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class InboxActivity extends AppCompatActivity {
+import com.example.diamondcastapp.databinding.ActivityInboxBinding;
+
+public class InboxActivity extends NavigationDrawerActivity {
+    ActivityInboxBinding activityInboxBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inbox);
+        activityInboxBinding = ActivityInboxBinding.inflate(getLayoutInflater());
+        setContentView(activityInboxBinding.getRoot());
+        allocateActivityTitle("Messaging");
     }
     public void goToSideBarActivity (View view) {
        //need side bar activity Intent intent = new Intent(this, SideBarActivity.class);

@@ -18,7 +18,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-
+import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
+import com.example.diamondcastapp.databinding.ActivitySearchingBinding;
 import com.google.android.gms.common.data.DataHolder;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -34,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchingActivity extends AppCompatActivity {
+public class SearchingActivity extends NavigationDrawerActivity {
 
     private EditText searchField;
 
@@ -54,6 +55,8 @@ public class SearchingActivity extends AppCompatActivity {
 
     private String selectedContractorID;
 
+    ActivitySearchingBinding activitySearchingBinding;
+
 
     //private String selectedContractorUID;
 
@@ -62,7 +65,9 @@ public class SearchingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_searching);
+        activitySearchingBinding = ActivitySearchingBinding.inflate(getLayoutInflater());
+        setContentView(activitySearchingBinding.getRoot());
+        allocateActivityTitle("Searching");
 
         searchSelection = findViewById(R.id.search_selection_btn);
         searchField = findViewById(R.id.search_bar);
