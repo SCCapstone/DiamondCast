@@ -35,7 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class ProfileActivity extends AppCompatActivity {
+public class  ProfileActivity extends AppCompatActivity {
     private static final int GALLERY_INTENT_CODE = 1023;
     TextView name, email, userType;
     FirebaseAuth fAuth;
