@@ -34,9 +34,11 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //bind the current activity with navigation drawer
         activityClientHomeScreenBinding = ActivityClientHomeScreenBinding.inflate(getLayoutInflater());
         setContentView(activityClientHomeScreenBinding.getRoot());
-
+        allocateActivityTitle("Client Home Screen");
 
 
         Intent intent = getIntent();

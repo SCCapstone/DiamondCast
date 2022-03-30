@@ -14,24 +14,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.example.diamondcastapp.databinding.ActivitySearchingBinding;
+import com.example.diamondcastapp.databinding.ActivitySettingsBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends NavigationDrawerActivity {
     Button changePass;
     FirebaseAuth fAuth;
     String newPassword;
     FirebaseUser currentUser;
     SwitchCompat switchCompat;
     SharedPreferences sharedPreferences = null;
+    ActivitySettingsBinding activitySettingsBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-
+        activitySettingsBinding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(activitySettingsBinding.getRoot());
+        allocateActivityTitle("Settings");
 
         //Light Mode / Dark Mode
         switchCompat = findViewById(R.id.darkModeSwitch);

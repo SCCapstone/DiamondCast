@@ -3,10 +3,13 @@ package com.example.diamondcastapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -39,6 +42,30 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        switch (item.getItemId())  {
+            case R.id.nav_home:
+                startActivity(new Intent(this, ClientHomeScreenActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.nav_search:
+                startActivity(new Intent(this, SearchingActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.nav_messaging:
+                startActivity(new Intent(this, InboxActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.nav_profile:
+                startActivity(new Intent(this, ProfileActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.nav_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                overridePendingTransition(0,0);
+                break;
+        }
         return false;
     }
 
