@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.diamondcastapp.databinding.ActivityAgentHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AgentHomeScreenActivity extends AppCompatActivity {
+public class AgentHomeScreenActivity extends NavigationDrawerActivity {
 
     private HomeScreenAppointmentAdapter adapter;
     private RecyclerView homeScreenApptList;
@@ -30,13 +31,15 @@ public class AgentHomeScreenActivity extends AppCompatActivity {
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
     private AppointmentList appointmentList;
+    ActivityAgentHomeScreenBinding activityAgentHomeScreenBinding;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
-            setContentView(R.layout.activity_agent_home_screen);
-
+        //bind the current activity with navigation drawer
+            activityAgentHomeScreenBinding = ActivityAgentHomeScreenBinding.inflate(getLayoutInflater());
+            setContentView(activityAgentHomeScreenBinding.getRoot());
+            allocateActivityTitle("Home");
             //Appointment RecyclerView
 
             Intent intent = getIntent();

@@ -35,11 +35,11 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //bind the current activity with navigation drawer
+
+//bind the current activity with navigation drawer
         activityClientHomeScreenBinding = ActivityClientHomeScreenBinding.inflate(getLayoutInflater());
         setContentView(activityClientHomeScreenBinding.getRoot());
-        allocateActivityTitle("Client Home Screen");
-
+        allocateActivityTitle("Home");
 
         Intent intent = getIntent();
         createdAppointment = (Appointment) intent.getSerializableExtra("appointment");

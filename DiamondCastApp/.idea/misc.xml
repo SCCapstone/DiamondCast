@@ -23,6 +23,7 @@
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_second.xml" value="0.1" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1975" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1815" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.1" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1975" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1815" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1975" />
@@ -46,7 +47,7 @@
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/navigation_drawer_header.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/navigation_drawer_menu.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.3416666666666667" />
-        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/chip_selection.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/search_bar_layout.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_appoinment_service_selection.xml" value="0.11041666666666666" />
