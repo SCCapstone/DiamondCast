@@ -86,7 +86,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) { goToSearchActivity(); }
         });
-        Button profileBTN = (Button) findViewById(R.id.goToProfileBtn);
+        ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
         profileBTN.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) { goToProfileActivity(); }
