@@ -81,6 +81,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) { goToAppointmentSchedulerActivity(); }
         });
+
     }
     public void goToAppointmentSchedulerActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);

@@ -8,23 +8,33 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/upcoming_appts_list"
-        android:layout_width="412dp"
-        android:layout_height="545dp"
+
+        android:layout_width="410dp"
+        android:layout_height="563dp"
+
         android:background="#CDC5C5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/UpcomingAppointmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginBottom="9dp"
+
         android:text="@string/Upcoming_Appointments"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/upcoming_appts_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <Button
         android:id="@+id/goToAppointmentBtn"
@@ -36,5 +46,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
