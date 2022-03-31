@@ -7,6 +7,9 @@
         <item android:id="@+id/nav_search"
             android:icon="@drawable/ic_baseline_search_24"
             android:title="@string/search"/>
+        <item android:id="@+id/nav_appointment"
+            android:icon="@drawable/ic_baseline_calendar_month_24"
+            android:title="@string/schedule_appointment"/>
         <item android:id="@+id/nav_messaging"
             android:icon="@drawable/ic_baseline_message_24"
             android:title="@string/messages"/>
