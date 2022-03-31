@@ -8,17 +8,19 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
-        android:layout_width="370dp"
-        android:layout_height="291dp"
+
+        android:layout_width="345dp"
+        android:layout_height="239dp"
         android:layout_marginTop="14dp"
+
         app:chipSpacingHorizontal="10dp"
         app:chipSpacingVertical="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeContractorButton"
-        app:layout_constraintVertical_bias="0.0">
+
+        app:layout_constraintTop_toBottomOf="@+id/changeContractorButton">
+
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -27,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="64dp"
         android:text="@string/confirm_your_appointment"
         android:textAlignment="center"
@@ -42,18 +44,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+
         android:text="@string/confirm_appointment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseAppointmentDateButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/changeContractorButton"
         android:layout_width="323dp"
         android:layout_height="46dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:text="@string/select_contractor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,45 +69,42 @@
         android:id="@+id/chooseAppointmentTimeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="368dp"
+        android:layout_marginTop="12dp"
         android:onClick="openTimePicker"
         android:text="@string/select_time"
         android:textSize="30sp"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/displaySelectedContractorConfirm" />
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
 
     <Button
         android:id="@+id/chooseAppointmentDateButton"
+        style="?android:spinnerStyle"
         android:layout_width="245dp"
         android:layout_height="58dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="68dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chooseAppointmentTimeButton"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="12dp"
+        android:onClick="openDatePicker"
+        android:text="@string/select_date"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/select_date"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:onClick="openDatePicker"
-        style="?android:spinnerStyle"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseAppointmentTimeButton" />
 
     <TextView
         android:id="@+id/displaySelectedContractorConfirm"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
         android:text="@string/default_display_appointment_with"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ConfirmAppointmentTitle"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintTop_toBottomOf="@+id/ConfirmAppointmentTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

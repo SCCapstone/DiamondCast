@@ -81,16 +81,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) { goToAppointmentSchedulerActivity(); }
         });
-        ImageButton SearchBTN = (ImageButton) findViewById(R.id.goToSearchBtn);
-        SearchBTN.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { goToSearchActivity(); }
-        });
-        ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
-        profileBTN.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { goToProfileActivity(); }
-        });
+
     }
     public void goToAppointmentSchedulerActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);

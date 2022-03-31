@@ -21,6 +21,7 @@ import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.diamondcastapp.databinding.ActivityAppointmentConfirmationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
@@ -48,7 +49,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class AppointmentConfirmationActivity extends AppCompatActivity {
+public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
     //this will be base appointment page; will start here from "schedule appointment" and click buttons to move to new screen, then info gets ported back and do next selection
 
     //creating variables and views that are needed in activity
@@ -90,11 +91,16 @@ public class AppointmentConfirmationActivity extends AppCompatActivity {
     private AppointmentList appointmentListClient;
     private AppointmentList appointmentListContractor;
 
+    ActivityAppointmentConfirmationBinding activityAppointmentConfirmationBinding;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appointment_confirmation);
+        activityAppointmentConfirmationBinding = ActivityAppointmentConfirmationBinding.inflate(getLayoutInflater());
+        setContentView(activityAppointmentConfirmationBinding.getRoot());
+        allocateActivityTitle("Appointment Confirmation");
+
         initDatePicker();
         //get data passed from previous activity
         Intent intent = getIntent();
