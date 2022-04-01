@@ -71,6 +71,9 @@ public class SearchingActivity extends NavigationDrawerActivity {
         setContentView(activitySearchingBinding.getRoot());
         allocateActivityTitle("Searching");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         goToMapButton = findViewById(R.id.goToMapsButton);
         searchSelection = findViewById(R.id.search_selection_btn);
         searchField = findViewById(R.id.search_bar);

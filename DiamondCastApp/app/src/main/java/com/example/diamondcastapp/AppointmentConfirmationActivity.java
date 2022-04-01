@@ -101,6 +101,9 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         setContentView(activityAppointmentConfirmationBinding.getRoot());
         allocateActivityTitle("Appointment Confirmation");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         initDatePicker();
         //get data passed from previous activity
         Intent intent = getIntent();
