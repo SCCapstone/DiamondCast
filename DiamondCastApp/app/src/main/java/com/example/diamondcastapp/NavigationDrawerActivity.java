@@ -58,7 +58,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 overridePendingTransition(0,0);
                 break;
             case R.id.nav_messaging:
-                startActivity(new Intent(this, InboxActivity.class));
+                startActivity(new Intent(this, MessagingActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.nav_profile:

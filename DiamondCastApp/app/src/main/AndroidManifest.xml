@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".NavigationDrawerActivity"
             android:exported="false"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/Theme.DiamondCastApp.NoActionBar" />
-        <activity
-            android:name=".NavigationActivity"
-            android:exported="false" />
         <activity
             android:name=".startActivity"
             android:exported="true">
@@ -73,6 +73,9 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
+        <activity
+            android:name=".MessagingActivity"
+            android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
