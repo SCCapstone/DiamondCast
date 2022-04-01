@@ -55,6 +55,8 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
     private String selectedContractorID;
 
+    private ImageButton goToMapButton;
+
     ActivitySearchingBinding activitySearchingBinding;
 
 
@@ -69,6 +71,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
         setContentView(activitySearchingBinding.getRoot());
         allocateActivityTitle("Searching");
 
+        goToMapButton = findViewById(R.id.goToMapsButton);
         searchSelection = findViewById(R.id.search_selection_btn);
         searchField = findViewById(R.id.search_bar);
         enterSearchField = findViewById(R.id.searchImageButton);
@@ -125,8 +128,18 @@ public class SearchingActivity extends NavigationDrawerActivity {
                 goToAppointmentConfirmationActivity();
             }
         });
+        goToMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToMapsActivity();
+            }
+        });
 
 
+    }
+    private void goToMapsActivity() {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
     }
 
     private void goToAppointmentConfirmationActivity() {
