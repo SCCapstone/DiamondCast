@@ -53,6 +53,10 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 startActivity(new Intent(this, SearchingActivity.class));
                 overridePendingTransition(0,0);
                 break;
+            case R.id.nav_map:
+                startActivity(new Intent(this, MapsActivity.class));
+                overridePendingTransition(0,0);
+                break;
             case R.id.nav_appointment:
                 startActivity(new Intent(this, AppointmentConfirmationActivity.class));
                 overridePendingTransition(0,0);
