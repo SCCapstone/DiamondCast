@@ -32,6 +32,7 @@
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable/search_bar_layout.xml" value="0.1975" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/drawable/side_nav_bar.xml" value="0.1975" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_agent_home_screen.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_appointment_calendar.xml" value="0.19655797101449277" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_appointment_confirmation.xml" value="0.15" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_appointment_time_and_service_choice.xml" value="0.1" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_client_home_screen.xml" value="0.22" />
@@ -40,7 +41,9 @@
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_navigation.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_navigation_drawer.xml" value="0.33" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_search.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_search_agent_adapter.xml" value="0.19655797101449277" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_searching.xml" value="0.22" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_searching_agent.xml" value="0.19655797101449277" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_settings.xml" value="0.1546875" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/app_bar_navigation_drawer.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/content_navigation_drawer.xml" value="0.17291666666666666" />
@@ -85,7 +88,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1" />
+        <option name="scale" value="0.15" />
       </ProjectState>
     </option>
   </component>

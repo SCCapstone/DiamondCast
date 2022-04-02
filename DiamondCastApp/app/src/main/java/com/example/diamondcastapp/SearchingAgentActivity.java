@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 
 import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
+import com.example.diamondcastapp.databinding.ActivitySearchingAgentBinding;
 import com.example.diamondcastapp.databinding.ActivitySearchingBinding;
 import com.google.android.gms.common.data.DataHolder;
 
@@ -35,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchingActivity extends NavigationDrawerActivity {
+public class SearchingAgentActivity extends NavigationDrawerActivity {
 
     private EditText searchField;
 
@@ -45,34 +46,33 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
     private DatabaseReference databaseReference;
 
-    private SearchAdapter adapter;
+    private SearchAgentAdapter adapter;
 
-    private ArrayList<Contractor> list;
+    private ArrayList<Agent> list;
 
-    public Contractor selectedContractor;
+    public Agent selectedAgent;
 
     private Button searchSelection;
 
-    private String selectedContractorID;
+    private String selectedAgentID;
 
     private ImageButton goToMapButton;
 
     private Button switchSearchType;
 
 
-
-    ActivitySearchingBinding activitySearchingBinding;
+    ActivitySearchingAgentBinding activitySearchingAgentBinding;
 
 
     //private String selectedContractorUID;
 
-    private ArrayList<String> selectedContractorServicesList;
+    private ArrayList<String> selectedAgentServicesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activitySearchingBinding = ActivitySearchingBinding.inflate(getLayoutInflater());
-        setContentView(activitySearchingBinding.getRoot());
+        activitySearchingAgentBinding = ActivitySearchingAgentBinding.inflate(getLayoutInflater());
+        setContentView(activitySearchingAgentBinding.getRoot());
         allocateActivityTitle("Searching");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,20 +85,20 @@ public class SearchingActivity extends NavigationDrawerActivity {
         searchResultList.setHasFixedSize(true);
         searchResultList.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        adapter = new SearchAdapter(list, this);
+        adapter = new SearchAgentAdapter(list, this);
 
         searchResultList.setAdapter(adapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Contractors");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Agents");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String contractorID = dataSnapshot.getKey();
-                    Contractor contractor = dataSnapshot.getValue(Contractor.class);
-                    contractor.setId(contractorID);
-                    list.add(contractor);
+                    Agent agent = dataSnapshot.getValue(Agent.class);
+                    agent.setId(contractorID);
+                    list.add(agent);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -111,7 +111,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
         enterSearchField.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)  {
+            public void onClick(View view) {
                 filter(searchField.getText().toString());
 
             }
@@ -120,12 +120,12 @@ public class SearchingActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 int position = searchResultList.getChildAdapterPosition(v);
-                selectedContractor = list.get(position);
-                selectedContractorID = selectedContractor.getId();
-                String toScheduleWith = "Schedule with: "+selectedContractor.getFirstName();
-                selectedContractorServicesList = selectedContractor.getServicesOffered();
+                selectedAgent = list.get(position);
+                selectedAgentID = selectedAgent.getId();
+                String toScheduleWith = "Schedule with: " + selectedAgent.getFirstName();
+                selectedAgentServicesList = selectedAgent.getServicesOffered();
                 searchSelection.setText(toScheduleWith);
-                Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedContractor.getFirstName()+ ")");
+                Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedAgent.getFirstName() + ")");
             }
         });
         searchSelection.setOnClickListener(new View.OnClickListener() {
@@ -134,93 +134,40 @@ public class SearchingActivity extends NavigationDrawerActivity {
                 goToAppointmentConfirmationActivity();
             }
         });
-
         switchSearchType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSearchingAgentActivity();
+                goToSearchingActivity();
             }
         });
 
 
-
     }
 
-    private void goToSearchingAgentActivity() {
-        Intent intent = new Intent(this, SearchingAgentActivity.class);
+    private void goToSearchingActivity() {
+        Intent intent = new Intent(this, SearchingActivity.class);
         startActivity(intent);
     }
 
     private void goToAppointmentConfirmationActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
-        intent.putExtra("selectedAppointmentWithID", selectedContractorID);
-        intent.putExtra("selectedContractor", selectedContractor.getFirstName());
-        intent.putExtra("selectedType", "Contractor");
+        intent.putExtra("selectedAppointmentWithID", selectedAgentID);
+        intent.putExtra("selectedContractor", selectedAgent.getFirstName());
+        intent.putExtra("selectedType", "Agent");
         //intent.putExtra("selectedContractorUID", selectedContractorUID);
-        intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
+        intent.putStringArrayListExtra("selectedContractorServicesList", selectedAgentServicesList);
         startActivity(intent);
     }
 
-    void filter(String text){
-        ArrayList<Contractor> temp = new ArrayList<>();
-        for(Contractor contractor: list){
-            if(contractor.getFirstName().contains(text)){
-                temp.add(contractor);
+    void filter(String text) {
+        ArrayList<Agent> temp = new ArrayList<>();
+        for (Agent agent : list) {
+            if (agent.getFirstName().contains(text)) {
+                temp.add(agent);
             }
         }
         //update recyclerview
-        adapter = new SearchAdapter(temp, this);
+        adapter = new SearchAgentAdapter(temp, this);
         searchResultList.setAdapter(adapter);
     }
-
-   /* private void firebaseUserSearch() {
-        Query query=databaseReference; //.equalto ?
-
-        FirebaseRecyclerOptions<User> options =
-                new FirebaseRecyclerOptions.Builder<User>()
-                        .setQuery(query, User.class)
-                        .build();
-        FirebaseRecyclerAdapter<User, SearchResultsViewHolder> firebaseRecyclerAdapter;
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, SearchResultsViewHolder>(options){
-            @Override
-            protected void onBindViewHolder(@NonNull SearchResultsViewHolder holder, int position, @NonNull User model) {
-                holder.setDetails(model.getFirstName(), model.getLastName());
-
-            }
-
-            @NonNull
-            @Override
-            public SearchResultsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.search_result_list, parent, false);
-                return new SearchResultsViewHolder(view);
-            }
-
-
-        };
-        //searchResultList.setAdapter(firebaseRecyclerAdapter);
-    }
-
-    //view holder class
-
-    public class SearchResultsViewHolder extends RecyclerView.ViewHolder {
-
-        View view;
-
-        public SearchResultsViewHolder(@NonNull View itemView) {
-            super(itemView);
-            view = itemView;
-        }
-
-        public void setDetails(String name, String desc) {
-            TextView user_name = findViewById(R.id.search_result_name);
-            TextView description = findViewById(R.id.search_result_description);
-
-            user_name.setText(name);
-            description.setText(desc);
-
-        }
-
-    } */
-
 }
