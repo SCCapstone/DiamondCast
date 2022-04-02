@@ -56,7 +56,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     Button confirmAppointmentBtn;
 
-    TextView displaySelectedContractor;
+    TextView displaySelectedAppointmentWith;
 
 
     String selectedDate;
@@ -65,11 +65,11 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
     Button selectTimeButton;
     ArrayList<String> selectedServicesList;
     Appointment appointmentClient;
-    Appointment appointmentContractor;
+    Appointment appointmentAppointmentWith;
     DatabaseReference databaseReferenceAppointments;
     DatabaseReference databaseReferenceContractors;
     DatabaseReference databaseReferenceUsers;
-    String selectedContractorID;
+    String selectedAppointmentWithID;
 
     Contractor selectedContractor;
     ArrayList<String> selectedContractorServicesList;
@@ -78,18 +78,22 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     private Button selectDateButton;
 
-    private String selectedContractorName;
+    private String selectedAppointmentWithName;
 
-    private Button changeContractorButton;
+    private Button changeContractorAgentButton;
 
-    private User selectedContractorAsUser;
+    private User selectedAppointmentWithAsUser;
 
     private User currentUser;
+
+    private String selectedAppointmentWithType;
 
 
 
     private AppointmentList appointmentListClient;
+    private AppointmentList appointmentListAppointmentWith;
     private AppointmentList appointmentListContractor;
+    private AppointmentList appointmentListAgent;
 
     ActivityAppointmentConfirmationBinding activityAppointmentConfirmationBinding;
 
@@ -107,9 +111,11 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         initDatePicker();
         //get data passed from previous activity
         Intent intent = getIntent();
-        selectedContractorID = intent.getStringExtra("selectedContractorID");
+        selectedAppointmentWithType = intent.getStringExtra("selectedType");
 
-        selectedContractorName = intent.getStringExtra("selectedContractor");
+        selectedAppointmentWithID = intent.getStringExtra("selectedAppointmentWithID");
+
+        selectedAppointmentWithName = intent.getStringExtra("selectedContractor");
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
 
@@ -120,14 +126,14 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         //setting views and buttons to correct id
 
         confirmAppointmentBtn = findViewById(R.id.confirm_appointment_button);
-        displaySelectedContractor = findViewById(R.id.displaySelectedContractorConfirm);
-        changeContractorButton = findViewById(R.id.changeContractorButton);
+        displaySelectedAppointmentWith = findViewById(R.id.displaySelectedContractorConfirm);
+        changeContractorAgentButton = findViewById(R.id.changeContractorButton);
 
         selectTimeButton = findViewById(R.id.chooseAppointmentTimeButton);
         selectTimeButton.setText(getCurrentTime());
         selectDateButton = findViewById(R.id.chooseAppointmentDateButton);
         selectDateButton.setText(getTodaysDate());
-       // String selectedServicesDisplayString = String.join(", ", selectedServicesList);
+        // String selectedServicesDisplayString = String.join(", ", selectedServicesList);
         ChipGroup chipGroup;
 
         chipGroup = findViewById(R.id.chipGroup);
@@ -137,12 +143,22 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
         //displaySelectedServices.setText(selectedServicesDisplayString);
 
-     //   displaySelectedDate.setText(selectedDate);
+        //   displaySelectedDate.setText(selectedDate);
 
-      //  String selectedTimeDisplay = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
-       // displaySelectedTime.setText(selectedTimeDisplay);
-        String displaySelectedContractorString = "Appointment with: "+selectedContractorName;
-        displaySelectedContractor.setText(displaySelectedContractorString);
+        //  String selectedTimeDisplay = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
+        // displaySelectedTime.setText(selectedTimeDisplay);
+        if(selectedAppointmentWithType == null) {
+            String displaySelectedTypeNullString = "Choose a Contractor or Agent";
+            displaySelectedAppointmentWith.setText(displaySelectedTypeNullString);
+        }
+        else if(selectedAppointmentWithType.equals("Contractor")){
+            String displaySelectedContractorString = "Contractor :" + selectedAppointmentWithName;
+            displaySelectedAppointmentWith.setText(displaySelectedContractorString);
+        }
+        else {
+            String displaySelectedAgentString = "Agent: " + selectedAppointmentWithName;
+            displaySelectedAppointmentWith.setText(displaySelectedAgentString);
+        }
 
         String selectedService = "service choice";
 
@@ -172,10 +188,10 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                     if (dataSnapshot.getKey().equals(currentUserId)) {
                         appointmentListClient = dataSnapshot.getValue(AppointmentList.class);
                     }
-                    if(dataSnapshot.getKey().equals(selectedContractorID))
-                        appointmentListContractor = dataSnapshot.getValue(AppointmentList.class);
-                        if(appointmentListContractor == null)
-                            appointmentListContractor = new AppointmentList();
+                    if(dataSnapshot.getKey().equals(selectedAppointmentWithID))
+                        appointmentListAppointmentWith = dataSnapshot.getValue(AppointmentList.class);
+                    if(appointmentListAppointmentWith == null)
+                        appointmentListAppointmentWith = new AppointmentList();
                 }
 
             }
@@ -193,15 +209,15 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if(dataSnapshot.getKey().equals(selectedContractorName))
-                        selectedContractorAsUser = dataSnapshot.getValue(User.class);
-                    if(selectedContractorAsUser != null) {
-                        selectedContractorID = selectedContractorAsUser.getId();
+                    if(dataSnapshot.getKey().equals(selectedAppointmentWithName))
+                        selectedAppointmentWithAsUser = dataSnapshot.getValue(User.class);
+                    if(selectedAppointmentWithAsUser != null) {
+                        selectedAppointmentWithID = selectedAppointmentWithAsUser.getId();
                         databaseReferenceContractors.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                    if(dataSnapshot.getKey().equals(selectedContractorID));
+                                    if(dataSnapshot.getKey().equals(selectedAppointmentWithID));
                                 }
                             }
 
@@ -220,7 +236,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
             }
         });
 
-        changeContractorButton.setOnClickListener(new View.OnClickListener() {
+        changeContractorAgentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToSearchingActivity();
@@ -265,16 +281,16 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                     Snackbar.make(findViewById(R.id.chipGroup), "Select a service for your appointment", Snackbar.LENGTH_SHORT).show();
                 }
                 else {
-                    appointmentClient = new Appointment("Appointment with: " + selectedContractorName, selectedDate, selectedTime, selectedServicesList, true);
+                    appointmentClient = new Appointment("Appointment with: " + selectedAppointmentWithName, selectedDate, selectedTime, selectedServicesList, true);
                     appointmentListClient.addAppointment(appointmentClient);
-                    appointmentContractor = new Appointment("Appointment with: "+currentUser.getFirstName(), selectedDate, selectedTime, selectedServicesList,true);
-                    appointmentListContractor.addAppointment(appointmentContractor);
-                    FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentListClient)
+                    appointmentAppointmentWith = new Appointment("Appointment with: "+currentUser.getFirstName(), selectedDate, selectedTime, selectedServicesList,true);
+                    appointmentListAppointmentWith.addAppointment(appointmentAppointmentWith);
+                    FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentListClient);
+                    FirebaseDatabase.getInstance().getReference("Appointments").child(selectedAppointmentWithID).setValue(appointmentListAppointmentWith)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        FirebaseDatabase.getInstance().getReference("Appointments").child(selectedContractorID).setValue(appointmentListContractor);
                                         goToHomeScreenActivity();
 
                                     } else {
