@@ -57,6 +57,10 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
     private ImageButton goToMapButton;
 
+    private Button switchSearchType;
+
+
+
     ActivitySearchingBinding activitySearchingBinding;
 
 
@@ -73,8 +77,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        goToMapButton = findViewById(R.id.goToMapsButton);
+        switchSearchType = findViewById(R.id.switch_search_type);
         searchSelection = findViewById(R.id.search_selection_btn);
         searchField = findViewById(R.id.search_bar);
         enterSearchField = findViewById(R.id.searchImageButton);
@@ -131,24 +134,28 @@ public class SearchingActivity extends NavigationDrawerActivity {
                 goToAppointmentConfirmationActivity();
             }
         });
-        goToMapButton.setOnClickListener(new View.OnClickListener() {
+
+        switchSearchType.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                goToMapsActivity();
+            public void onClick(View v) {
+                goToSearchingAgentActivity();
             }
         });
 
 
+
     }
-    private void goToMapsActivity() {
-        Intent intent = new Intent(this, MapsActivity.class);
+
+    private void goToSearchingAgentActivity() {
+        Intent intent = new Intent(this, SearchingAgentActivity.class);
         startActivity(intent);
     }
 
     private void goToAppointmentConfirmationActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
-        intent.putExtra("selectedContractorID", selectedContractorID);
+        intent.putExtra("selectedAppointmentWithID", selectedContractorID);
         intent.putExtra("selectedContractor", selectedContractor.getFirstName());
+        intent.putExtra("selectedType", "Contractor");
         //intent.putExtra("selectedContractorUID", selectedContractorUID);
         intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
         startActivity(intent);
@@ -166,6 +173,44 @@ public class SearchingActivity extends NavigationDrawerActivity {
         searchResultList.setAdapter(adapter);
     }
 
+   /* private void firebaseUserSearch() {
+        Query query=databaseReference; //.equalto ?
+        FirebaseRecyclerOptions<User> options =
+                new FirebaseRecyclerOptions.Builder<User>()
+                        .setQuery(query, User.class)
+                        .build();
+        FirebaseRecyclerAdapter<User, SearchResultsViewHolder> firebaseRecyclerAdapter;
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, SearchResultsViewHolder>(options){
+            @Override
+            protected void onBindViewHolder(@NonNull SearchResultsViewHolder holder, int position, @NonNull User model) {
+                holder.setDetails(model.getFirstName(), model.getLastName());
+            }
+            @NonNull
+            @Override
+            public SearchResultsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.search_result_list, parent, false);
+                return new SearchResultsViewHolder(view);
+            }
+        };
+        //searchResultList.setAdapter(firebaseRecyclerAdapter);
+    }
+    //view holder class
+    public class SearchResultsViewHolder extends RecyclerView.ViewHolder {
+        View view;
+        public SearchResultsViewHolder(@NonNull View itemView) {
+            super(itemView);
+            view = itemView;
+        }
+        public void setDetails(String name, String desc) {
+            TextView user_name = findViewById(R.id.search_result_name);
+            TextView description = findViewById(R.id.search_result_description);
+            user_name.setText(name);
+            description.setText(desc);
+        }
+    } */
+
+}
    /* private void firebaseUserSearch() {
         Query query=databaseReference; //.equalto ?
 
@@ -216,4 +261,3 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
     } */
 
-}
