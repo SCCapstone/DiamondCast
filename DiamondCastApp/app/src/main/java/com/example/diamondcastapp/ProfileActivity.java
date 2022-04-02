@@ -55,6 +55,9 @@ public class  ProfileActivity extends NavigationDrawerActivity {
         setContentView(activityProfileBinding.getRoot());
         allocateActivityTitle("Profile");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         name = findViewById(R.id.nameOne);
         email = findViewById(R.id.emailOne);
         userType = findViewById(R.id.userTypeOne);

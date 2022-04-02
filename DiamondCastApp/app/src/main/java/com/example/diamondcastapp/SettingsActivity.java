@@ -37,6 +37,9 @@ public class SettingsActivity extends NavigationDrawerActivity {
         setContentView(activitySettingsBinding.getRoot());
         allocateActivityTitle("Settings");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         //Light Mode / Dark Mode
         switchCompat = findViewById(R.id.darkModeSwitch);
         sharedPreferences = getSharedPreferences("night", 0);

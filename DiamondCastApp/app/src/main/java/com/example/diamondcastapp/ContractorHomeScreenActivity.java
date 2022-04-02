@@ -39,6 +39,9 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
         setContentView(activityContractorHomeScreenBinding.getRoot());
         allocateActivityTitle("Home");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         //Appointment RecyclerView
 
         Intent intent = getIntent();

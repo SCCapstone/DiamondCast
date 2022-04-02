@@ -124,6 +124,9 @@
     <string name="settings">Settings</string>
     <string name="messages">Messages</string>
     <string name="diamondcast_app">DIAMONDCAST APP</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="map">Map</string>
+
 
 
 </resources>

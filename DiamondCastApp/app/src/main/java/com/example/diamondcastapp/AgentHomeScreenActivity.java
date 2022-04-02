@@ -40,6 +40,9 @@ public class AgentHomeScreenActivity extends NavigationDrawerActivity {
             activityAgentHomeScreenBinding = ActivityAgentHomeScreenBinding.inflate(getLayoutInflater());
             setContentView(activityAgentHomeScreenBinding.getRoot());
             allocateActivityTitle("Home");
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
             //Appointment RecyclerView
 
             Intent intent = getIntent();

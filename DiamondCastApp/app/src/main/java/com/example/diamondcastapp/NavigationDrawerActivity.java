@@ -30,6 +30,12 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
         Toolbar toolbar = drawerLayout.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
         NavigationView navigationView = drawerLayout.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -51,6 +57,10 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 break;
             case R.id.nav_search:
                 startActivity(new Intent(this, SearchingActivity.class));
+                overridePendingTransition(0,0);
+                break;
+            case R.id.nav_map:
+                startActivity(new Intent(this, MapsActivity.class));
                 overridePendingTransition(0,0);
                 break;
             case R.id.nav_appointment:

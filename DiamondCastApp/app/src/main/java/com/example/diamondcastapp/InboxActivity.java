@@ -17,6 +17,9 @@ public class InboxActivity extends NavigationDrawerActivity {
         activityInboxBinding = ActivityInboxBinding.inflate(getLayoutInflater());
         setContentView(activityInboxBinding.getRoot());
         allocateActivityTitle("Messaging");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
     public void goToSideBarActivity (View view) {
        //need side bar activity Intent intent = new Intent(this, SideBarActivity.class);
