@@ -43,6 +43,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         Intent intent = getIntent();
         createdAppointment = (Appointment) intent.getSerializableExtra("appointment");
 
