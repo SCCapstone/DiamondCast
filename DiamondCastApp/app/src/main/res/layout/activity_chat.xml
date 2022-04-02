@@ -57,6 +57,8 @@
             android:id="@+id/chatText"
             android:background="@android:color/transparent"
             android:hint="Send a message"
+            android:textColorHint="@color/darkGrey"
+            android:textColor="@color/black"
             android:layout_toLeftOf="@+id/chatSendButton"
             android:layout_centerVertical="true"/>
         <ImageButton

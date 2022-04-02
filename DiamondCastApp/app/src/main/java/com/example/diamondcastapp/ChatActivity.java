@@ -13,10 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +29,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -38,6 +41,11 @@ public class ChatActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
+
+    ChatAdapter chatAdapter;
+    List<Message> messages;
+
+    RecyclerView chatRecycleView;
 
     Intent intent;
 
@@ -56,6 +64,12 @@ public class ChatActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        chatRecycleView = findViewById(R.id.chatRecycleView);
+        chatRecycleView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setStackFromEnd(true);
+        chatRecycleView.setLayoutManager(linearLayoutManager);
 
         profileImage = findViewById(R.id.profileImage);
         fullName = findViewById(R.id.fullName);
@@ -97,6 +111,7 @@ public class ChatActivity extends AppCompatActivity {
                         Picasso.get().load(uri).into(profileImage);
                     }
                 });
+                readMessages(firebaseUser.getUid(), id);
             }
 
             @Override
@@ -106,14 +121,41 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    private void sendMessaage(String sender, String reciever, String message){
+    private void sendMessaage(String sender, String receiver, String message){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender",sender);
-        hashMap.put("reciever",reciever);
+        hashMap.put("receiver",receiver);
         hashMap.put("message",message);
 
         reference.child("Messages").push().setValue(hashMap);
+    }
+
+    private void readMessages(final String currentUserId, final String otherUserId){
+        messages = new ArrayList<>();
+
+        reference = FirebaseDatabase.getInstance().getReference("Messages");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                messages.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Message message = snapshot.getValue(Message.class);
+                    if(message.getReceiver().equals(currentUserId) && message.getSender().equals(otherUserId) ||
+                            message.getReceiver().equals(otherUserId) && message.getSender().equals(currentUserId)){
+                        messages.add(message);
+                    }
+                }
+                chatAdapter = new ChatAdapter(ChatActivity.this, messages);
+                chatRecycleView.setAdapter(chatAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }
