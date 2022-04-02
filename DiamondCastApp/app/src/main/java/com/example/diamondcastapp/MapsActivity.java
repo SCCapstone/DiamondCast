@@ -9,12 +9,19 @@ import android.Manifest.permission;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,17 +31,26 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.diamondcastapp.databinding.ActivityMapsBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.FileDescriptor;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Permission;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private Button backButton;
     private GoogleMap mMap;
+    private GoogleApiClient googleApiClient;
     private ActivityMapsBinding binding;
     private Location currentLocation;
+    private List<Address> addresses;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 101;
 
@@ -48,7 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         backButton = findViewById(R.id.backFromMapsButton);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        getCurrentLocation();
+        //getCurrentLocation();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -73,40 +89,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        if(currentLocation == null)
-            getCurrentLocation();
-        LatLng currLocation = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+
+        //if(currentLocation == null)
+        //   getCurrentLocation();
+        LatLng currLocation = new LatLng(-34, 150); //location of sydney australia
         mMap.addMarker(new MarkerOptions().position(currLocation).title("current location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currLocation));
+
     }
 
+
+
+
+    @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
-        if(ActivityCompat.checkSelfPermission(this, permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this, permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this, new String[]{permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
-            return;
-        }
-
-        @SuppressLint("MissingPermission")
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
-            public void onSuccess(Location location) {
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
                 if(location != null) {
-                    currentLocation = location;
-                    Toast.makeText(getApplicationContext(), (int) currentLocation.getLatitude(), Toast.LENGTH_SHORT).show();
-                    SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+                    try {
+                        Geocoder geocoder = new Geocoder(MapsActivity.this,
+                                Locale.getDefault());
+                        addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    }
+                    catch(IOException e) {
 
-                    assert supportMapFragment != null;
-                    supportMapFragment.getMapAsync(MapsActivity.this);
+                    }
                 }
-
             }
         });
     }
