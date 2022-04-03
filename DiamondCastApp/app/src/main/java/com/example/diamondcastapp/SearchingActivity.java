@@ -154,7 +154,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
     private void goToAppointmentConfirmationActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
         intent.putExtra("selectedAppointmentWithID", selectedContractorID);
-        intent.putExtra("selectedContractor", selectedContractor.getFirstName());
+        intent.putExtra("selectedContractor", selectedContractor.getFirstName()+ " " +selectedContractor.getLastName());
         intent.putExtra("selectedType", "Contractor");
         //intent.putExtra("selectedContractorUID", selectedContractorUID);
         intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
