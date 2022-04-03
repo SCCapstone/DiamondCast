@@ -185,9 +185,11 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals(currentUserId)) {
+                    if (dataSnapshot.getKey().equals(currentUserId))
                         appointmentListClient = dataSnapshot.getValue(AppointmentList.class);
-                    }
+                    if(appointmentListClient == null)
+                        appointmentListClient = new AppointmentList();
+
                     if(dataSnapshot.getKey().equals(selectedAppointmentWithID))
                         appointmentListAppointmentWith = dataSnapshot.getValue(AppointmentList.class);
                     if(appointmentListAppointmentWith == null)

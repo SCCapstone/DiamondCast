@@ -28,6 +28,8 @@ public class MessagingActivity extends NavigationDrawerActivity {
         setContentView(activityMessagingBinding.getRoot());
         allocateActivityTitle("Messaging");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //TabLayout tabLayout = findViewById(R.id.messagingTabLayout);
         ViewPager viewPager = findViewById(R.id.messagingViewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
