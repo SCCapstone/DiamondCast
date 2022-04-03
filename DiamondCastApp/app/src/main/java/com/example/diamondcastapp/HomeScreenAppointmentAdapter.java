@@ -48,6 +48,17 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
         holder.appointmentWithName.setText(model.getTitle());
         holder.services.setText(String.join(", ", model.getServices()));
         holder.dateTime.setText(model.getDate() + " at "+ model.getTime());
+        //Get profile image
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("users/"+model.getAppointmentWithId()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(holder.profileImage);
+            }
+        });
+
+
         if (clickListener != null) {
             holder.itemView.setOnClickListener(clickListener);
         }
@@ -74,9 +85,8 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
             appointmentWithName = itemView.findViewById(R.id.home_screen_client_appointment_title);
             dateTime = itemView.findViewById(R.id.home_screen_client_appointment_date_time);
             services = itemView.findViewById(R.id.home_screen_client_appointment_services);
+            profileImage = itemView.findViewById(R.id.searchProfileImage);
         }
-
     }
-
 }
 
