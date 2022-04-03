@@ -26,9 +26,10 @@ public class SettingsActivity extends NavigationDrawerActivity {
     FirebaseAuth fAuth;
     String newPassword;
     FirebaseUser currentUser;
-    SwitchCompat switchCompat;
-    SharedPreferences sharedPreferences = null;
     ActivitySettingsBinding activitySettingsBinding;
+    /* L/D Mode
+    SwitchCompat switchCompat;
+    SharedPreferences sharedPreferences = null; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class SettingsActivity extends NavigationDrawerActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        /*
         //Light Mode / Dark Mode
         switchCompat = findViewById(R.id.darkModeSwitch);
         sharedPreferences = getSharedPreferences("night", 0);
@@ -66,9 +67,9 @@ public class SettingsActivity extends NavigationDrawerActivity {
                 }
             }
         });
+        */
 
         //Password Changer
-
         changePass = findViewById(R.id.changePassword);
         fAuth = FirebaseAuth.getInstance();
         currentUser = fAuth.getCurrentUser();
