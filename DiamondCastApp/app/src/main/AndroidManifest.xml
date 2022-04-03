@@ -16,16 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiamondCastApp">
         <activity
-            android:name=".SearchAgentAdapter"
-            android:exported="false"
-            android:label="@string/title_activity_search_agent_adapter"
-            android:theme="@style/Theme.DiamondCastApp.NoActionBar" />
-        <activity
             android:name=".SearchingAgentActivity"
             android:exported="false" />
-        <activity
-            android:name=".SearchAgentActivity"
-            android:exported="false" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
