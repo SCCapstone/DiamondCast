@@ -1,6 +1,7 @@
 package com.example.diamondcastapp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,6 +48,14 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
         holder.appointmentWithName.setText(model.getTitle());
         holder.services.setText(String.join(", ", model.getServices()));
         holder.dateTime.setText(model.getDate() + " at "+ model.getTime());
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("users/"+model.getAppointmentWithId()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(holder.profileImage);
+            }
+        });
         if (clickListener != null) {
             holder.itemView.setOnClickListener(clickListener);
         }
@@ -58,6 +72,7 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
         private TextView appointmentWithName;
         private TextView dateTime;
         private TextView services;
+        private ImageView profileImage;
 
 
 
