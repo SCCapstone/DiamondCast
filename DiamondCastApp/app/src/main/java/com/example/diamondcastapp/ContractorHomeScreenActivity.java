@@ -77,11 +77,7 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
         });
 
 
-        ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
-        profileBTN.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { goToProfileActivity(); }
-        });
+
     }
     public void goToProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
