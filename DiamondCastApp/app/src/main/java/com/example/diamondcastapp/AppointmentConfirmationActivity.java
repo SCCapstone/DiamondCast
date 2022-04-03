@@ -428,7 +428,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         });
     }
 
-    private void goToClientHomeScreenActivity() {
+    public void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
         intent.putExtra("appointment", appointmentClient);
         startActivity(intent);
@@ -439,12 +439,12 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
     }
 
 
-    private void goToAgentHomeScreenActivity() {
+    public void goToAgentHomeScreenActivity() {
         Intent intent = new Intent(this, AgentHomeScreenActivity.class);
         startActivity(intent);
     }
 
-    private void goToContractorHomeScreenActivity() {
+    public void goToContractorHomeScreenActivity() {
         Intent intent = new Intent(this, ContractorHomeScreenActivity.class);
         startActivity(intent);
     }
