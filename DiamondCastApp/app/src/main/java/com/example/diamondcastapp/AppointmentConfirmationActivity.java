@@ -281,9 +281,9 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                     Snackbar.make(findViewById(R.id.chipGroup), "Select a service for your appointment", Snackbar.LENGTH_SHORT).show();
                 }
                 else {
-                    appointmentClient = new Appointment("Appointment with: " + selectedAppointmentWithName, selectedDate, selectedTime, selectedServicesList, true);
+                    appointmentClient = new Appointment("Appointment with: " + selectedAppointmentWithName, selectedDate, selectedTime, currentUserId, selectedAppointmentWithID, selectedServicesList, true);
                     appointmentListClient.addAppointment(appointmentClient);
-                    appointmentAppointmentWith = new Appointment("Appointment with: "+currentUser.getFirstName(), selectedDate, selectedTime, selectedServicesList,true);
+                    appointmentAppointmentWith = new Appointment("Appointment with: "+currentUser.getFirstName(), selectedDate, selectedTime, selectedAppointmentWithID, currentUserId, selectedServicesList,true);
                     appointmentListAppointmentWith.addAppointment(appointmentAppointmentWith);
                     FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentListClient);
                     FirebaseDatabase.getInstance().getReference("Appointments").child(selectedAppointmentWithID).setValue(appointmentListAppointmentWith)

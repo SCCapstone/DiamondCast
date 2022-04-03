@@ -12,6 +12,8 @@ public class Appointment implements Serializable {
     public String title;
     public String date; //not using Date because deprecated, simpleDateFormat wont map to database
     public String time;
+    public String appointmentOwnerId;
+    public String appointmentWithId;
     public ArrayList<String> services;
     public boolean active;
 
@@ -24,11 +26,13 @@ public class Appointment implements Serializable {
         this.active = true;
     }
 
-    public Appointment( String title, String date, String time, ArrayList<String> services, Boolean active) {
+    public Appointment( String title, String date, String time, String appointmentOwnerId, String appointmentWithId, ArrayList<String> services, Boolean active) {
 
         this.title = title;
         this.date = date;
         this.time = time;
+        this.appointmentOwnerId = appointmentOwnerId;
+        this.appointmentWithId = appointmentWithId;
         this.services = services;
         this.active = active;
     }
@@ -41,6 +45,8 @@ public class Appointment implements Serializable {
         return this.date;
     }
     public String getTime() { return this.time; }
+    public String getAppointmentOwnerId() { return this.appointmentOwnerId; }
+    public String getAppointmentWithId() { return this.appointmentWithId; }
     public ArrayList<String> getServices() {
         return this.services;
     }
@@ -56,6 +62,8 @@ public class Appointment implements Serializable {
     public void setTime(String time) {
         this.time = time;
     }
+    public void setAppointmentOwnerId(String id) { this.appointmentOwnerId = id; }
+    public void setAppointmentWithId(String id) { this.appointmentWithId = id; }
     public void setService(ArrayList<String> services) {
         this.services = services;
     }
