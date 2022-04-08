@@ -13,7 +13,7 @@
     <string name="passwordtext">Password:</string>
     <string name="go_back">Go Back</string>
     <string name="next_page">Next Page</string>
-    <string name="comfirm_password">Comfirm Password:</string>
+    <string name="confirm_password">Confirm Password:</string>
     <string name="usernameText">Username:</string>
     <string name="accountTypeText">Choose your account type:</string>
     <string-array name="accountTypes">
