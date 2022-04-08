@@ -1,7 +1,6 @@
 package com.example.diamondcastapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -77,7 +75,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
         });
 
         //Buttons
-        Button appointmentScheduler = (Button) findViewById(R.id.goToAppointmentBtn);
+        Button appointmentScheduler = (Button) findViewById(R.id.viewAppointmentsBtn);
 
 
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {

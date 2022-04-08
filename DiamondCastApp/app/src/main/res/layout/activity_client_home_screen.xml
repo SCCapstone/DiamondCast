@@ -13,6 +13,7 @@
         android:layout_height="563dp"
 
         android:background="#CDC5C5"
+        android:rotationX="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,10 +38,11 @@
 
 
     <Button
-        android:id="@+id/goToAppointmentBtn"
+        android:id="@+id/viewAppointmentsBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:rotationX="0"
         android:text="@string/schedule_appointment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

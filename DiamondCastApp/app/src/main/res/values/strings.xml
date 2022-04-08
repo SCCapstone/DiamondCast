@@ -16,6 +16,11 @@
     <string name="comfirm_password">Comfirm Password:</string>
     <string name="usernameText">Username:</string>
     <string name="accountTypeText">Choose your account type:</string>
+
+    <!--Strings for new user checklists-->
+    <string name="viewApts">Go to Upcoming Appointments</string>
+    <string name="Welcome">Welcome...</string>
+
     <string-array name="accountTypes">
         <item>Client</item>
         <item>Agent</item>

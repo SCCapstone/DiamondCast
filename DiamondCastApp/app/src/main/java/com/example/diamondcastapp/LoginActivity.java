@@ -145,6 +145,8 @@ public class LoginActivity extends AppCompatActivity {
                 User user = snapshot.getValue(User.class);
                 if(user!=null && user.getUserType()==UserType.Client) {
                     goToClientHomeScreenActivity();
+               // } else if(user!=null && user.getUserType()==UserType.Client) {
+                 //   goToClientNewUserActivity();
                 } else if(user!=null && user.getUserType()==UserType.Agent) {
                     goToAgentHomeScreenActivity();
                 } else if(user!=null && user.getUserType()==UserType.Contractor) {
@@ -161,7 +163,8 @@ public class LoginActivity extends AppCompatActivity {
     });
     }
 
-    private void goToClientHomeScreenActivity() {
+
+   private void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
         startActivity(intent);
     }
@@ -175,4 +178,12 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ContractorHomeScreenActivity.class);
         startActivity(intent);
     }
+
+    /*
+    private void goToClientNewUserActivity() {
+        Intent intent = new Intent(this, ClientNUCActivity.class);
+        startActivity(intent);
+    }
+    */
+
 }
