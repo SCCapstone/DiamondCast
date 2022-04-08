@@ -163,7 +163,6 @@ public class LoginActivity extends AppCompatActivity {
     });
     }
 
-
    private void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
         startActivity(intent);

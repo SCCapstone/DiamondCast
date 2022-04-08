@@ -22,6 +22,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.085" />
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="419dp"
+        android:layout_height="634dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewAppointmentsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/viewAppointmentsBtn"
         android:layout_width="352dp"
