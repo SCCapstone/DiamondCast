@@ -9,6 +9,8 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
+    <string name="edit_appt">Edit</string>
+    <string name="delete_appt">Delete</string>
     <string name="email">Email:</string>
     <string name="passwordtext">Password:</string>
     <string name="go_back">Go Back</string>
