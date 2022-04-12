@@ -1,5 +1,7 @@
 package com.example.diamondcastapp;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -112,9 +115,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         //get data passed from previous activity
         Intent intent = getIntent();
         selectedAppointmentWithType = intent.getStringExtra("selectedType");
-
         selectedAppointmentWithID = intent.getStringExtra("selectedAppointmentWithID");
-
         selectedAppointmentWithName = intent.getStringExtra("selectedContractor");
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
@@ -307,7 +308,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     }
 
-
+    //TIME SELECTION
     public void openTimePicker(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -319,18 +320,28 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 String timeFormat = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(time);
                 selectedTime = timeFormat;
                 selectTimeButton.setText(timeFormat);
+
+                /*CHECK IF TIME IS IN THE FUTURE
+                Calendar datetime = Calendar.getInstance();
+                Calendar c = Calendar.getInstance();
+                datetime.set(Calendar.HOUR_OF_DAY, selectedHour);
+                datetime.set(Calendar.MINUTE, selectedMinute);
+                if(datetime.getTimeInMillis() > c.getTimeInMillis()){
+                }
+                else{
+                    Snackbar.make(selectTimeButton, "Appointment time cannot be in the past", Snackbar.LENGTH_SHORT).show();
+                }
+                */
             }
         };
-
         int style = AlertDialog.THEME_HOLO_DARK;
-
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute,false);
-
         timePickerDialog.setTitle("SelectTime");
         timePickerDialog.show();
-
     }
 
+
+    //DATE SELECTION
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -340,6 +351,29 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 String date = makeDateString(day, month, year);
                 selectedDate = date;
                 selectDateButton.setText(date);
+                int selYear = year;
+                int selMonth = month;
+                int selDay = day;
+                Calendar cal = Calendar.getInstance();
+
+                year = cal.get(Calendar.YEAR);
+                month = cal.get(Calendar.MONTH);
+                day = cal.get(Calendar.DAY_OF_MONTH);
+
+                //CHECK IF DATE IS IN THE FUTURE
+                if((selDay >= day) && (selMonth >= (month+1)) && (selYear >= year)){
+                    //Log.d(TAG, +selDay+"   >: "+day);
+                    //Log.d(TAG, +selMonth+"   >: "+month+1);
+                    //Log.d(TAG, +selYear+"   >: "+year);
+                }
+                else{
+                    Snackbar.make(selectDateButton, "Appointment date cannot be in the past!", Snackbar.LENGTH_SHORT).show();
+                    //Set time picker back to today's date
+                    String dateFalse = makeDateString(day, month+1, year);
+                    selectedDate = dateFalse;
+                    selectDateButton.setText(dateFalse);
+                }
+
             }
         };
 
@@ -351,9 +385,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-
-
     }
+
 
     private String makeDateString(int day, int month, int year) {
         return getMonthFormat(month) + "/" + day + "/" + year;
@@ -402,8 +435,6 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
     public void openDatePicker(View view) {
         datePickerDialog.show();
     }
-
-
 
     public void goToHomeScreenActivity() {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
