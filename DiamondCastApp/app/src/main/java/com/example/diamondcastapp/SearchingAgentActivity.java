@@ -26,6 +26,7 @@ import com.google.android.gms.common.data.DataHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,25 +40,16 @@ import java.util.List;
 public class SearchingAgentActivity extends NavigationDrawerActivity {
 
     private EditText searchField;
-
     private ImageButton enterSearchField;
-
     private RecyclerView searchResultList;
-
     private DatabaseReference databaseReference;
-
     private SearchAgentAdapter adapter;
-
     private ArrayList<Agent> list;
-
     public Agent selectedAgent;
-
     private Button searchSelection;
-
     private String selectedAgentID;
-
     private ImageButton goToMapButton;
-
+    public Boolean boolPicked = false;
     private Button switchSearchType;
 
 
@@ -126,14 +118,20 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
                 selectedAgentServicesList = selectedAgent.getServicesOffered();
                 searchSelection.setText(toScheduleWith);
                 Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedAgent.getFirstName() + ")");
+                boolPicked = true;
             }
         });
         searchSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToAppointmentConfirmationActivity();
+                if (boolPicked == true) {
+                    goToAppointmentConfirmationActivity();
+                } else {
+                    Snackbar.make(searchSelection, "You must pick a valid agent", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
+
         switchSearchType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

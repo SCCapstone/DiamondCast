@@ -25,6 +25,7 @@ import com.google.android.gms.common.data.DataHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,31 +39,21 @@ import java.util.List;
 public class SearchingActivity extends NavigationDrawerActivity {
 
     private EditText searchField;
-
     private ImageButton enterSearchField;
-
     private RecyclerView searchResultList;
-
     private DatabaseReference databaseReference;
-
     private SearchAdapter adapter;
-
     private ArrayList<Contractor> list;
-
     public Contractor selectedContractor;
-
     private Button searchSelection;
-
     private String selectedContractorID;
-
+    public Boolean boolPicked =false;
     private ImageButton goToMapButton;
-
     private Button switchSearchType;
 
 
 
     ActivitySearchingBinding activitySearchingBinding;
-
 
     //private String selectedContractorUID;
 
@@ -126,12 +117,18 @@ public class SearchingActivity extends NavigationDrawerActivity {
                 selectedContractorServicesList = selectedContractor.getServicesOffered();
                 searchSelection.setText(toScheduleWith);
                 Log.v("CLICKED", "Clicking on item(" + position + ", " + selectedContractor.getFirstName()+ ")");
+                boolPicked = true;
             }
         });
         searchSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToAppointmentConfirmationActivity();
+                if(boolPicked == true) {
+                    goToAppointmentConfirmationActivity();
+                }
+                else{
+                    Snackbar.make(searchSelection, "You must pick a valid contractor", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
 
