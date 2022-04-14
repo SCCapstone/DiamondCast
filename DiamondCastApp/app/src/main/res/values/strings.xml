@@ -13,6 +13,7 @@
     <string name="delete_appt">Delete</string>
     <string name="email">Email:</string>
     <string name="passwordtext">Password:</string>
+    <string name="change_phone">Change Phone Number</string>
     <string name="go_back">Go Back</string>
     <string name="next_page">Next Page</string>
     <string name="confirm_password">Confirm Password:</string>

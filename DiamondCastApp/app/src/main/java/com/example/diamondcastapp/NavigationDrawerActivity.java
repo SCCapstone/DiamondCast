@@ -74,7 +74,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 Log.d("TAG", databaseError.getMessage());
             }
         };
-        current_userRef.addListenerForSingleValueEvent(valueEventListener);
+
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -83,7 +83,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         toggle.syncState();
 
     }
-
+    //Go to activity based on item picked
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
