@@ -10,15 +10,15 @@
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
 
-        android:layout_width="345dp"
-        android:layout_height="239dp"
+        android:layout_width="276dp"
+        android:layout_height="181dp"
 
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         app:chipSpacingHorizontal="10dp"
         app:chipSpacingVertical="10dp"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displayChooseServiceHeader">
 
