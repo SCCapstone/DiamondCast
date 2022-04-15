@@ -41,6 +41,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.949" />
 
+    <Button
+        android:id="@+id/getLocationBtn"
+        android:layout_width="355dp"
+        android:layout_height="52dp"
+        android:text="@string/update_location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.759" />
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/darkModeSwitch"
         android:layout_width="353dp"
