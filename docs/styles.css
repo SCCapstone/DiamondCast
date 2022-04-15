@@ -7,7 +7,7 @@ h1 {
     margin: 0 auto;
 }
 nav {
-    float: center;
+    text-align: center;
 }
 nav ul {
     margin: 0;
@@ -16,7 +16,7 @@ nav ul {
 }
 nav li {
     display: inline-block;
-    margin-left: 0px;
+    margin-left: 50px;
     padding-top: 35px;
 
     position: relative;
