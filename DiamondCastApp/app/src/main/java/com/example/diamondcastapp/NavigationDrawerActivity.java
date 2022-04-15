@@ -89,7 +89,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         drawerLayout.closeDrawer(GravityCompat.START);
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    startActivity(new Intent(this, ClientHomeScreenActivity.class));
+                    goToHomeScreenActivity();
                     overridePendingTransition(0, 0);
                     break;
                 case R.id.nav_search:
