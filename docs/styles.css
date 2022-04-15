@@ -16,7 +16,7 @@ nav ul {
 }
 nav li {
     display: inline-block;
-    margin-left: 70px;
+    margin-left: 0px;
     padding-top: 35px;
 
     position: relative;
