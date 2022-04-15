@@ -76,7 +76,7 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
         }
 
         //popup menu for edit/delete appointments
-        holder.appointmentPopup.setOnClickListener(new View.OnClickListener() {
+       /* holder.appointmentPopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PopupMenu popupMenu = new PopupMenu(context, v);
@@ -104,7 +104,7 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
                     }
                 });
             }
-        });
+        }); */
     }
 
 
@@ -129,7 +129,7 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
             dateTime = itemView.findViewById(R.id.home_screen_client_appointment_date_time);
             services = itemView.findViewById(R.id.home_screen_client_appointment_services);
             profileImage = itemView.findViewById(R.id.searchProfileImage);
-            appointmentPopup = itemView.findViewById(R.id.popup_appt);
+            //appointmentPopup = itemView.findViewById(R.id.popup_appt);
             //appointmentPopup.setOnClickListener(this);
         }
         /* popup menu for edit/delete appts
