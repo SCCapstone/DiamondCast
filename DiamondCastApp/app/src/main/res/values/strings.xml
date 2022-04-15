@@ -135,8 +135,13 @@
     <string name="choose_a_contractor">Choose a Contractor</string>
     <string name="search_for_agents">Search for Agents</string>
     <string name="change_contractor_agent">Change Contractor/Agent</string>
+
     <string name="choose_one_or_more_services">Choose one or more services</string>
     <string name="choose_contractor_agent">Choose Contractor/Agent</string>
+
+    <string name="location">Location:</string>
+    <string name="update_location">Update Location</string>
+
 
 
 </resources>
