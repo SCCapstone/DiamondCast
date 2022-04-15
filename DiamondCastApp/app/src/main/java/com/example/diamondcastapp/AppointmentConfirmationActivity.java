@@ -438,7 +438,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     public void goToHomeScreenActivity() {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FirebaseDatabase.getInstance().getReference("Clients")
+        FirebaseDatabase.getInstance().getReference("Users")
                 .child(currentUserId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
