@@ -121,18 +121,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintVertical_bias="0.786" />
 
     <Button
         android:id="@+id/verifyButton"
-        android:layout_width="155dp"
-        android:layout_height="73dp"
+        android:layout_width="207dp"
+        android:layout_height="55dp"
         android:text="@string/verify"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.869" />
+        app:layout_constraintVertical_bias="0.859" />
 </androidx.constraintlayout.widget.ConstraintLayout>
