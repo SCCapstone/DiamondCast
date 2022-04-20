@@ -35,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchingActivity extends NavigationDrawerActivity {
 
@@ -161,7 +162,8 @@ public class SearchingActivity extends NavigationDrawerActivity {
     void filter(String text){
         ArrayList<Contractor> temp = new ArrayList<>();
         for(Contractor contractor: list){
-            if(contractor.getFirstName().contains(text)){
+            String cName = contractor.getFirstName().toLowerCase(Locale.ROOT);
+            if(cName.contains(text.toLowerCase(Locale.ROOT))){
                 temp.add(contractor);
             }
         }
