@@ -31,7 +31,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     FirebaseUser fUser;
     DatabaseReference dReference;
     String userID, userType;
-
+    int i = 1;
     DrawerLayout drawerLayout;
 
     @Override
@@ -89,28 +89,52 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         drawerLayout.closeDrawer(GravityCompat.START);
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    goToHomeScreenActivity();
-                    overridePendingTransition(0, 0);
+                    if (i != 1) {
+                        goToHomeScreenActivity();
+                        overridePendingTransition(0, 0);
+                    }
+                    else{}
+                    i = 1;
                     break;
                 case R.id.nav_search:
-                    startActivity(new Intent(this, SearchingActivity.class));
-                    overridePendingTransition(0, 0);
+                    if (i != 2) {
+                        startActivity(new Intent(this, SearchingActivity.class));
+                        overridePendingTransition(0, 0);
+                    }
+                    else{}
+                    i = 2;
                     break;
                 case R.id.nav_appointment:
-                    startActivity(new Intent(this, AppointmentConfirmationActivity.class));
-                    overridePendingTransition(0, 0);
+                    if (i != 3) {
+                        startActivity(new Intent(this, AppointmentConfirmationActivity.class));
+                        overridePendingTransition(0, 0);
+                    }
+                    else{}
+                    i = 3;
                     break;
                 case R.id.nav_messaging:
-                    startActivity(new Intent(this, MessagingActivity.class));
-                    overridePendingTransition(0, 0);
+                    if (i != 4) {
+                        startActivity(new Intent(this, MessagingActivity.class));
+                        overridePendingTransition(0, 0);
+                    }
+                    else{}
+                    i = 4;
                     break;
                 case R.id.nav_profile:
-                    startActivity(new Intent(this, ProfileActivity.class));
-                    overridePendingTransition(0, 0);
+                    if (i != 5) {
+                        startActivity(new Intent(this, ProfileActivity.class));
+                        overridePendingTransition(0, 0);
+                    }
+                    else{}
+                    i = 5;
                     break;
                 case R.id.nav_settings:
-                    startActivity(new Intent(this, SettingsActivity.class));
-                    overridePendingTransition(0, 0);
+                    if (i != 6) {
+                        startActivity(new Intent(this, SettingsActivity.class));
+                        overridePendingTransition(0, 0);
+                    }
+                    else{}
+                    i = 6;
                     break;
             }
             return false;
