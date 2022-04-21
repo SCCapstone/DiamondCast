@@ -1,0 +1,33 @@
+		"Appointments": {
+				".read": "true",
+   	  	".write": "true"
+    },
+    "Messages": {
+      "$uid": {
+    		".read": "$uid === auth.uid",
+   	  	".write": "$uid === auth.uid"
+      }
+    },
+    "Users": {
+      "$uid": {
+    		".read": "$uid === auth.uid",
+   	  	".write": "true"
+      }
+    },
+  	"Agents": {
+      "$uid": {
+    		".read": "$uid === auth.uid",
+   	  	".write": "true"
+      }
+    },
+    "Contractors": {
+				".read": "true",
+   	  	".write": "true"
+    },
+    "Clients": {
+      "$uid": {
+    		".read": "$uid === auth.uid",
+   	  	".write": "true"
+      }
+    }
+  }

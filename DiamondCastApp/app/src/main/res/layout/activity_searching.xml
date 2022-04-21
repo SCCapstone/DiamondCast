@@ -86,4 +86,7 @@
         android:layout_marginEnd="69dp"
         android:text="@string/choose_a_contractor"
         android:textSize="24sp" />
+
+
+
 </RelativeLayout>
