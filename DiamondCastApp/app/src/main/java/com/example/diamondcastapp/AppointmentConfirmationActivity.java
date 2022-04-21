@@ -278,10 +278,10 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                     }
                 }
                 if(selectedTime == null) {
-                    Snackbar.make(findViewById(R.id.chooseAppointmentTimeButton), "Select a time for your appointment", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.chooseAppointmentTimeButton), "You have not selected a time for your appointment, reselect a time.", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(selectedDate == null) {
-                    Snackbar.make(findViewById(R.id.chooseAppointmentDateButton), "Select a date for your appointment", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.chooseAppointmentDateButton), "You have not selected a date for your appointment, reselect a date.", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(selectedServicesList.isEmpty()) {
                     Snackbar.make(findViewById(R.id.chipGroup), "Select a service for your appointment", Snackbar.LENGTH_SHORT).show();
