@@ -46,7 +46,7 @@ nav a:hover::before {
     width: 100;
 }
 header {
-    background: #55d6aa;
+    background: lightskyblue;
 }
 header::after {
     content: '';
