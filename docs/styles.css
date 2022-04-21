@@ -49,6 +49,7 @@ nav a:hover::before {
 }
 header {
     background: lightskyblue;
+    border-radius: 20px;
 }
 header::after {
     content: '';
