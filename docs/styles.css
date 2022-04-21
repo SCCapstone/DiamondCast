@@ -59,7 +59,7 @@ a {
     align-self:center;
 
 }
-img {
-    align-self:center;
+.aligncenter {
+    text-align:center;
 }
 
