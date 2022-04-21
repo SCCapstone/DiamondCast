@@ -2,6 +2,9 @@ h1 {
     text-align:center;
     padding: 10px 0
 }
+h2 {
+    text-align:center;
+}
 .navContainer {
     width: 80%;
     margin: 0 auto;
