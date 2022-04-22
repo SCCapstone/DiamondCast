@@ -28,6 +28,11 @@ public class MessagingFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> users;
 
+    FirebaseUser firebaseUser;
+    DatabaseReference databaseReference;
+
+    List<String> userIDList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,31 +42,54 @@ public class MessagingFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        users = new ArrayList<>();
+        userIDList = new ArrayList<>();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Messages");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userIDList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Message message = snapshot.getValue(Message.class);
+                    if(message.getSender().equals(firebaseUser.getUid())){
+                        userIDList.add(message.getReceiver());
+                    }
+                    if(message.getReceiver().equals(firebaseUser.getUid())){
+                        userIDList.add(message.getSender());
+                    }
+                }
 
-        readUsers();
+                readMessagedWith();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return view;
     }
 
-    private void readUsers(){
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-
-        reference.addValueEventListener(new ValueEventListener() {
+    private void readMessagedWith(){
+        users = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 users.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
-
-                    assert user != null;
-                    assert firebaseUser != null;
-                    if (!user.getId().equals(firebaseUser.getUid())){
-                        users.add(user);
+                    for(String id : userIDList){
+                        if(user.getId().equals(id)){
+                           if(!users.contains(user)){
+                               users.add(user);
+                           }
+                        }
                     }
                 }
-                userAdapter = new UserAdapter(getContext(),users);
+
+                userAdapter = new UserAdapter(getContext(), users);
                 recyclerView.setAdapter(userAdapter);
             }
 
