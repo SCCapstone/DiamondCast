@@ -31,7 +31,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     FirebaseUser fUser;
     DatabaseReference dReference;
     String userID, userType;
-    int i = 1;
+    int i;
     DrawerLayout drawerLayout;
 
     @Override
