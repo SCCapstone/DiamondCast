@@ -1,5 +1,7 @@
 package com.example.diamondcastapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -38,11 +40,11 @@ import com.squareup.picasso.Picasso;
 
 public class  ProfileActivity extends NavigationDrawerActivity {
     private static final int GALLERY_INTENT_CODE = 1023;
-    TextView name, email, userType;
+    TextView name, email, userType, locationV;
     FirebaseAuth fAuth;
     FirebaseUser user;
     Button logout, settingsBtn, changeProfileImage;
-    String userId, emailNameStr, userTypeStr, lastNameStr, firstNameStr;
+    String userId, emailNameStr, userTypeStr, userTypeDb, lastNameStr, firstNameStr, locationStr;
     ImageView profileImage;
     StorageReference storageReference;
     ActivityProfileBinding activityProfileBinding;
@@ -63,6 +65,7 @@ public class  ProfileActivity extends NavigationDrawerActivity {
         userType = findViewById(R.id.userTypeOne);
         profileImage = findViewById(R.id.profileImage);
         changeProfileImage = findViewById(R.id.changeProfileImage);
+        locationV = findViewById(R.id.locationText1);
 
         fAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -101,6 +104,29 @@ public class  ProfileActivity extends NavigationDrawerActivity {
             }
         };
         current_userRef.addListenerForSingleValueEvent(eventListener);
+        //Log.d(TAG, "onCreate4: "+userType+" : " +userTypeStr);
+
+        //TODO: userType showing as null can only pass client path
+        DatabaseReference root2Ref = FirebaseDatabase.getInstance().getReference("Clients").child(uid);
+        //DatabaseReference user2Ref = rootRef.child(userTypeStr+"s");
+        //DatabaseReference current2_userRef = root2Ref.child(uid);
+        ValueEventListener eventListener2 = new ValueEventListener() {
+            @Override
+            //get location
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                locationStr = dataSnapshot.child("location").getValue(String.class);
+                if(locationStr.equals("default")){
+                    locationV.setText("None");
+                }else {
+                    locationV.setText(locationStr);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        root2Ref.addListenerForSingleValueEvent(eventListener2);
+
 
         //LOGOUT BUTTON
         logout = (Button) findViewById(R.id.logoutBtn);

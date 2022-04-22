@@ -101,7 +101,7 @@
             android:exported="true" />
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MessagingActivity"
             android:exported="true" />

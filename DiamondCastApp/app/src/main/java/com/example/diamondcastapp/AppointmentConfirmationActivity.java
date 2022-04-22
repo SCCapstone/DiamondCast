@@ -89,6 +89,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     private User currentUser;
 
+    private String currentUserName;
+
     private String selectedAppointmentWithType;
 
 
@@ -170,6 +172,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if(dataSnapshot.getKey().equals(currentUserId))
+                        currentUserName = snapshot.child("firstName").getValue(String.class);
                         currentUser = snapshot.getValue(User.class);
                 }
             }
@@ -275,10 +278,10 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                     }
                 }
                 if(selectedTime == null) {
-                    Snackbar.make(findViewById(R.id.chooseAppointmentTimeButton), "Select a time for your appointment", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.chooseAppointmentTimeButton), "You have not selected a time for your appointment, reselect a time.", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(selectedDate == null) {
-                    Snackbar.make(findViewById(R.id.chooseAppointmentDateButton), "Select a date for your appointment", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.chooseAppointmentDateButton), "You have not selected a date for your appointment, reselect a date.", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(selectedServicesList.isEmpty()) {
                     Snackbar.make(findViewById(R.id.chipGroup), "Select a service for your appointment", Snackbar.LENGTH_SHORT).show();
@@ -286,7 +289,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 else {
                     appointmentClient = new Appointment("Appointment with: " + selectedAppointmentWithName, selectedDate, selectedTime, currentUserId, selectedAppointmentWithID, selectedServicesList, true);
                     appointmentListClient.addAppointment(appointmentClient);
-                    appointmentAppointmentWith = new Appointment("Appointment with: "+currentUser.getFirstName(), selectedDate, selectedTime, selectedAppointmentWithID, currentUserId, selectedServicesList,true);
+                    String appointmentWithClientName = "Appointment with: "+currentUserName;
+                    appointmentAppointmentWith = new Appointment(appointmentWithClientName, selectedDate, selectedTime, selectedAppointmentWithID, currentUserId, selectedServicesList,true);
                     appointmentListAppointmentWith.addAppointment(appointmentAppointmentWith);
                     FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentListClient);
                     FirebaseDatabase.getInstance().getReference("Appointments").child(selectedAppointmentWithID).setValue(appointmentListAppointmentWith)
@@ -440,7 +444,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     public void goToHomeScreenActivity() {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FirebaseDatabase.getInstance().getReference("Clients")
+        FirebaseDatabase.getInstance().getReference("Users")
                 .child(currentUserId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
