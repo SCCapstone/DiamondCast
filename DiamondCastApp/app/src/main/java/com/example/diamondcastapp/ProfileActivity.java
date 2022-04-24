@@ -44,11 +44,11 @@ public class  ProfileActivity extends NavigationDrawerActivity {
     FirebaseAuth fAuth;
     FirebaseUser user;
     Button logout, settingsBtn, changeProfileImage;
-    String userId, emailNameStr, userTypeStr, userTypeDb, lastNameStr, firstNameStr, locationStr;
+    String userId, emailNameStr, userTypeStr, userTypeStr1, lastNameStr, firstNameStr, locationStr, reportUserType;
     ImageView profileImage;
+    public static String Test1;
     StorageReference storageReference;
     ActivityProfileBinding activityProfileBinding;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +56,7 @@ public class  ProfileActivity extends NavigationDrawerActivity {
         activityProfileBinding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(activityProfileBinding.getRoot());
         allocateActivityTitle("Profile");
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         name = findViewById(R.id.nameOne);
         email = findViewById(R.id.emailOne);
@@ -66,7 +64,6 @@ public class  ProfileActivity extends NavigationDrawerActivity {
         profileImage = findViewById(R.id.profileImage);
         changeProfileImage = findViewById(R.id.changeProfileImage);
         locationV = findViewById(R.id.locationText1);
-
         fAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -81,7 +78,6 @@ public class  ProfileActivity extends NavigationDrawerActivity {
 
         userId = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
-
         emailNameStr = fAuth.getCurrentUser().getEmail();
         email.setText(emailNameStr);
 
@@ -96,7 +92,9 @@ public class  ProfileActivity extends NavigationDrawerActivity {
                 firstNameStr = dataSnapshot.child("firstName").getValue(String.class);
                 lastNameStr = dataSnapshot.child("lastName").getValue(String.class);
                 userTypeStr = dataSnapshot.child("userType").getValue(String.class);
+                Log.d(TAG, "onDataChange: "+userTypeStr);
                 name.setText(firstNameStr + " " + lastNameStr);
+                Test1 = userTypeStr;
                 userType.setText(userTypeStr);
             }
             @Override
@@ -104,31 +102,32 @@ public class  ProfileActivity extends NavigationDrawerActivity {
             }
         };
         current_userRef.addListenerForSingleValueEvent(eventListener);
-        //Log.d(TAG, "onCreate4: "+userType+" : " +userTypeStr);
 
-        //TODO: userType showing as null can only pass client path
-        DatabaseReference root2Ref = FirebaseDatabase.getInstance().getReference("Clients").child(uid);
-        //DatabaseReference user2Ref = rootRef.child(userTypeStr+"s");
-        //DatabaseReference current2_userRef = root2Ref.child(uid);
-       /* ValueEventListener eventListener2 = new ValueEventListener() {
+        //Set location in firebase to show on profile page
+        readData(new FirebaseCallback() {
             @Override
-            //get location
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                locationStr = dataSnapshot.child("location").getValue(String.class);
-                if(locationStr.equals("default")){
-                    locationV.setText("None");
-                }else {
-                    locationV.setText(locationStr);
-                }
+            public void onCallBack(String str) {
+                DatabaseReference root2Ref = FirebaseDatabase.getInstance().getReference(str+"s").child(uid);
+                ValueEventListener eventListener2 = new ValueEventListener() {
+                    @Override
+                    //get location
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        locationStr = dataSnapshot.child("location").getValue(String.class);
+                        if(locationStr.equals("default")){
+                            locationV.setText("None");
+                        }else {
+                            locationV.setText(locationStr);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                };
+                root2Ref.addListenerForSingleValueEvent(eventListener2);
             }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        root2Ref.addListenerForSingleValueEvent(eventListener2); */
+        });
 
-
-        //LOGOUT BUTTON
+        //Logout Button
         logout = (Button) findViewById(R.id.logoutBtn);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +136,8 @@ public class  ProfileActivity extends NavigationDrawerActivity {
                 goToLoginPage();
             }
         });
-        //GO TO USER SETTINGS
+
+        //Go to user settings
         settingsBtn = (Button) findViewById(R.id.userSettingBtn);
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,6 +193,30 @@ public class  ProfileActivity extends NavigationDrawerActivity {
                 thisActivityResultLauncher.launch(openGalleryIntent);
             }
         });
+    }
+    //Need a firebase callback to get usertype
+    private void readData(FirebaseCallback firebaseCallback){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersRef = rootRef.child("Users");
+        DatabaseReference current_userRef = usersRef.child(uid);
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            //get name and user type from database
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userTypeStr1 = dataSnapshot.child("userType").getValue(String.class);
+                firebaseCallback.onCallBack(userTypeStr1);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        current_userRef.addListenerForSingleValueEvent(eventListener);
+    }
+
+    //wait for firebase callback
+    private interface FirebaseCallback{
+        void onCallBack(String str);
     }
 
     //go to settings page

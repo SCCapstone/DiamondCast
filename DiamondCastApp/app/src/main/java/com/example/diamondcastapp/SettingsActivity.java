@@ -66,8 +66,6 @@ public class SettingsActivity extends NavigationDrawerActivity {
         setContentView(activitySettingsBinding.getRoot());
         allocateActivityTitle("Settings");
         getLocation = findViewById(R.id.getLocationBtn);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*
@@ -182,7 +180,7 @@ public class SettingsActivity extends NavigationDrawerActivity {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(SettingsActivity.this, "Changed phone number!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this, "Changed phone number to: "+PhoneNumberUtils.formatNumber(newPhone), Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
