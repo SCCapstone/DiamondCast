@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+// an adapter used to display the options for the agent on the search screen
+
 public class SearchAgentAdapter extends RecyclerView.Adapter<SearchAgentAdapter.MyViewHolder> {
     private View.OnClickListener clickListener;
     private ArrayList<Agent> mList;

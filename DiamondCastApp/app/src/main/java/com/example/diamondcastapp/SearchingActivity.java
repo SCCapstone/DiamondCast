@@ -184,7 +184,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
         intent.putStringArrayListExtra("selectedContractorServicesList", selectedContractorServicesList);
         startActivity(intent);
     }
-
+    //filters through list of contractors and updates adapter with contractors that have name matching search string
     void filter(String text){
         ArrayList<Contractor> temp = new ArrayList<>();
         for(Contractor contractor: list){

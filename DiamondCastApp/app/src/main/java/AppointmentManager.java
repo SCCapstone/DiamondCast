@@ -8,7 +8,7 @@ public class AppointmentManager {
     private DatabaseReference databaseReference;
 
     public AppointmentManager() {
-        //TODO
+        //TODO implement as singleton
     }
     public AppointmentManager getInstance() {
         //TODO

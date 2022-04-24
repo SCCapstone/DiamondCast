@@ -73,6 +73,7 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // finding all the views that will need to be set
         switchSearchType = findViewById(R.id.switch_search_type);
         searchSelection = findViewById(R.id.search_selection_btn);
         searchField = findViewById(R.id.search_bar);
@@ -171,6 +172,7 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
         startActivity(intent);
     }
 
+    //goes to AppointmentConfirmationActivity and sends extra data to activity
     private void goToAppointmentConfirmationActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
         intent.putExtra("clientNameForAppointment", clientNameForAppointment);
@@ -181,6 +183,8 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
         intent.putStringArrayListExtra("selectedContractorServicesList", selectedAgentServicesList);
         startActivity(intent);
     }
+
+    //filters through list of contractors and updates adapter with contractors that have name matching search string
 
     void filter(String text) {
         ArrayList<Agent> temp = new ArrayList<>();
