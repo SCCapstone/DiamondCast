@@ -47,6 +47,7 @@
             android:theme="@style/Theme.DiamondCastApp.NoActionBar" />
         <activity
             android:name=".startActivity"
+            android:noHistory="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -106,6 +107,7 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
+            android:noHistory="true"
             android:exported="true" />
     </application>
 

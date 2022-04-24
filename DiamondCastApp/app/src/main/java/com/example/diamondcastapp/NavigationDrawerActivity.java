@@ -31,8 +31,9 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     FirebaseUser fUser;
     DatabaseReference dReference;
     String userID, userType;
-    int i = 1;
     DrawerLayout drawerLayout;
+
+    private static int currentActivity;
 
     @Override
     public void setContentView(View view) {
@@ -89,52 +90,52 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         drawerLayout.closeDrawer(GravityCompat.START);
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    if (i != 1) {
+                    if (currentActivity != 1) {
                         goToHomeScreenActivity();
                         overridePendingTransition(0, 0);
                     }
                     else{}
-                    i = 1;
+                    currentActivity = 1;
                     break;
                 case R.id.nav_search:
-                    if (i != 2) {
+                    if (currentActivity != 2) {
                         startActivity(new Intent(this, SearchingActivity.class));
                         overridePendingTransition(0, 0);
                     }
                     else{}
-                    i = 2;
+                    currentActivity = 2;
                     break;
                 case R.id.nav_appointment:
-                    if (i != 3) {
+                    if (currentActivity != 3) {
                         startActivity(new Intent(this, AppointmentConfirmationActivity.class));
                         overridePendingTransition(0, 0);
                     }
                     else{}
-                    i = 3;
+                    currentActivity = 3;
                     break;
                 case R.id.nav_messaging:
-                    if (i != 4) {
+                    if (currentActivity != 4) {
                         startActivity(new Intent(this, MessagingActivity.class));
                         overridePendingTransition(0, 0);
                     }
                     else{}
-                    i = 4;
+                    currentActivity = 4;
                     break;
                 case R.id.nav_profile:
-                    if (i != 5) {
+                    if (currentActivity != 5) {
                         startActivity(new Intent(this, ProfileActivity.class));
                         overridePendingTransition(0, 0);
                     }
                     else{}
-                    i = 5;
+                    currentActivity = 5;
                     break;
                 case R.id.nav_settings:
-                    if (i != 6) {
+                    if (currentActivity != 6) {
                         startActivity(new Intent(this, SettingsActivity.class));
                         overridePendingTransition(0, 0);
                     }
                     else{}
-                    i = 6;
+                    currentActivity = 6;
                     break;
             }
             return false;
@@ -180,6 +181,10 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     public void goToAgentHomeScreenActivity() {
         Intent intent = new Intent(this, AgentHomeScreenActivity.class);
         startActivity(intent);
+    }
+
+    public static void setCurrentActivity(int xCurrentActivity) {
+        currentActivity = xCurrentActivity;
     }
 
 /*

@@ -49,6 +49,7 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -301,6 +302,9 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        String message = "New Appointment on "+selectedDate+" at "+selectedTime;
+                                        sendAppointmentMessaage(currentUserId, selectedAppointmentWithID, message);
+
                                         goToHomeScreenActivity();
 
                                     } else {
@@ -491,5 +495,14 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         startActivity(intent);
     }
 
+    private void sendAppointmentMessaage(String sender, String receiver, String message){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("sender",sender);
+        hashMap.put("receiver",receiver);
+        hashMap.put("message",message);
+
+        reference.child("Messages").push().setValue(hashMap);
+    }
 }
