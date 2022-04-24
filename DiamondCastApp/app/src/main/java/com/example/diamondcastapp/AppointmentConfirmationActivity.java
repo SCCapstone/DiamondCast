@@ -293,8 +293,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 else {
                     appointmentClient = new Appointment("Appointment with: " + selectedAppointmentWithName, selectedDate, selectedTime, currentUserId, selectedAppointmentWithID, selectedServicesList, true);
                     appointmentListClient.addAppointment(appointmentClient);
-                    String appointmentWithClientName = "Appointment with: "+currentUserName;
-                    appointmentAppointmentWith = new Appointment(appointmentWithClientName, selectedDate, selectedTime, selectedAppointmentWithID, currentUserId, selectedServicesList,true);
+
+                    appointmentAppointmentWith = new Appointment("Appointment with: "+clientNameForAppointment, selectedDate, selectedTime, selectedAppointmentWithID, currentUserId, selectedServicesList,true);
                     appointmentListAppointmentWith.addAppointment(appointmentAppointmentWith);
                     FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentListClient);
                     FirebaseDatabase.getInstance().getReference("Appointments").child(selectedAppointmentWithID).setValue(appointmentListAppointmentWith)

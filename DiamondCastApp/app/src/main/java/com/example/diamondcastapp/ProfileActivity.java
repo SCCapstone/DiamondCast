@@ -110,7 +110,7 @@ public class  ProfileActivity extends NavigationDrawerActivity {
         DatabaseReference root2Ref = FirebaseDatabase.getInstance().getReference("Clients").child(uid);
         //DatabaseReference user2Ref = rootRef.child(userTypeStr+"s");
         //DatabaseReference current2_userRef = root2Ref.child(uid);
-        ValueEventListener eventListener2 = new ValueEventListener() {
+       /* ValueEventListener eventListener2 = new ValueEventListener() {
             @Override
             //get location
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -125,7 +125,7 @@ public class  ProfileActivity extends NavigationDrawerActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        root2Ref.addListenerForSingleValueEvent(eventListener2);
+        root2Ref.addListenerForSingleValueEvent(eventListener2); */
 
 
         //LOGOUT BUTTON
