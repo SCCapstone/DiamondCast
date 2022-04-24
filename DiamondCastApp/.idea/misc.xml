@@ -17,11 +17,64 @@
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 1/Capstone Computing Project 1/DiamondCast/DiamondCastApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1255" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/drawable-xhdpi/background_right.xml" value="0.25" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/drawable/background_left.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/drawable/chat_background_left.xml" value="0.1255" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/drawable/chat_background_right.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1255" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_chat.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_client_home_screen.xml" value="0.33" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_contractor_home_screen.xml" value="0.30625" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account1.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_create_account2.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox.xml" value="0.25" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_messages.xml" value="0.33" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_messaging.xml" value="0.1590909090909091" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_scrolling.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_search.xml" value="0.22" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_searching.xml" value="0.16" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_settings.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_start.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/chat_item_left.xml" value="0.75" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/chat_item_right.xml" value="0.75" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/contractor_item.xml" value="0.1" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_agent_chat.xml" value="0.67" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_contractor_chat.xml" value="0.33" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/layout/user_item.xml" value="0.15" />
+        <entry key="..\:/Users/Frank/Desktop/Year 4 Semester 2/Capstone Computing Project 2/DiamondCast/DiamondCastApp/app/src/main/res/menu/menu_scrolling.xml" value="0.15" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox.xml" value="0.12" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_inbox2.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/content_inbox.xml" value="0.1" />
         <entry key="..\:/Users/jackt/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_second.xml" value="0.1" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_agent_home_screen.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_appointment_confirmation.xml" value="0.1" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_appointment_time_and_service_choice.xml" value="0.1" />
         <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_client_home_screen.xml" value="0.25" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_contractor_home_screen.xml" value="0.1" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_maps.xml" value="0.1546875" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_messaging.xml" value="0.15104166666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_navigation.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_navigation_drawer.xml" value="0.33" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_search.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_searching.xml" value="0.22" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_settings.xml" value="0.1546875" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/app_bar_navigation_drawer.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/content_navigation_drawer.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/home_screen_appointment_list.xml" value="0.1" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/home_screen_card.xml" value="0.1" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/navigation_content_layout.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/navigation_drawer_header.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/layout/navigation_drawer_menu.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/jacktrig/StudioProjects/DiamondCast/DiamondCastApp/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.1" />
+        <entry key="..\:/csce490 project/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_appointment_calendar.xml" value="0.22" />
+        <entry key="..\:/csce490 project/DiamondCast/DiamondCastApp/app/src/main/res/layout/activity_appointment_confirmation.xml" value="0.25" />
+        <entry key="..\:/csce490 project/DiamondCast/DiamondCastApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.183" />
+        <entry key="..\:/csce490 project/DiamondCast/DiamondCastApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/chip_selection.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/search_bar_layout.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_appoinment_service_selection.xml" value="0.11041666666666666" />
@@ -53,5 +106,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

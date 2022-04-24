@@ -86,7 +86,7 @@ public class CreateAccount1Activity extends AppCompatActivity {
         } else if(!createAccountMethods.checkPasswordRequirementsMet(password)) {
             Snackbar.make(findViewById(R.id.createAccount1PasswordInput), "Password must be between " + PASSWORD_MIN + " and " + PASSWORD_MAX + "characters.", Snackbar.LENGTH_SHORT).show();
         } else if(!createAccountMethods.checkPasswordIsEqualToConfirmation(password, confirmPassword)) {
-            Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Confirm your password.", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(R.id.createAccount1ComfirmPasswordInput), "Passwords do not match.", Snackbar.LENGTH_SHORT).show();
         }
         else {
             createdAccount = true;

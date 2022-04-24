@@ -3,6 +3,7 @@ package com.example.diamondcastapp;
 import java.util.ArrayList;
 
 public class Contractor extends User{
+    private String id;
     private String typeOfContractor;
     private String location;
     private double rating;
@@ -11,6 +12,7 @@ public class Contractor extends User{
 
     public Contractor() { //default constructor using default User()
         super();
+        this.id = "default";
         this.typeOfContractor = "default";
         this.location = "default";
         this.rating = 100;
@@ -63,6 +65,7 @@ public class Contractor extends User{
     public ArrayList<String> getPaymentMethods() {
         return this.paymentMethods;
     }
+
 
     public void setTypeOfContractor(String typeOfContractor) {
         this.typeOfContractor = typeOfContractor;

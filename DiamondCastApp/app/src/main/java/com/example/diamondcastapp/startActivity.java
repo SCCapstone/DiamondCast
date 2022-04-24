@@ -26,6 +26,9 @@ public class startActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        //Sets the current acc
+        NavigationDrawerActivity.setCurrentActivity(1);
+
         //Autologin
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         if(fUser != null){

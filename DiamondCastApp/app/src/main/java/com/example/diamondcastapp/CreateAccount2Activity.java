@@ -91,7 +91,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                             });
                             addUserToDatabase(newUser);
                         } else{
-                            Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(1)", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register, try a different email.", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });

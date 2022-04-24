@@ -9,11 +9,14 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
+    <string name="edit_appt">Edit</string>
+    <string name="delete_appt">Delete</string>
     <string name="email">Email:</string>
     <string name="passwordtext">Password:</string>
+    <string name="change_phone">Change Phone Number</string>
     <string name="go_back">Go Back</string>
     <string name="next_page">Next Page</string>
-    <string name="comfirm_password">Comfirm Password:</string>
+    <string name="confirm_password">Confirm Password:</string>
     <string name="usernameText">Username:</string>
     <string name="accountTypeText">Choose your account type:</string>
     <string-array name="accountTypes">
@@ -114,5 +117,31 @@
     <string name="default_service_list">default service list</string>
     <string name="default_date_and_time_str_home_screen">date and time</string>
     <string name="default_home_screen_appt_service_str">services listed here</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="select_date">Select Date</string>
+    <string name="change_contractor">Change Contractor</string>
+    <string name="select_contractor">Select Contractor</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="messages">Messages</string>
+    <string name="diamondcast_app">DIAMONDCAST APP</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="map">Map</string>
+    <string name="title_activity_search_agent_adapter">SearchAgentAdapter</string>
+    <string name="search_for_contractors">Search for Contractors</string>
+    <string name="choose_an_agent">Choose an Agent</string>
+    <string name="choose_a_contractor">Choose a Contractor</string>
+    <string name="search_for_agents">Search for Agents</string>
+    <string name="change_contractor_agent">Change Contractor/Agent</string>
+
+    <string name="choose_one_or_more_services">Choose one or more services</string>
+    <string name="choose_contractor_agent">Choose Contractor/Agent</string>
+
+    <string name="location">Location:</string>
+    <string name="update_location">Update Location</string>
+
+
 
 </resources>

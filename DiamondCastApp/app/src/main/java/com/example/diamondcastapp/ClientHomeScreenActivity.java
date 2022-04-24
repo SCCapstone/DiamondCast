@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,19 +21,27 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ClientHomeScreenActivity extends AppCompatActivity {
+public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     private HomeScreenAppointmentAdapter adapter;
     private RecyclerView homeScreenApptList;
     public Appointment createdAppointment;
     private ArrayList<Appointment> list;
     private DatabaseReference databaseReference;
+    private AppointmentList appointmentList;
+    ActivityClientHomeScreenBinding activityClientHomeScreenBinding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_home_screen);
 
+
+//bind the current activity with navigation drawer
+        activityClientHomeScreenBinding = ActivityClientHomeScreenBinding.inflate(getLayoutInflater());
+        setContentView(activityClientHomeScreenBinding.getRoot());
+        allocateActivityTitle("Home");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Intent intent = getIntent();
@@ -42,18 +51,21 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
         homeScreenApptList = findViewById(R.id.upcoming_appts_list);
         homeScreenApptList.setHasFixedSize(true);
         homeScreenApptList.setLayoutManager(new LinearLayoutManager(this));
+        appointmentList = new AppointmentList();
         list = new ArrayList<>();
         adapter = new HomeScreenAppointmentAdapter(list, this);
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
+        // retrieving appointment list (instead of appointment!) from database and separating into individual appointments to display on home screen.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getKey().equals(currentUserId)) {
-                        Appointment appointment = dataSnapshot.getValue(Appointment.class);
-                        list.add(appointment);
+                        appointmentList = dataSnapshot.getValue(AppointmentList.class);
+                        for(Appointment appointment : appointmentList.getAppointmentList())
+                            list.add(appointment);
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -70,21 +82,12 @@ public class ClientHomeScreenActivity extends AppCompatActivity {
 
         appointmentScheduler.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v) { goToSearchActivity(); }
+            public void onClick(View v) { goToAppointmentSchedulerActivity(); }
         });
-        ImageButton SearchBTN = (ImageButton) findViewById(R.id.goToSearchBtn);
-        SearchBTN.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { goToSearchActivity(); }
-        });
-        ImageButton profileBTN = (ImageButton) findViewById(R.id.goToProfileBtn);
-        profileBTN.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { goToProfileActivity(); }
-        });
+
     }
     public void goToAppointmentSchedulerActivity() {
-        Intent intent = new Intent(this, AppointmentCalendarActivity.class);
+        Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
         startActivity(intent);
     }
     public void goToAppointmentServiceSelectionActivity() {
