@@ -2,6 +2,7 @@ package com.example.diamondcastapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +50,8 @@ public class SearchingActivity extends NavigationDrawerActivity {
     public Contractor selectedContractor;
     private Button searchSelection;
     private String selectedContractorID;
+    private String clientNameForAppointment;
+    private User clientUserMakingAppointment;
     public Boolean boolPicked =false;
     private ImageButton goToMapButton;
     private Button switchSearchType;
@@ -80,6 +84,27 @@ public class SearchingActivity extends NavigationDrawerActivity {
         adapter = new SearchAdapter(list, this);
 
         searchResultList.setAdapter(adapter);
+
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        dReference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = fUser.getUid();
+        dReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if(dataSnapshot.getKey().equals(userID))
+                        clientUserMakingAppointment = dataSnapshot.getValue(User.class);
+                }
+                if (clientUserMakingAppointment != null)
+                    clientNameForAppointment = clientUserMakingAppointment.getFirstName()+" "+clientUserMakingAppointment.getLastName();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Contractors");
 
@@ -151,6 +176,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
     private void goToAppointmentConfirmationActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
+        intent.putExtra("clientNameForAppointment", clientNameForAppointment);
         intent.putExtra("selectedAppointmentWithID", selectedContractorID);
         intent.putExtra("selectedContractor", selectedContractor.getFirstName()+ " " +selectedContractor.getLastName());
         intent.putExtra("selectedType", "Contractor");

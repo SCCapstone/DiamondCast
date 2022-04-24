@@ -27,6 +27,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +50,8 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
     public Agent selectedAgent;
     private Button searchSelection;
     private String selectedAgentID;
+    private String clientNameForAppointment;
+    private User clientUserMakingAppointment;
     private ImageButton goToMapButton;
     public Boolean boolPicked = false;
     private Button switchSearchType;
@@ -82,6 +85,26 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
 
         searchResultList.setAdapter(adapter);
 
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        dReference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = fUser.getUid();
+        dReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if(dataSnapshot.getKey().equals(userID))
+                        clientUserMakingAppointment = dataSnapshot.getValue(User.class);
+                }
+                if (clientUserMakingAppointment != null)
+                    clientNameForAppointment = clientUserMakingAppointment.getFirstName()+" "+clientUserMakingAppointment.getLastName();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Agents");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -150,6 +173,7 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
 
     private void goToAppointmentConfirmationActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
+        intent.putExtra("clientNameForAppointment", clientNameForAppointment);
         intent.putExtra("selectedAppointmentWithID", selectedAgentID);
         intent.putExtra("selectedContractor", selectedAgent.getFirstName()+ " " +selectedAgent.getLastName());
         intent.putExtra("selectedType", "Agent");
