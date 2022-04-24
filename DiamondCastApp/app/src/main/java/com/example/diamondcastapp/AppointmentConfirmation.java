@@ -1,5 +1,6 @@
 package com.example.diamondcastapp;
 
+//class is used to test the appointmentconfirmation method below; this eliminates need for mocking 
 public class AppointmentConfirmation {
 
     public AppointmentConfirmation() {

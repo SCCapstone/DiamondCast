@@ -2,6 +2,7 @@ package com.example.diamondcastapp;
 
 import com.google.android.material.snackbar.Snackbar;
 
+//used to abstract methods used in create account to make testable without mocking
 public class CreateAccount {
     private static final int PASSWORD_MIN = 6;
     private static final int PASSWORD_MAX = 30;
