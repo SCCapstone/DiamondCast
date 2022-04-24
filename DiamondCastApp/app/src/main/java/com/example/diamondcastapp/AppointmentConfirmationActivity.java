@@ -93,6 +93,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     private String selectedAppointmentWithType;
 
+    private String clientNameForAppointment;
+
 
 
     private AppointmentList appointmentListClient;
@@ -116,6 +118,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         initDatePicker();
         //get data passed from previous activity
         Intent intent = getIntent();
+        clientNameForAppointment = intent.getStringExtra("clientNameForAppointment");
         selectedAppointmentWithType = intent.getStringExtra("selectedType");
         selectedAppointmentWithID = intent.getStringExtra("selectedAppointmentWithID");
         selectedAppointmentWithName = intent.getStringExtra("selectedContractor");
