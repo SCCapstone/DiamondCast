@@ -96,6 +96,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
     private String clientNameForAppointment;
 
+    private AppointmentConfirmation AppointmentConfirmationGetMonthMethod;
+
 
 
     private AppointmentList appointmentListClient;
@@ -418,7 +420,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day,month,year);
     }
-    private String getMonthFormat(int month) {
+    public String getMonthFormat(int month) {
         if(month == 1)
             return "JAN";
         if(month == 2)
