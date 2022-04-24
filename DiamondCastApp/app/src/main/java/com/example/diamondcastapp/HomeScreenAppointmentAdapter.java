@@ -74,7 +74,7 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
         if (clickListener != null) {
             holder.itemView.setOnClickListener(clickListener);
         }
-
+        //this is not working currently
         //popup menu for edit/delete appointments
        /* holder.appointmentPopup.setOnClickListener(new View.OnClickListener() {
             @Override
