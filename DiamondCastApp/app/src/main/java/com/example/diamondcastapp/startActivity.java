@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +19,7 @@ public class startActivity extends AppCompatActivity {
 
     private FirebaseUser fUser;
     private DatabaseReference dReference;
+
     private String userID;
 
     @Override
@@ -26,10 +27,10 @@ public class startActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //Sets the current acc
+        //Sets the current account
         NavigationDrawerActivity.setCurrentActivity(1);
 
-        //Autologin
+        //Tries to automatically log in user. If  it fails then it sends  user to login screen
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         if(fUser != null){
             userID = fUser.getUid();
@@ -51,7 +52,7 @@ public class startActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Snackbar.make(findViewById(R.id.titleText), "An error has occurred: "+error, Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(startActivity.this,"An error has occurred: "+error, Toast.LENGTH_SHORT).show();
                 }
             });
         } else {

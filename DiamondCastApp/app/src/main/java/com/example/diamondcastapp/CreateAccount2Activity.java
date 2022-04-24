@@ -17,19 +17,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Tag;
 
 public class CreateAccount2Activity extends AppCompatActivity {
 
     private Spinner accountTypeSpinner;
+
     private static User newUser;
     private static String password;
+
     private FirebaseAuth fAuth;
 
     @Override
@@ -50,7 +49,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
     }
 
     private void goToLoginActivity () {
-        Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "User has been registered", Snackbar.LENGTH_SHORT).show();
+        Toast.makeText(CreateAccount2Activity.this, "User has been registered", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -69,9 +68,9 @@ public class CreateAccount2Activity extends AppCompatActivity {
                 break;
         }
 
+        //Email Authentication
         fAuth = FirebaseAuth.getInstance();
         String email = newUser.getEmail();
-        //Email Auth
         fAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -91,7 +90,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                             });
                             addUserToDatabase(newUser);
                         } else{
-                            Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register, try a different email.", Snackbar.LENGTH_SHORT).show();
+                            Toast.makeText(CreateAccount2Activity.this, "Failed to register, try a different email.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -106,7 +105,9 @@ public class CreateAccount2Activity extends AppCompatActivity {
     public void addUserToDatabase(User user) {
         String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();//generates UID for new users
         newUser.setId(Uid);
+
         FirebaseDatabase.getInstance().getReference("Users").child(Uid).setValue(newUser);
+
         if(newUser.getUserType() == UserType.Contractor) {
             Contractor newContractor = new Contractor(newUser);
             FirebaseDatabase.getInstance().getReference("Contractors")
@@ -117,13 +118,11 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         goToLoginActivity();
                     } else{
-                        Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(2)", Snackbar.LENGTH_SHORT).show();
+                        Toast.makeText(CreateAccount2Activity.this, "Failed to register try again", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-        }
-
-        else if(newUser.getUserType() == UserType.Agent) {
+        } else if(newUser.getUserType() == UserType.Agent) {
             Agent newAgent = new Agent(newUser);
             FirebaseDatabase.getInstance().getReference("Agents")
                     .child(Uid).setValue(newAgent)
@@ -133,13 +132,11 @@ public class CreateAccount2Activity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 goToLoginActivity();
                             } else{
-                                Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(2)", Snackbar.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount2Activity.this, "Failed to register try again", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-        }
-
-        else {
+        } else {
             Client newClient = new Client(newUser);
             FirebaseDatabase.getInstance().getReference("Clients")
                     .child(Uid).setValue(newClient)
@@ -149,7 +146,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 goToLoginActivity();
                             } else{
-                                Snackbar.make(findViewById(R.id.createAccount2CreateAccount), "Failed to register try again(2)", Snackbar.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount2Activity.this, "Failed to register try again", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

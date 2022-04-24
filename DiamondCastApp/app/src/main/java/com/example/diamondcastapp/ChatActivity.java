@@ -44,7 +44,6 @@ public class ChatActivity extends AppCompatActivity {
 
     ChatAdapter chatAdapter;
     List<Message> messages;
-
     RecyclerView chatRecycleView;
 
     Intent intent;
@@ -76,7 +75,6 @@ public class ChatActivity extends AppCompatActivity {
         chatText = findViewById(R.id.chatText);
         chatSendButton = findViewById(R.id.chatSendButton);
 
-
         intent = getIntent();
         final String id = intent.getStringExtra("id");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -86,7 +84,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String message = chatText.getText().toString();
                 if(!message.equals("")){
-                    sendMessaage(firebaseUser.getUid(), id, message);
+                    sendMessages(firebaseUser.getUid(), id, message);
                 } else {
                     Toast.makeText(ChatActivity.this, "Enter your message", Toast.LENGTH_SHORT).show();
                 }
@@ -96,7 +94,6 @@ public class ChatActivity extends AppCompatActivity {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(id);
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -111,17 +108,19 @@ public class ChatActivity extends AppCompatActivity {
                         Picasso.get().load(uri).into(profileImage);
                     }
                 });
+
                 readMessages(firebaseUser.getUid(), id);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(ChatActivity.this, "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void sendMessaage(String sender, String receiver, String message){
+    //Sends messages to the database
+    private void sendMessages(String sender, String receiver, String message){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -132,6 +131,7 @@ public class ChatActivity extends AppCompatActivity {
         reference.child("Messages").push().setValue(hashMap);
     }
 
+    //Reads messages from the database that are from and to current user
     private void readMessages(final String currentUserId, final String otherUserId){
         messages = new ArrayList<>();
 
@@ -153,7 +153,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(ChatActivity.this, "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
             }
         });
 
