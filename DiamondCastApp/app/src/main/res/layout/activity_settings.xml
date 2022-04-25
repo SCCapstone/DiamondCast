@@ -52,17 +52,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.759" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/darkModeSwitch"
-        android:layout_width="353dp"
-        android:layout_height="46dp"
-        android:text="@string/light_mode_dark_mode"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
