@@ -3,6 +3,11 @@
     package="com.example.diamondcastapp">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -59,25 +64,13 @@
             android:name=".AppointmentConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".AppointmentCalendarActivity"
-            android:exported="false" />
-        <activity
             android:name=".SearchingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AppointmentTimeAndServiceChoiceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AppointmentTimeSelectionActivity"
             android:exported="false" />
         <activity
             android:name=".ContractorHomeScreenActivity"
             android:exported="true" />
         <activity
             android:name=".AgentHomeScreenActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SearchScreenActivity"
             android:exported="true" />
         <activity
             android:name=".ClientHomeScreenActivity"
@@ -91,9 +84,6 @@
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="true" />
         <activity
             android:name=".SettingsActivity"
             android:exported="true" />

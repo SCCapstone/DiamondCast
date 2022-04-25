@@ -4,7 +4,6 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,10 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CreateAccount2Activity extends AppCompatActivity {
 
     private Spinner accountTypeSpinner;
-
     private static User newUser;
     private static String password;
-
     private FirebaseAuth fAuth;
 
     @Override
@@ -49,7 +45,8 @@ public class CreateAccount2Activity extends AppCompatActivity {
     }
 
     private void goToLoginActivity () {
-        Toast.makeText(CreateAccount2Activity.this, "User has been registered", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateAccount2Activity.this, "User has been registered",
+                Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -77,10 +74,12 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             FirebaseUser fUser = fAuth.getCurrentUser();
+
                             fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>(){
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(CreateAccount2Activity.this, "Verification Email has been Sent.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateAccount2Activity.this,
+                                            "Verification Email has been Sent.", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -88,6 +87,7 @@ public class CreateAccount2Activity extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: Email not sent" +e.getMessage());
                                 }
                             });
+
                             addUserToDatabase(newUser);
                         } else{
                             Toast.makeText(CreateAccount2Activity.this, "Failed to register, try a different email.", Toast.LENGTH_SHORT).show();
@@ -118,7 +118,8 @@ public class CreateAccount2Activity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         goToLoginActivity();
                     } else{
-                        Toast.makeText(CreateAccount2Activity.this, "Failed to register try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateAccount2Activity.this,
+                                "Failed to register try again", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -132,21 +133,22 @@ public class CreateAccount2Activity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 goToLoginActivity();
                             } else{
-                                Toast.makeText(CreateAccount2Activity.this, "Failed to register try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount2Activity.this,
+                                        "Failed to register try again", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         } else {
             Client newClient = new Client(newUser);
-            FirebaseDatabase.getInstance().getReference("Clients")
-                    .child(Uid).setValue(newClient)
+            FirebaseDatabase.getInstance().getReference("Clients").child(Uid).setValue(newClient)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 goToLoginActivity();
                             } else{
-                                Toast.makeText(CreateAccount2Activity.this, "Failed to register try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount2Activity.this,
+                                        "Failed to register try again", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

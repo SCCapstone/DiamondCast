@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
@@ -21,12 +19,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         this.mList = list;
         this.context = context;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.search_result_list, parent, false);
         return new MyViewHolder(v);
     }
+
     public void setOnItemClickListener(View.OnClickListener clickListener) {
         this.clickListener = clickListener;
     }
@@ -48,10 +48,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
         ImageView avatar;
-        TextView name;
-        TextView services;
+        TextView name, services;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,5 +58,4 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
             services = itemView.findViewById(R.id.search_result_description);
         }
     }
-
 }

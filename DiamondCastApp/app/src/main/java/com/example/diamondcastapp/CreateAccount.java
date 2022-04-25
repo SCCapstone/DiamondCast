@@ -13,11 +13,10 @@ public class CreateAccount {
 
     }
 
-    //Determines if password requirements are met
-    // Password Requirements
-    //   - length is (6-30) characters
-    //   - more to come? (needs at least 1 number 1 uppercase)
-    // **an empty password will fail check**
+    /*Determines if password requirements are met
+        Password Requirements
+        - length is (6-30) characters
+     **an empty password will fail check** */
     public boolean checkPasswordRequirementsMet(String password) {
         if (password.length() < PASSWORD_MIN || password.length() > PASSWORD_MAX) {
             return false;

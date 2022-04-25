@@ -1,29 +1,19 @@
 package com.example.diamondcastapp;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
+import android.widget.Toast;
 import com.example.diamondcastapp.databinding.ActivityAppointmentConfirmationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,86 +27,47 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.sql.Array;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
     //this will be base appointment page; will start here from "schedule appointment" and click buttons to move to new screen, then info gets ported back and do next selection
 
     //creating variables and views that are needed in activity
 
-    Button confirmAppointmentBtn;
-
+    Button confirmAppointmentBtn, selectTimeButton;
     TextView displaySelectedAppointmentWith;
-
-
-    String selectedDate;
-    String selectedTime;
+    String selectedDate, selectedTime, selectedAppointmentWithID;
     int hour, minute;
-    Button selectTimeButton;
     ArrayList<String> selectedServicesList;
-    Appointment appointmentClient;
-    Appointment appointmentAppointmentWith;
-    DatabaseReference databaseReferenceAppointments;
-    DatabaseReference databaseReferenceContractors;
-    DatabaseReference databaseReferenceUsers;
-    String selectedAppointmentWithID;
-
-    Contractor selectedContractor;
+    Appointment appointmentClient, appointmentAppointmentWith;
+    DatabaseReference databaseReferenceAppointments, databaseReferenceContractors,
+            databaseReferenceUsers;
     ArrayList<String> selectedContractorServicesList;
+    ActivityAppointmentConfirmationBinding activityAppointmentConfirmationBinding;
 
     private DatePickerDialog datePickerDialog;
-
-    private Button selectDateButton;
-
-    private String selectedAppointmentWithName;
-
-    private Button changeContractorAgentButton;
-
-    private User selectedAppointmentWithAsUser;
-
-    private User currentUser;
-
-    private String currentUserName;
-
-    private String selectedAppointmentWithType;
-
-    private String clientNameForAppointment;
-
-    private AppointmentConfirmation AppointmentConfirmationGetMonthMethod;
-
-
-
-    private AppointmentList appointmentListClient;
-    private AppointmentList appointmentListAppointmentWith;
-    private AppointmentList appointmentListContractor;
-    private AppointmentList appointmentListAgent;
-
-    ActivityAppointmentConfirmationBinding activityAppointmentConfirmationBinding;
+    private Button selectDateButton, changeContractorAgentButton;
+    private String selectedAppointmentWithName, currentUserName, selectedAppointmentWithType,
+            clientNameForAppointment;
+    private User selectedAppointmentWithAsUser, currentUser;
+    private AppointmentList appointmentListClient, appointmentListAppointmentWith;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityAppointmentConfirmationBinding = ActivityAppointmentConfirmationBinding.inflate(getLayoutInflater());
+        activityAppointmentConfirmationBinding = ActivityAppointmentConfirmationBinding
+                .inflate(getLayoutInflater());
         setContentView(activityAppointmentConfirmationBinding.getRoot());
         allocateActivityTitle("Appointment Confirmation");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         initDatePicker();
         //get data passed from previous activity
@@ -127,10 +78,9 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         selectedAppointmentWithName = intent.getStringExtra("selectedContractor");
         selectedContractorServicesList = intent.getStringArrayListExtra("selectedContractorServicesList");
 
-
-        if(selectedContractorServicesList == null)
+        if(selectedContractorServicesList == null) {
             selectedContractorServicesList = new ArrayList<>();
-
+        }
 
         //setting views and buttons to correct id
 
@@ -142,20 +92,11 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         selectTimeButton.setText(getCurrentTime());
         selectDateButton = findViewById(R.id.chooseAppointmentDateButton);
         selectDateButton.setText(getTodaysDate());
-        // String selectedServicesDisplayString = String.join(", ", selectedServicesList);
         ChipGroup chipGroup;
 
         chipGroup = findViewById(R.id.chipGroup);
         selectedServicesList = new ArrayList<>();
 
-
-
-        //displaySelectedServices.setText(selectedServicesDisplayString);
-
-        //   displaySelectedDate.setText(selectedDate);
-
-        //  String selectedTimeDisplay = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
-        // displaySelectedTime.setText(selectedTimeDisplay);
         if(selectedAppointmentWithType == null) {
             String displaySelectedTypeNullString = "Choose a Contractor or Agent";
             displaySelectedAppointmentWith.setText(displaySelectedTypeNullString);
@@ -168,8 +109,6 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
             String displaySelectedAgentString = "Agent: " + selectedAppointmentWithName;
             displaySelectedAppointmentWith.setText(displaySelectedAgentString);
         }
-
-        String selectedService = "service choice";
 
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -185,38 +124,43 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(AppointmentConfirmationActivity.this,
+                        "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        databaseReferenceAppointments = FirebaseDatabase.getInstance().getReference().child("Appointments");
+        databaseReferenceAppointments = FirebaseDatabase.getInstance().getReference()
+                .child("Appointments");
         databaseReferenceAppointments.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals(currentUserId))
+                    if (dataSnapshot.getKey().equals(currentUserId)) {
                         appointmentListClient = dataSnapshot.getValue(AppointmentList.class);
-                    if(appointmentListClient == null)
+                    }
+                    if(appointmentListClient == null) {
                         appointmentListClient = new AppointmentList();
-
-                    if(dataSnapshot.getKey().equals(selectedAppointmentWithID))
-                        appointmentListAppointmentWith = dataSnapshot.getValue(AppointmentList.class);
-                    if(appointmentListAppointmentWith == null)
+                    }
+                    if(dataSnapshot.getKey().equals(selectedAppointmentWithID)) {
+                        appointmentListAppointmentWith = dataSnapshot
+                                .getValue(AppointmentList.class);
+                    }
+                    if(appointmentListAppointmentWith == null) {
                         appointmentListAppointmentWith = new AppointmentList();
+                    }
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(AppointmentConfirmationActivity.this,
+                        "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
             }
         });
 
         //trying to query database by contractor name to find uid
-        DatabaseReference databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child("Users");
-
+        DatabaseReference databaseReferenceUsers = FirebaseDatabase.getInstance().getReference()
+                .child("Users");
         databaseReferenceUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -235,7 +179,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-
+                                Toast.makeText(AppointmentConfirmationActivity.this,
+                                        "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -244,7 +189,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(AppointmentConfirmationActivity.this,
+                        "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -257,7 +203,8 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
         for(int i = 0; i < selectedContractorServicesList.size(); i++) {
             Chip chip = new Chip(this);
-            ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Choice);
+            ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null,
+                    0, R.style.Widget_MaterialComponents_Chip_Choice);
             chip.setChipDrawable(drawable);
             chip.setText(selectedContractorServicesList.get(i));
             chipGroup.addView(chip);
@@ -271,7 +218,6 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
             }
         });
 
-
         confirmAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,37 +226,49 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                     Chip chip = chipGroup.findViewById(selectedChipIds.get(i));
                     if (chip.isChecked()) {
                         selectedServicesList.add(chip.getText().toString());
-
                     }
                 }
                 if(selectedTime == null) {
-                    Snackbar.make(findViewById(R.id.chooseAppointmentTimeButton), "You have not selected a time for your appointment, reselect a time.", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(AppointmentConfirmationActivity.this,
+                            "You have not selected a time for your appointment, reselect a time.",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else if(selectedDate == null) {
-                    Snackbar.make(findViewById(R.id.chooseAppointmentDateButton), "You have not selected a date for your appointment, reselect a date.", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(AppointmentConfirmationActivity.this,
+                            "You have not selected a date for your appointment, reselect a date.",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else if(selectedServicesList.isEmpty()) {
-                    Snackbar.make(findViewById(R.id.chipGroup), "Select a service for your appointment", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(AppointmentConfirmationActivity.this,
+                            "Select a service for your appointment", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    appointmentClient = new Appointment("Appointment with: " + selectedAppointmentWithName, selectedDate, selectedTime, currentUserId, selectedAppointmentWithID, selectedServicesList, true);
+                    appointmentClient = new Appointment("Appointment with: "
+                            + selectedAppointmentWithName, selectedDate, selectedTime,
+                            currentUserId, selectedAppointmentWithID, selectedServicesList, true);
+
                     appointmentListClient.addAppointment(appointmentClient);
 
-                    appointmentAppointmentWith = new Appointment("Appointment with: "+clientNameForAppointment, selectedDate, selectedTime, selectedAppointmentWithID, currentUserId, selectedServicesList,true);
+                    appointmentAppointmentWith = new Appointment("Appointment with: "
+                            + clientNameForAppointment, selectedDate, selectedTime,
+                            selectedAppointmentWithID, currentUserId, selectedServicesList,true);
                     appointmentListAppointmentWith.addAppointment(appointmentAppointmentWith);
-                    FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId).setValue(appointmentListClient);
-                    FirebaseDatabase.getInstance().getReference("Appointments").child(selectedAppointmentWithID).setValue(appointmentListAppointmentWith)
+
+                    FirebaseDatabase.getInstance().getReference("Appointments").child(currentUserId)
+                            .setValue(appointmentListClient);
+                    FirebaseDatabase.getInstance().getReference("Appointments")
+                            .child(selectedAppointmentWithID).setValue(appointmentListAppointmentWith)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        String message = "New Appointment on "+selectedDate+" at "+selectedTime;
-                                        sendAppointmentMessaage(currentUserId, selectedAppointmentWithID, message);
+                                        String message = "New Appointment on "+selectedDate+" at " +selectedTime;
+                                        sendAppointmentMessage(currentUserId, selectedAppointmentWithID, message);
 
                                         goToHomeScreenActivity();
-
                                     } else {
-                                        Snackbar.make(findViewById(R.id.confirm_appointment_button), "Failed to submit appointment", Snackbar.LENGTH_SHORT).show();
+                                        Toast.makeText(AppointmentConfirmationActivity.this,
+                                                "Failed to submit appointment", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -333,26 +291,14 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 String timeFormat = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(time);
                 selectedTime = timeFormat;
                 selectTimeButton.setText(timeFormat);
-
-                /*CHECK IF TIME IS IN THE FUTURE
-                Calendar datetime = Calendar.getInstance();
-                Calendar c = Calendar.getInstance();
-                datetime.set(Calendar.HOUR_OF_DAY, selectedHour);
-                datetime.set(Calendar.MINUTE, selectedMinute);
-                if(datetime.getTimeInMillis() > c.getTimeInMillis()){
-                }
-                else{
-                    Snackbar.make(selectTimeButton, "Appointment time cannot be in the past", Snackbar.LENGTH_SHORT).show();
-                }
-                */
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute,false);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style,
+                onTimeSetListener, hour, minute,false);
         timePickerDialog.setTitle("SelectTime");
         timePickerDialog.show();
     }
-
 
     //DATE SELECTION
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -375,13 +321,11 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
                 //CHECK IF DATE IS IN THE FUTURE
                 if((selDay >= day) && (selMonth >= (month+1)) && (selYear >= year)){
-                    //Log.d(TAG, +selDay+"   >: "+day);
-                    //Log.d(TAG, +selMonth+"   >: "+month+1);
-                    //Log.d(TAG, +selYear+"   >: "+year);
+                    //Continues on
                 }
                 else{
-                    Snackbar.make(selectDateButton, "Appointment date cannot be in the past!", Snackbar.LENGTH_SHORT).show();
-                    //Set time picker back to today's date
+                    Toast.makeText(AppointmentConfirmationActivity.this,
+                            "Appointment date cannot be in the past!", Toast.LENGTH_SHORT).show();
                     String dateFalse = makeDateString(day, month+1, year);
                     selectedDate = dateFalse;
                     selectDateButton.setText(dateFalse);
@@ -402,16 +346,17 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis()-1);
     }
 
-
     private String makeDateString(int day, int month, int year) {
         return getMonthFormat(month) + "/" + day + "/" + year;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String getCurrentTime() {
         LocalTime time = LocalTime.now();
         String timeFormat = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(time);
         return timeFormat;
     }
+
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -420,6 +365,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day,month,year);
     }
+
     public String getMonthFormat(int month) {
         if(month == 1)
             return "JAN";
@@ -447,6 +393,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
             return "DEC";
         return "INV";
     }
+
     public void openDatePicker(View view) {
         datePickerDialog.show();
     }
@@ -465,13 +412,15 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 } else if (user != null && user.getUserType() == UserType.Contractor) {
                     goToContractorHomeScreenActivity();
                 } else {
-                    Snackbar.make(findViewById(R.id.loginEnter), "Something went wrong", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.loginEnter), "Something went wrong",
+                            Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Snackbar.make(findViewById(R.id.loginEnter), "An error has occurred: " + error, Snackbar.LENGTH_SHORT).show();
+                Toast.makeText(AppointmentConfirmationActivity.this,
+                        "An error has occurred: " +error, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -486,7 +435,6 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         startActivity(intent);
     }
 
-
     public void goToAgentHomeScreenActivity() {
         Intent intent = new Intent(this, AgentHomeScreenActivity.class);
         startActivity(intent);
@@ -497,7 +445,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
         startActivity(intent);
     }
 
-    private void sendAppointmentMessaage(String sender, String receiver, String message){
+    private void sendAppointmentMessage(String sender, String receiver, String message){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();

@@ -14,20 +14,19 @@ public class AppointmentList {
         this.appointmentList.add(appointment);
     }
 
-    public AppointmentList(ArrayList<Appointment> appointments) { this.appointmentList = appointments; }
+    public AppointmentList(ArrayList<Appointment> appointments) {
+        this.appointmentList = appointments;
+    }
 
-    //getters
     public ArrayList<Appointment> getAppointmentList() {
         return this.appointmentList;
     }
 
-    //setters
     public void setAppointmentList(ArrayList<Appointment> appointmentList) {
         this.appointmentList = appointmentList;
     }
 
     //add and remove appointment (regular arrayList methods may work but not sure)
-
     public void addAppointment(Appointment appointment) {
         this.appointmentList.add(appointment);
     }

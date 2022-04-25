@@ -2,23 +2,15 @@ package com.example.diamondcastapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-
 import android.os.Bundle;
-
 import com.example.diamondcastapp.databinding.ActivityMessagingBinding;
-import com.google.android.material.tabs.TabLayout;
-
-
 import java.util.ArrayList;
 
 public class MessagingActivity extends NavigationDrawerActivity {
-
     ActivityMessagingBinding activityMessagingBinding;
 
     @Override
@@ -30,17 +22,13 @@ public class MessagingActivity extends NavigationDrawerActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        //TabLayout tabLayout = findViewById(R.id.messagingTabLayout);
         ViewPager viewPager = findViewById(R.id.messagingViewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new MessagingFragment(), "");
         viewPager.setAdapter(viewPagerAdapter);
-        //tabLayout.setupWithViewPager(viewPager);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
-
         private ArrayList<Fragment> fragments;
         private ArrayList<String> titles;
 

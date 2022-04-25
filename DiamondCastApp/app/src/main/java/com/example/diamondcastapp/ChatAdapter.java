@@ -1,24 +1,20 @@
 package com.example.diamondcastapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
@@ -39,18 +35,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @NonNull
     @Override
     public ChatAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view;
         if (viewType == MESSAGE_TYPE_RIGHT) {
-            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_right, parent, false);
-            return new ChatAdapter.ViewHolder(view);
+            view = LayoutInflater.from(context).inflate(R.layout.chat_item_right, parent, false);
         } else {
-            View view = LayoutInflater.from(context).inflate(R.layout.chat_item_left, parent, false);
-            return new ChatAdapter.ViewHolder(view);
+            view = LayoutInflater.from(context).inflate(R.layout.chat_item_left, parent, false);
         }
+        return new ChatAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ChatAdapter.ViewHolder holder, int position) {
-
         Message message = messages.get(position);
         holder.chatMessage.setText(message.getMessage());
 
@@ -62,7 +57,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                 Picasso.get().load(uri).into(holder.profileImage);
             }
         });
-
     }
 
     @Override

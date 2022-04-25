@@ -2,7 +2,6 @@ package com.example.diamondcastapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,12 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +81,8 @@ public class ChatActivity extends AppCompatActivity {
                 if(!message.equals("")){
                     sendMessages(firebaseUser.getUid(), id, message);
                 } else {
-                    Toast.makeText(ChatActivity.this, "Enter your message", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChatActivity.this, "Enter your message",
+                            Toast.LENGTH_SHORT).show();
                 }
                 chatText.setText("");
             }
@@ -114,7 +110,8 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ChatActivity.this, "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatActivity.this, "An error has occurred: "+error,
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -140,10 +137,11 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 messages.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Message message = snapshot.getValue(Message.class);
-                    if(message.getReceiver().equals(currentUserId) && message.getSender().equals(otherUserId) ||
-                            message.getReceiver().equals(otherUserId) && message.getSender().equals(currentUserId)){
+                    if(message.getReceiver().equals(currentUserId) && message.getSender()
+                            .equals(otherUserId) || message.getReceiver().equals(otherUserId) &&
+                            message.getSender().equals(currentUserId)) {
                         messages.add(message);
                     }
                 }
@@ -153,9 +151,9 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ChatActivity.this, "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatActivity.this, "An error has occurred: "+error,
+                        Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

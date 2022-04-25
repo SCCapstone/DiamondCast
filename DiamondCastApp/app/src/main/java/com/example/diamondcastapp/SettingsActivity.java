@@ -1,12 +1,9 @@
 package com.example.diamondcastapp;
 
-import static android.content.ContentValues.TAG;
 import static android.telephony.PhoneNumberUtils.isISODigit;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,27 +12,15 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SwitchCompat;
-
-import com.example.diamondcastapp.databinding.ActivitySearchingBinding;
 import com.example.diamondcastapp.databinding.ActivitySettingsBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -55,9 +40,6 @@ public class SettingsActivity extends NavigationDrawerActivity {
     boolean isoIsTrue = true;
     FirebaseUser currentUser;
     ActivitySettingsBinding activitySettingsBinding;
-    /* L/D Mode
-    SwitchCompat switchCompat;
-    SharedPreferences sharedPreferences = null; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,35 +49,6 @@ public class SettingsActivity extends NavigationDrawerActivity {
         allocateActivityTitle("Settings");
         getLocation = findViewById(R.id.getLocationBtn);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /*
-        //Light Mode / Dark Mode
-        switchCompat = findViewById(R.id.darkModeSwitch);
-        sharedPreferences = getSharedPreferences("night", 0);
-        Boolean booleanVal = sharedPreferences.getBoolean("night_mode",false);
-        if(booleanVal){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            switchCompat.setChecked(true);
-        }
-        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    AppCompatDelegate.setDefaultNightMode((AppCompatDelegate.MODE_NIGHT_YES));
-                    switchCompat.setChecked(true);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("night_mode", true);
-                    editor.commit();
-                }else{
-                    AppCompatDelegate.setDefaultNightMode((AppCompatDelegate.MODE_NIGHT_NO));
-                    switchCompat.setChecked(false);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("night_mode", false);
-                    editor.commit();
-                }
-            }
-        });
-        */
 
         //Password Changer
         changePass = findViewById(R.id.changePassword);
@@ -115,12 +68,15 @@ public class SettingsActivity extends NavigationDrawerActivity {
                     currentUser.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(SettingsActivity.this, "Password Reset was Successful!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SettingsActivity.this,
+                                    "Password Reset was Successful!", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(SettingsActivity.this, "Password Reset Failed, try a password over 6 characters.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SettingsActivity.this,
+                                    "Password Reset Failed, try a password over 6 characters.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
                 });
@@ -145,10 +101,12 @@ public class SettingsActivity extends NavigationDrawerActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //TODO? Contractors have no phone number, this might give an error.
                 userTypeDb = dataSnapshot.child("userType").getValue(String.class);
-                //name.setText(firstNameStr + " " + lastNameStr);
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(SettingsActivity.this,"An error has occurred: "+error,
+                        Toast.LENGTH_SHORT).show();
+
             }
         };
         current_userRef.addListenerForSingleValueEvent(eventListener);
@@ -173,29 +131,38 @@ public class SettingsActivity extends NavigationDrawerActivity {
                             break;
                         }
                     }
-                    //Log.d(TAG, "onClick: " +newPhone);
+
                     //make sure phone number is 10 digits
                     if (newPhone.length() == 10 && isoIsTrue == true) {
-                        FirebaseDatabase.getInstance().getReference(userTypeDb + "s").child(currentUser.getUid()).child("phone").setValue(PhoneNumberUtils.formatNumber(newPhone))
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        FirebaseDatabase.getInstance().getReference(userTypeDb + "s")
+                                .child(currentUser.getUid()).child("phone").setValue(PhoneNumberUtils
+                                .formatNumber(newPhone)).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(SettingsActivity.this, "Changed phone number to: "+PhoneNumberUtils.formatNumber(newPhone), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this,
+                                                "Changed phone number to: "+PhoneNumberUtils
+                                                        .formatNumber(newPhone), Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(SettingsActivity.this, "Phone number change failed, try again.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SettingsActivity.this,
+                                        "Phone number change failed, try again.", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                     //If phone number is non-conforming, then send toast to user
                     else if (newPhone.length() < 10 && isoIsTrue == true) {
-                        Toast.makeText(SettingsActivity.this, "Your phone number was less than 10 digits.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SettingsActivity.this,
+                                "Your phone number was less than 10 digits.", Toast.LENGTH_LONG).show();
                     } else if (newPhone.length() > 10 && isoIsTrue == true) {
-                        Toast.makeText(SettingsActivity.this, "Your phone number was greater than 10 digits. Don't include country code", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SettingsActivity.this,
+                                "Your phone number was greater than 10 digits. Don't include country code",
+                                Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(SettingsActivity.this, "Your phone number must be ONLY numbers (0-9)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this,
+                                "Your phone number must be ONLY numbers (0-9)", Toast.LENGTH_SHORT).show();
+
                         //reset check if number is ISO
                         isoIsTrue = true;
                     }
@@ -211,7 +178,8 @@ public class SettingsActivity extends NavigationDrawerActivity {
         getLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest
+                        .permission.ACCESS_COARSE_LOCATION)
                         !=PackageManager.PERMISSION_GRANTED){
                     requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
                 }else{
@@ -219,21 +187,25 @@ public class SettingsActivity extends NavigationDrawerActivity {
                     Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     try {
                         String city = thisLocation(location.getLatitude(), location.getLongitude());
-                        FirebaseDatabase.getInstance().getReference(userTypeDb + "s").child(currentUser.getUid()).child("location").setValue(city)
+                        FirebaseDatabase.getInstance().getReference(userTypeDb + "s")
+                                .child(currentUser.getUid()).child("location").setValue(city)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(SettingsActivity.this, "Changed location to: " +city, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this,
+                                                "Changed location to: " +city, Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(SettingsActivity.this, "Location change has failed, try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SettingsActivity.this,
+                                        "Location change has failed, try again", Toast.LENGTH_SHORT).show();
                             }
                         });
 
                     }catch (Exception e){
-                        Toast.makeText(SettingsActivity.this, "Location not found!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, "Location not found!",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -243,16 +215,20 @@ public class SettingsActivity extends NavigationDrawerActivity {
     //get location btn
     @SuppressLint("MissingSuperCall")
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         switch (requestCode) {
             case 1000: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                    @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    @SuppressLint("MissingPermission") Location location = locationManager
+                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     try {
                         String city = thisLocation(location.getLatitude(), location.getLongitude());
                     }catch (Exception e){
-                        Toast.makeText(SettingsActivity.this, "Location not found! Make sure your location services are ON.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SettingsActivity.this,
+                                "Location not found! Make sure your location services are ON.",
+                                Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(this, "Permission not Granted!", Toast.LENGTH_SHORT).show();

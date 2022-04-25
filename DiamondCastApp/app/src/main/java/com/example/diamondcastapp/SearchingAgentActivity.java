@@ -1,46 +1,27 @@
 package com.example.diamondcastapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
-
-
-import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
+import android.widget.Toast;
 import com.example.diamondcastapp.databinding.ActivitySearchingAgentBinding;
-import com.example.diamondcastapp.databinding.ActivitySearchingBinding;
-import com.google.android.gms.common.data.DataHolder;
-
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class SearchingAgentActivity extends NavigationDrawerActivity {
-
     private EditText searchField;
     private ImageButton enterSearchField;
     private RecyclerView searchResultList;
@@ -48,20 +29,11 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
     private SearchAgentAdapter adapter;
     private ArrayList<Agent> list;
     public Agent selectedAgent;
-    private Button searchSelection;
-    private String selectedAgentID;
-    private String clientNameForAppointment;
+    private Button searchSelection, switchSearchType;
+    private String selectedAgentID, clientNameForAppointment;
     private User clientUserMakingAppointment;
-    private ImageButton goToMapButton;
     public Boolean boolPicked = false;
-    private Button switchSearchType;
-
-
     ActivitySearchingAgentBinding activitySearchingAgentBinding;
-
-
-    //private String selectedContractorUID;
-
     private ArrayList<String> selectedAgentServicesList;
 
     @Override
@@ -97,17 +69,19 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
                         clientUserMakingAppointment = dataSnapshot.getValue(User.class);
                 }
                 if (clientUserMakingAppointment != null)
-                    clientNameForAppointment = clientUserMakingAppointment.getFirstName()+" "+clientUserMakingAppointment.getLastName();
-
+                    clientNameForAppointment = clientUserMakingAppointment.getFirstName()+" "
+                            +clientUserMakingAppointment.getLastName();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(SearchingAgentActivity.this,
+                        "Something went wrong. User isn't a known user type.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Agents");
 
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Agents");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -122,7 +96,9 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(SearchingAgentActivity.this,
+                        "Something went wrong. User isn't a known user type.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -133,6 +109,7 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
 
             }
         });
+
         adapter.setOnItemClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,13 +123,15 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
                 boolPicked = true;
             }
         });
+
         searchSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (boolPicked == true) {
                     goToAppointmentConfirmationActivity();
                 } else {
-                    Snackbar.make(searchSelection, "You must pick a valid agent", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(SearchingAgentActivity.this, "You must pick a valid agent",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -163,8 +142,6 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
                 goToSearchingActivity();
             }
         });
-
-
     }
 
     private void goToSearchingActivity() {
@@ -179,13 +156,11 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
         intent.putExtra("selectedAppointmentWithID", selectedAgentID);
         intent.putExtra("selectedContractor", selectedAgent.getFirstName()+ " " +selectedAgent.getLastName());
         intent.putExtra("selectedType", "Agent");
-        //intent.putExtra("selectedContractorUID", selectedContractorUID);
         intent.putStringArrayListExtra("selectedContractorServicesList", selectedAgentServicesList);
         startActivity(intent);
     }
 
     //filters through list of contractors and updates adapter with contractors that have name matching search string
-
     void filter(String text) {
         ArrayList<Agent> temp = new ArrayList<>();
         for (Agent agent : list) {
@@ -194,6 +169,7 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
                 temp.add(agent);
             }
         }
+
         //update recyclerview
         adapter = new SearchAgentAdapter(temp, this);
         searchResultList.setAdapter(adapter);

@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
-import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,12 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 
 //class that sets up the navigation drawer
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     FirebaseUser fUser;
     DatabaseReference dReference;
     String userID, userType;
     DrawerLayout drawerLayout;
-
     private static int currentActivity;
 
     @Override
@@ -77,13 +73,13 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         };
         current_userRef.addListenerForSingleValueEvent(valueEventListener);
 
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
     }
+
     //Go to activity based on item picked
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -94,7 +90,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                         goToHomeScreenActivity();
                         overridePendingTransition(0, 0);
                     }
-                    else{}
                     currentActivity = 1;
                     break;
                 case R.id.nav_search:
@@ -102,7 +97,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                         startActivity(new Intent(this, SearchingActivity.class));
                         overridePendingTransition(0, 0);
                     }
-                    else{}
                     currentActivity = 2;
                     break;
                 case R.id.nav_appointment:
@@ -110,7 +104,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                         startActivity(new Intent(this, AppointmentConfirmationActivity.class));
                         overridePendingTransition(0, 0);
                     }
-                    else{}
                     currentActivity = 3;
                     break;
                 case R.id.nav_messaging:
@@ -118,7 +111,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                         startActivity(new Intent(this, MessagingActivity.class));
                         overridePendingTransition(0, 0);
                     }
-                    else{}
                     currentActivity = 4;
                     break;
                 case R.id.nav_profile:
@@ -126,7 +118,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                         startActivity(new Intent(this, ProfileActivity.class));
                         overridePendingTransition(0, 0);
                     }
-                    else{}
                     currentActivity = 5;
                     break;
                 case R.id.nav_settings:
@@ -134,18 +125,17 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                         startActivity(new Intent(this, SettingsActivity.class));
                         overridePendingTransition(0, 0);
                     }
-                    else{}
                     currentActivity = 6;
                     break;
             }
             return false;
         }
 
-
     protected void allocateActivityTitle(String title) {
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(title);
     }
+
     private void goToHomeScreenActivity () {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         dReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -161,23 +151,30 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 } else if (user != null && user.getUserType() == UserType.Contractor) {
                     goToContractorHomeScreenActivity();
                 } else {
-                    Snackbar.make(findViewById(R.id.loginEnter), "Something went wrong", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(NavigationDrawerActivity.this,
+                            "Something went wrong. User isn't a known user type.",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(NavigationDrawerActivity.this, "An error has occurred: "
+                        +error, Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     public void goToClientHomeScreenActivity() {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
         startActivity(intent);
     }
+
     public void goToContractorHomeScreenActivity() {
         Intent intent = new Intent(this, ContractorHomeScreenActivity.class);
         startActivity(intent);
     }
+
     public void goToAgentHomeScreenActivity() {
         Intent intent = new Intent(this, AgentHomeScreenActivity.class);
         startActivity(intent);
@@ -186,9 +183,4 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
     public static void setCurrentActivity(int xCurrentActivity) {
         currentActivity = xCurrentActivity;
     }
-
-/*
-
-*/
-
 }

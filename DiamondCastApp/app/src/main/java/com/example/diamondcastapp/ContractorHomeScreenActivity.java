@@ -1,15 +1,11 @@
 package com.example.diamondcastapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.diamondcastapp.databinding.ActivityContractorHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,7 +14,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
@@ -38,12 +33,9 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
         activityContractorHomeScreenBinding = ActivityContractorHomeScreenBinding.inflate(getLayoutInflater());
         setContentView(activityContractorHomeScreenBinding.getRoot());
         allocateActivityTitle("Home");
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         //Appointment RecyclerView
-
         Intent intent = getIntent();
         createdAppointment = (Appointment) intent.getSerializableExtra("appointment");
 
@@ -57,15 +49,15 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
         appointmentList = new AppointmentList();
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getKey().equals(currentUserId)) {
                         appointmentList = dataSnapshot.getValue(AppointmentList.class);
-                        for(Appointment appointment : appointmentList.getAppointmentList())
+                        for(Appointment appointment : appointmentList.getAppointmentList()) {
                             list.add(appointment);
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -73,14 +65,9 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ContractorHomeScreenActivity.this,
+                        "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-    }
-    public void goToProfileActivity() {
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
     }
 }

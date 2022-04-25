@@ -1,11 +1,7 @@
 package com.example.diamondcastapp;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Appointment implements Serializable {
 
@@ -26,8 +22,8 @@ public class Appointment implements Serializable {
         this.active = true;
     }
 
-    public Appointment( String title, String date, String time, String appointmentOwnerId, String appointmentWithId, ArrayList<String> services, Boolean active) {
-
+    public Appointment( String title, String date, String time, String appointmentOwnerId,
+                        String appointmentWithId, ArrayList<String> services, Boolean active) {
         this.title = title;
         this.date = date;
         this.time = time;

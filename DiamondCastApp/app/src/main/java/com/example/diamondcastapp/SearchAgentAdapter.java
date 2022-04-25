@@ -6,14 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 // an adapter used to display the options for the agent on the search screen
-
 public class SearchAgentAdapter extends RecyclerView.Adapter<SearchAgentAdapter.MyViewHolder> {
     private View.OnClickListener clickListener;
     private ArrayList<Agent> mList;
@@ -23,12 +20,14 @@ public class SearchAgentAdapter extends RecyclerView.Adapter<SearchAgentAdapter.
         this.mList = list;
         this.context = context;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.search_result_list, parent, false);
         return new MyViewHolder(v);
     }
+
     public void setOnItemClickListener(View.OnClickListener clickListener) {
         this.clickListener = clickListener;
     }
@@ -50,10 +49,8 @@ public class SearchAgentAdapter extends RecyclerView.Adapter<SearchAgentAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
         ImageView avatar;
-        TextView name;
-        TextView services;
+        TextView name, services;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,5 +59,4 @@ public class SearchAgentAdapter extends RecyclerView.Adapter<SearchAgentAdapter.
             services = itemView.findViewById(R.id.search_result_description);
         }
     }
-
 }

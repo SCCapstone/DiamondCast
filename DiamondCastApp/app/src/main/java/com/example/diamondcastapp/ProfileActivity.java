@@ -13,15 +13,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.diamondcastapp.databinding.ActivityProfileBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +27,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -44,7 +39,7 @@ public class  ProfileActivity extends NavigationDrawerActivity {
     FirebaseAuth fAuth;
     FirebaseUser user;
     Button logout, settingsBtn, changeProfileImage;
-    String userId, emailNameStr, userTypeStr, userTypeStr1, lastNameStr, firstNameStr, locationStr, reportUserType;
+    String userId, emailNameStr, userTypeStr, userTypeStr1, lastNameStr, firstNameStr, locationStr;
     ImageView profileImage;
     public static String Test1;
     StorageReference storageReference;
@@ -68,7 +63,8 @@ public class  ProfileActivity extends NavigationDrawerActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         //Get users profile image from Firebase Storage
-        StorageReference profileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        StorageReference profileRef = storageReference.child("users/"+fAuth.getCurrentUser()
+                .getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -98,16 +94,20 @@ public class  ProfileActivity extends NavigationDrawerActivity {
                 userType.setText(userTypeStr);
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(ProfileActivity.this, "An error has occurred: "+error,
+                        Toast.LENGTH_SHORT).show();
             }
         };
+
         current_userRef.addListenerForSingleValueEvent(eventListener);
 
         //Set location in firebase to show on profile page
         readData(new FirebaseCallback() {
             @Override
             public void onCallBack(String str) {
-                DatabaseReference root2Ref = FirebaseDatabase.getInstance().getReference(str+"s").child(uid);
+                DatabaseReference root2Ref = FirebaseDatabase.getInstance()
+                        .getReference(str+"s").child(uid);
                 ValueEventListener eventListener2 = new ValueEventListener() {
                     @Override
                     //get location
@@ -120,7 +120,8 @@ public class  ProfileActivity extends NavigationDrawerActivity {
                         }
                     }
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(DatabaseError error) {
+                        Toast.makeText(ProfileActivity.this, "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
                     }
                 };
                 root2Ref.addListenerForSingleValueEvent(eventListener2);
@@ -156,19 +157,21 @@ public class  ProfileActivity extends NavigationDrawerActivity {
                             // There are no request codes
                             Intent data = result.getData();
                             Uri imageUri = data.getData();
-                            //profileImage.setImageURI(imageUri);
                             uploadImageToFirebase(imageUri);
                         }
                     }
 
                     //image to firebase storage
                     private void uploadImageToFirebase(Uri imageUri) {
-                        final StorageReference fileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
-                        Toast.makeText(ProfileActivity.this, "Uploading Image...", Toast.LENGTH_SHORT).show();
+                        final StorageReference fileRef = storageReference.child("users/"+fAuth
+                                .getCurrentUser().getUid()+"/profile.jpg");
+                        Toast.makeText(ProfileActivity.this, "Uploading Image...",
+                                Toast.LENGTH_SHORT).show();
                         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                Toast.makeText(ProfileActivity.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, "Image Uploaded",
+                                        Toast.LENGTH_SHORT).show();
                                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
@@ -179,27 +182,31 @@ public class  ProfileActivity extends NavigationDrawerActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(ProfileActivity.this, "Failed Image Upload", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, "Failed Image Upload",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
-
                 });
+
         //setting profile image
         changeProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media
+                        .EXTERNAL_CONTENT_URI);
                 thisActivityResultLauncher.launch(openGalleryIntent);
             }
         });
     }
+
     //Need a firebase callback to get usertype
     private void readData(FirebaseCallback firebaseCallback){
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersRef = rootRef.child("Users");
         DatabaseReference current_userRef = usersRef.child(uid);
+
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             //get name and user type from database
@@ -211,6 +218,7 @@ public class  ProfileActivity extends NavigationDrawerActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         };
+
         current_userRef.addListenerForSingleValueEvent(eventListener);
     }
 

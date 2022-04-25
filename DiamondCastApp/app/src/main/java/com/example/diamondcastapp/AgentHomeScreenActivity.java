@@ -1,18 +1,10 @@
 package com.example.diamondcastapp;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-
+import android.widget.Toast;
 import com.example.diamondcastapp.databinding.ActivityAgentHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +12,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class AgentHomeScreenActivity extends NavigationDrawerActivity {
@@ -37,7 +28,8 @@ public class AgentHomeScreenActivity extends NavigationDrawerActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
         //bind the current activity with navigation drawer
-            activityAgentHomeScreenBinding = ActivityAgentHomeScreenBinding.inflate(getLayoutInflater());
+            activityAgentHomeScreenBinding = ActivityAgentHomeScreenBinding
+                    .inflate(getLayoutInflater());
             setContentView(activityAgentHomeScreenBinding.getRoot());
             allocateActivityTitle("Home");
 
@@ -73,10 +65,10 @@ public class AgentHomeScreenActivity extends NavigationDrawerActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(AgentHomeScreenActivity.this,
+                            "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
                 }
             });
-
-
         }
 
         public void goToProfileActivity() {

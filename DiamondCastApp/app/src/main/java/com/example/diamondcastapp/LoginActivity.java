@@ -3,7 +3,6 @@ package com.example.diamondcastapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,11 +54,14 @@ public class LoginActivity extends AppCompatActivity {
                 passwordResetDialog.setPositiveButton("Yes", (dialog, which) -> {
                     mail = resetMail.getText().toString();
                     fAuth.sendPasswordResetEmail(mail).addOnSuccessListener((OnSuccessListener) (aVoid) ->{
-                        Toast.makeText(LoginActivity.this, "Reset Link Sent. Check your email.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Reset Link Sent. Check your email.",
+                                Toast.LENGTH_SHORT).show();
                     }).addOnFailureListener((e)-> {
-                        Toast.makeText(LoginActivity.this, "Error Link was not sent to email" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Error Link was not sent to email"
+                                + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
                 });
+
                 passwordResetDialog.setNegativeButton("No", (dialog, which) -> {
                     //CLOSE
                 });
@@ -89,18 +90,22 @@ public class LoginActivity extends AppCompatActivity {
                         final FirebaseUser user = fAuth.getCurrentUser();
                         verifyButton = findViewById(R.id.verifyButton);
                         verifyMsg = findViewById(R.id.verifyMsg);
+
                         if(!user.isEmailVerified()){
                             verifyMsg.setVisibility(View.VISIBLE);
                             verifyButton.setVisibility(View.VISIBLE);
+
                             verifyButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     verifyMsg.setVisibility(View.GONE);
                                     verifyButton.setVisibility(View.GONE);
+
                                     user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>(){
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Toast.makeText(LoginActivity.this, "Verification Email has been Sent.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(LoginActivity.this,
+                                                    "Verification Email has been Sent.", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
@@ -111,11 +116,13 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                         }
+
                         if(user.isEmailVerified()) {
                             goToHomeScreenActivity();
                         }
                     } else {
-                        Toast.makeText(LoginActivity.this, "Login failed, check your email and password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,
+                                "Login failed, check your email and password", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -142,12 +149,15 @@ public class LoginActivity extends AppCompatActivity {
                 } else if(user!=null && user.getUserType()==UserType.Contractor) {
                     goToContractorHomeScreenActivity();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Something went wrong. User isn't a known user type.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,
+                            "Something went wrong. User isn't a known user type.",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(LoginActivity.this, "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "An error has occurred: "+error,
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

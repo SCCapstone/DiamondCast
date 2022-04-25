@@ -1,7 +1,6 @@
 package com.example.diamondcastapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ public class CreateAccount1Activity extends AppCompatActivity {
 
     private User newUser;
     private String password;
-
     private CreateAccount createAccountMethods = new CreateAccount();
 
     @Override
@@ -76,5 +74,4 @@ public class CreateAccount1Activity extends AppCompatActivity {
         newUser = new User(firstName, lastName, email, username, UserType.Client);
         return createdAccount;
     }
-
 }
