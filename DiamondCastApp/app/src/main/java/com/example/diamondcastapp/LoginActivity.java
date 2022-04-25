@@ -26,9 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth fAuth;
-    private FirebaseUser fUser;
-    private DatabaseReference dReference;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference reference;
     private String userID, mail;
     private Button verifyButton,changePass;
     private TextView verifyMsg;
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        fAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         changePass = findViewById(R.id.loginForgotPassword);
         changePass.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 passwordResetDialog.setPositiveButton("Yes", (dialog, which) -> {
                     mail = resetMail.getText().toString();
-                    fAuth.sendPasswordResetEmail(mail).addOnSuccessListener((OnSuccessListener) (aVoid) ->{
+                    firebaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener((OnSuccessListener) (aVoid) ->{
                         Toast.makeText(LoginActivity.this, "Reset Link Sent. Check your email.",
                                 Toast.LENGTH_SHORT).show();
                     }).addOnFailureListener((e)-> {
@@ -76,18 +76,18 @@ public class LoginActivity extends AppCompatActivity {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        fAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         if(email.isEmpty()) {
             Toast.makeText(LoginActivity.this, "Enter your email", Toast.LENGTH_SHORT).show();
         } else if(password.isEmpty()) {
             Toast.makeText(LoginActivity.this, "Enter your password", Toast.LENGTH_SHORT).show();
         } else {
-            fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        final FirebaseUser user = fAuth.getCurrentUser();
+                        final FirebaseUser user = firebaseAuth.getCurrentUser();
                         verifyButton = findViewById(R.id.verifyButton);
                         verifyMsg = findViewById(R.id.verifyMsg);
 
@@ -135,10 +135,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToHomeScreenActivity () {
-        fUser = FirebaseAuth.getInstance().getCurrentUser();
-        dReference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = fUser.getUid();
-        dReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = firebaseUser.getUid();
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
