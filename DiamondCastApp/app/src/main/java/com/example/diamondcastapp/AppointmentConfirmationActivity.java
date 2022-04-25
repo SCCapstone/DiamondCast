@@ -292,6 +292,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 selectedTime = timeFormat;
                 selectTimeButton.setText(timeFormat);
             }
+
         };
         int style = AlertDialog.THEME_HOLO_DARK;
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style,
@@ -320,7 +321,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                 day = cal.get(Calendar.DAY_OF_MONTH);
 
                 //CHECK IF DATE IS IN THE FUTURE
-                if((selDay >= day) && (selMonth >= (month+1)) && (selYear >= year)){
+                /*if((selDay >= day) && (selMonth >= (month+1)) && (selYear >= year)){
                     //Continues on
                 }
                 else{
@@ -330,6 +331,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
                     selectedDate = dateFalse;
                     selectDateButton.setText(dateFalse);
                 }
+                */
 
             }
         };
@@ -343,7 +345,7 @@ public class AppointmentConfirmationActivity extends NavigationDrawerActivity {
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
 
-        datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis()-1);
+        datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis()+(1000 * 60 * 60 * 24));
     }
 
     private String makeDateString(int day, int month, int year) {
