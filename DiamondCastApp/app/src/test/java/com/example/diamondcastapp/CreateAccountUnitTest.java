@@ -2,11 +2,7 @@ package com.example.diamondcastapp;
 
 import static org.junit.Assert.assertEquals;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 public class CreateAccountUnitTest {
     private CreateAccount test = new CreateAccount();
@@ -22,6 +18,13 @@ public class CreateAccountUnitTest {
         String password = "password";
         String confirm = "passw0rd";
         boolean check = test.checkPasswordIsEqualToConfirmation(password, confirm);
+        assertEquals(false,check);
+    }
+
+    @Test
+    public void checkValidEmail_withBadConfirm() {
+        String email = "notAValidEmail";
+        boolean check = test.checkValidEmail(email);
         assertEquals(false,check);
     }
 }

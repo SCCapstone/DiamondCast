@@ -22,16 +22,16 @@
         android:id="@+id/createAccount1GoBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/go_back"
         android:onClick="goToLoginActivity"
+        android:text="@string/go_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
+        app:layout_constraintVertical_bias="0.925" />
 
-    <TextView
+    <Button
         android:id="@+id/createAccount1NextPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,10 +108,10 @@
         app:layout_constraintVertical_bias="0.657" />
 
     <TextView
-        android:id="@+id/createAccount1ComfirmPasswordText"
+        android:id="@+id/createAccount1ConfirmPasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/comfirm_password"
+        android:text="@string/confirm_password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.167"
