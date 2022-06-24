@@ -24,6 +24,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     private DatabaseReference databaseReference;
     private AppointmentList appointmentList;
     public Appointment createdAppointment;
+    private HomeScreenAppointmentAdapter.RecyclerViewClickListener listener;
     ActivityClientHomeScreenBinding activityClientHomeScreenBinding;
 
     @Override
@@ -46,6 +47,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
         homeScreenApptList.setLayoutManager(new LinearLayoutManager(this));
         appointmentList = new AppointmentList();
         list = new ArrayList<>();
+        setOnClickListener();
         adapter = new HomeScreenAppointmentAdapter(list, this);
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -82,6 +84,15 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             }
         });
 
+    }
+
+    private void setOnClickListener() {
+        listener = new HomeScreenAppointmentAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Toast.makeText(getApplicationContext(), "Button was clicked for list item ", Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     public void goToAppointmentSchedulerActivity() {

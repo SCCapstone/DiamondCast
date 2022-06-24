@@ -37,4 +37,5 @@
         android:layout_below="@id/userType"
         android:text="@string/email"
         android:textSize="15sp" />
+
 </RelativeLayout>
