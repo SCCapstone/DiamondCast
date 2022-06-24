@@ -6,8 +6,11 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +21,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScreenAppointmentAdapter.MyViewHolder> {
-    private View.OnClickListener clickListener;
     private ArrayList<Appointment> mList;
+    private RecyclerViewClickListener listener;
     private Context context;
 
     public HomeScreenAppointmentAdapter(ArrayList<Appointment> list, Context context) {
@@ -51,10 +54,10 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
                 Picasso.get().load(uri).into(holder.profileImage);
             }
         });
+    }
 
-        if (clickListener != null) {
-            holder.itemView.setOnClickListener(clickListener);
-        }
+    public interface RecyclerViewClickListener {
+        void onClick(View v, int position);
     }
 
     @Override
@@ -62,9 +65,10 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
         return mList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView appointmentWithName, dateTime, services;
         private ImageView profileImage;
+        private Button cancelButton;
         private static final String TAG = "MyViewHolder";
 
         public MyViewHolder(@NonNull View itemView) {
@@ -73,7 +77,15 @@ public class HomeScreenAppointmentAdapter extends RecyclerView.Adapter<HomeScree
             dateTime = itemView.findViewById(R.id.home_screen_client_appointment_date_time);
             services = itemView.findViewById(R.id.home_screen_client_appointment_services);
             profileImage = itemView.findViewById(R.id.searchProfileImage);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(itemView, getAbsoluteAdapterPosition());
+        }
+
+
     }
 }
 
