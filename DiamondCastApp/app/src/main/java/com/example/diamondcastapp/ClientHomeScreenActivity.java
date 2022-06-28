@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +26,6 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     private DatabaseReference databaseReference;
     private AppointmentList appointmentList;
     public Appointment createdAppointment;
-    private HomeScreenAppointmentAdapter.RecyclerViewClickListener listener;
     ActivityClientHomeScreenBinding activityClientHomeScreenBinding;
 
     @Override
@@ -47,7 +48,6 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
         homeScreenApptList.setLayoutManager(new LinearLayoutManager(this));
         appointmentList = new AppointmentList();
         list = new ArrayList<>();
-        setOnClickListener();
         adapter = new HomeScreenAppointmentAdapter(list, this);
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -84,15 +84,17 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             }
         });
 
-    }
-
-    private void setOnClickListener() {
-        listener = new HomeScreenAppointmentAdapter.RecyclerViewClickListener() {
+        adapter.setOnItemClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v, int position) {
-                Toast.makeText(getApplicationContext(), "Button was clicked for list item ", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                int position = homeScreenApptList.getChildAdapterPosition(v);
+                Toast.makeText(ClientHomeScreenActivity.this, "Clicked on position " + position, Toast.LENGTH_SHORT).show();
+                list.remove(list.get(position));
+                FirebaseDatabase.getInstance().getReference("Appointments")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(list);
             }
-        };
+        });
+
     }
 
     public void goToAppointmentSchedulerActivity() {
