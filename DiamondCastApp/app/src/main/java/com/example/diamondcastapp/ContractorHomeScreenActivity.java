@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.diamondcastapp.databinding.ActivityContractorHomeScreenBinding;
@@ -69,5 +70,22 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
                         "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
             }
         });
+
+        adapter.setOnItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = homeScreenApptList.getChildAdapterPosition(v);
+                list.remove(list.get(position));
+                FirebaseDatabase.getInstance().getReference("Appointments")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("appointmentList").setValue(list);
+                refreshHomeScreenActivity();
+            }
+        });
+
+    }
+
+    public void refreshHomeScreenActivity() {
+        Intent intent = new Intent(this, ContractorHomeScreenActivity.class);
+        startActivity(intent);
     }
 }

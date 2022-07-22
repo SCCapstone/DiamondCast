@@ -89,10 +89,9 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 int position = homeScreenApptList.getChildAdapterPosition(v);
-                Toast.makeText(ClientHomeScreenActivity.this, "Clicked on position " + position, Toast.LENGTH_SHORT).show();
                 list.remove(list.get(position));
                 FirebaseDatabase.getInstance().getReference("Appointments")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(list);
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("appointmentList").setValue(list);
                 refreshHomeScreenActivity();
             }
         });
@@ -104,7 +103,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
         Intent intent = new Intent(this, ClientHomeScreenActivity.class);
         startActivity(intent);
     }
-    
+
     public void goToAppointmentSchedulerActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
         startActivity(intent);
