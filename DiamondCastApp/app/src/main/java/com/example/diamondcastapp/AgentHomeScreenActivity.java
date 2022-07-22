@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import com.example.diamondcastapp.databinding.ActivityAgentHomeScreenBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,9 +70,27 @@ public class AgentHomeScreenActivity extends NavigationDrawerActivity {
                             "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
                 }
             });
-        }
 
-        public void goToProfileActivity() {
+         adapter.setOnItemClickListener(new View.OnClickListener() {
+             @Override
+              public void onClick(View v) {
+               int position = homeScreenApptList.getChildAdapterPosition(v);
+                list.remove(list.get(position));
+                 FirebaseDatabase.getInstance().getReference("Appointments")
+                          .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("appointmentList").setValue(list);
+                 refreshHomeScreenActivity();
+             }
+        });
+
+    }
+
+    //Makes deleting work, bugged out before, especially if you had 3+ appointments
+    public void refreshHomeScreenActivity() {
+        Intent intent = new Intent(this, AgentHomeScreenActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToProfileActivity() {
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
         }
