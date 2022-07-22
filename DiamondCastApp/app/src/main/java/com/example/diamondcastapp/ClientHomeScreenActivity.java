@@ -93,11 +93,18 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
                 list.remove(list.get(position));
                 FirebaseDatabase.getInstance().getReference("Appointments")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(list);
+                refreshHomeScreenActivity();
             }
         });
 
     }
 
+    //Makes deleting work, bugged out before, especially if you had 3+ appointments
+    public void refreshHomeScreenActivity() {
+        Intent intent = new Intent(this, ClientHomeScreenActivity.class);
+        startActivity(intent);
+    }
+    
     public void goToAppointmentSchedulerActivity() {
         Intent intent = new Intent(this, AppointmentConfirmationActivity.class);
         startActivity(intent);
