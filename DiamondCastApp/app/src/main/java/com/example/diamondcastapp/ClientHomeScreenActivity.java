@@ -89,13 +89,19 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 int position = homeScreenApptList.getChildAdapterPosition(v);
-                Toast.makeText(ClientHomeScreenActivity.this, "Clicked on position " + position, Toast.LENGTH_SHORT).show();
                 list.remove(list.get(position));
                 FirebaseDatabase.getInstance().getReference("Appointments")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(list);
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("appointmentList").setValue(list);
+                refreshHomeScreenActivity();
             }
         });
 
+    }
+
+    //Makes deleting work, bugged out before, especially if you had 3+ appointments
+    public void refreshHomeScreenActivity() {
+        Intent intent = new Intent(this, ClientHomeScreenActivity.class);
+        startActivity(intent);
     }
 
     public void goToAppointmentSchedulerActivity() {
