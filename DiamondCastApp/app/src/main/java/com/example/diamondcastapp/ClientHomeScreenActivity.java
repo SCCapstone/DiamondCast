@@ -84,6 +84,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             }
         });
 
+        // Database fixed, only currently deletes appointment from client, not the contractor/agent they made it with
         adapter.setOnItemClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
