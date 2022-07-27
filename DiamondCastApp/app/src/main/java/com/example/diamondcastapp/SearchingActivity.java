@@ -28,7 +28,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
     private DatabaseReference databaseReference;
     private SearchAdapter adapter;
     private ArrayList<Contractor> list;
-    private Button switchSearchType, searchSelection;
+    private Button switchSearchType, searchSelection, sameSearchType;
     private String selectedContractorID, clientNameForAppointment;
     private User clientUserMakingAppointment;
     public Boolean boolPicked =false;
@@ -47,6 +47,7 @@ public class SearchingActivity extends NavigationDrawerActivity {
 
         switchSearchType = findViewById(R.id.switch_search_type);
         searchSelection = findViewById(R.id.search_selection_btn);
+        sameSearchType = findViewById(R.id.same_search_type);
         searchField = findViewById(R.id.search_bar);
         enterSearchField = findViewById(R.id.searchImageButton);
         searchResultList = findViewById(R.id.searchResults);
@@ -143,10 +144,20 @@ public class SearchingActivity extends NavigationDrawerActivity {
                 goToSearchingAgentActivity();
             }
         });
+
+        sameSearchType.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { goToSameActivity(); }
+        }));
     }
 
     private void goToSearchingAgentActivity() {
         Intent intent = new Intent(this, SearchingAgentActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToSameActivity() {
+        Intent intent = new Intent(this, SearchingActivity.class);
         startActivity(intent);
     }
 
