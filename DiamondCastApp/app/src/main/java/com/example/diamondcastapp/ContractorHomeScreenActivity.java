@@ -23,7 +23,9 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
     private RecyclerView homeScreenApptList;
     public Appointment createdAppointment;
     private ArrayList<Appointment> list;
-    private DatabaseReference databaseReference;
+    private Notifications notificationList;
+    private DatabaseReference databaseReference, cancellationReference;
+    private ArrayList<String> cancellationList;
     private AppointmentList appointmentList;
     ActivityContractorHomeScreenBinding activityContractorHomeScreenBinding;
 
@@ -50,6 +52,10 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
         appointmentList = new AppointmentList();
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
+        notificationList = new Notifications();
+        cancellationList = new ArrayList<>();
+        cancellationReference = FirebaseDatabase.getInstance().getReference().child("CancellationNotifications");
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -58,6 +64,32 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
                         appointmentList = dataSnapshot.getValue(AppointmentList.class);
                         for(Appointment appointment : appointmentList.getAppointmentList()) {
                             list.add(appointment);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ContractorHomeScreenActivity.this,
+                        "An error has occurred: "+error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancellationReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals(currentUserId)) {
+                        notificationList = dataSnapshot.getValue(Notifications.class);
+                        for (Notification notification : notificationList.getNotificationList()) {
+                            cancellationList.add(notification.getContents());
+                        }
+                        if (cancellationList.size() < 1)
+                            Toast.makeText(ContractorHomeScreenActivity.this, "No cancellations", Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < cancellationList.size(); i++) {
+                            Toast.makeText(ContractorHomeScreenActivity.this, cancellationList.get(i), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

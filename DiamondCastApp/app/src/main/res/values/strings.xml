@@ -59,6 +59,7 @@
     <string name="description">Search</string>
     <string name="Home">Home</string>
     <string name="schedule_appointment">Schedule Appointment</string>
+    <string name="view_cancellations">View Cancellations</string>
     <string name="choose_a_date">Choose a Date</string>
     <string name="textview">TextView</string>
     <string name="your_name">your name</string>
