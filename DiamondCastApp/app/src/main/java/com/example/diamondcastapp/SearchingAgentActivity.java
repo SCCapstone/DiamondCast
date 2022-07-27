@@ -29,7 +29,7 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
     private SearchAgentAdapter adapter;
     private ArrayList<Agent> list;
     public Agent selectedAgent;
-    private Button searchSelection, switchSearchType;
+    private Button searchSelection, switchSearchType, sameSearchType;
     private String selectedAgentID, clientNameForAppointment;
     private User clientUserMakingAppointment;
     public Boolean boolPicked = false;
@@ -48,6 +48,7 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
         // finding all the views that will need to be set
         switchSearchType = findViewById(R.id.switch_search_type);
         searchSelection = findViewById(R.id.search_selection_btn);
+        sameSearchType = findViewById(R.id.same_search_type);
         searchField = findViewById(R.id.search_bar);
         enterSearchField = findViewById(R.id.searchImageButton);
         searchResultList = findViewById(R.id.searchResults);
@@ -142,10 +143,20 @@ public class SearchingAgentActivity extends NavigationDrawerActivity {
                 goToSearchingActivity();
             }
         });
+
+        sameSearchType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { goToSameActivity(); }
+        });
     }
 
     private void goToSearchingActivity() {
         Intent intent = new Intent(this, SearchingActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToSameActivity() {
+        Intent intent = new Intent(this, SearchingAgentActivity.class);
         startActivity(intent);
     }
 
