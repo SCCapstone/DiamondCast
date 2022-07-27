@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.diamondcastapp.databinding.ActivityClientHomeScreenBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     private HomeScreenAppointmentAdapter adapter;
@@ -26,6 +28,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
     private DatabaseReference databaseReference;
     private AppointmentList appointmentList;
     public Appointment createdAppointment;
+    private String firstName;
     ActivityClientHomeScreenBinding activityClientHomeScreenBinding;
 
     @Override
@@ -52,6 +55,7 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
         homeScreenApptList.setAdapter(adapter);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
+
 
         // retrieving appointment list (instead of appointment!) from database and separating into individual appointments to display on home screen.
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -89,9 +93,13 @@ public class ClientHomeScreenActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 int position = homeScreenApptList.getChildAdapterPosition(v);
-                list.remove(list.get(position));
+                Appointment toRemove = list.get(position);
+                String contractorAgentId = toRemove.getAppointmentWithId();
+                Notification notification = new Notification("Appointment at " + toRemove.getTime() + " " + toRemove.getDate() + " cancelled");
+                FirebaseDatabase.getInstance().getReference("CancellationNotifications").child(contractorAgentId).child("Notifications").push().setValue(notification);
+                list.remove(toRemove);
                 FirebaseDatabase.getInstance().getReference("Appointments")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("appointmentList").setValue(list);
+                        .child(currentUserId).child("appointmentList").setValue(list);
                 refreshHomeScreenActivity();
             }
         });

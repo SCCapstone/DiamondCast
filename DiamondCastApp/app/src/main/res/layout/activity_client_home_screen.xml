@@ -28,8 +28,8 @@
         android:id="@+id/goToAppointmentBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/schedule_appointment"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:text="@string/schedule_appointment" />
 
 
 </RelativeLayout>
