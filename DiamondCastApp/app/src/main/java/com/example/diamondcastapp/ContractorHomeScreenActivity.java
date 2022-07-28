@@ -23,9 +23,7 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
     private RecyclerView homeScreenApptList;
     public Appointment createdAppointment;
     private ArrayList<Appointment> list;
-    private Notifications notificationList;
     private DatabaseReference databaseReference, cancellationReference;
-    private ArrayList<String> cancellationList;
     private AppointmentList appointmentList;
     ActivityContractorHomeScreenBinding activityContractorHomeScreenBinding;
 
@@ -52,8 +50,6 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
         appointmentList = new AppointmentList();
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Appointments");
-        notificationList = new Notifications();
-        cancellationList = new ArrayList<>();
         cancellationReference = FirebaseDatabase.getInstance().getReference().child("CancellationNotifications");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -82,15 +78,8 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getKey().equals(currentUserId)) {
-                        notificationList = dataSnapshot.getValue(Notifications.class);
-                        for (Notification notification : notificationList.getNotificationList()) {
-                            cancellationList.add(notification.getContents());
-                        }
-                        if (cancellationList.size() < 1)
-                            Toast.makeText(ContractorHomeScreenActivity.this, "No cancellations", Toast.LENGTH_SHORT).show();
-                        for (int i = 0; i < cancellationList.size(); i++) {
-                            Toast.makeText(ContractorHomeScreenActivity.this, cancellationList.get(i), Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(ContractorHomeScreenActivity.this, "An appointment was cancelled", Toast.LENGTH_SHORT).show();
+                        cancellationReference.child(currentUserId).setValue(null);
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -107,7 +96,11 @@ public class ContractorHomeScreenActivity extends NavigationDrawerActivity {
             @Override
             public void onClick(View v) {
                 int position = homeScreenApptList.getChildAdapterPosition(v);
-                list.remove(list.get(position));
+                Appointment toRemove = list.get(position);
+                String contractorAgentId = toRemove.getAppointmentWithId();
+                Notification notification = new Notification("Appointment at " + toRemove.getTime() + " " + toRemove.getDate() + " cancelled");
+                FirebaseDatabase.getInstance().getReference("CancellationNotifications").child(contractorAgentId).child("Notifications").push().setValue(notification);
+                list.remove(toRemove);
                 FirebaseDatabase.getInstance().getReference("Appointments")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("appointmentList").setValue(list);
                 refreshHomeScreenActivity();
