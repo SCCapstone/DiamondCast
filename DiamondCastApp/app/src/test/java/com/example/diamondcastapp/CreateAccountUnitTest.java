@@ -22,6 +22,14 @@ public class CreateAccountUnitTest {
     }
 
     @Test
+    public void checkPasswordIsEqualToConfirm() {
+        String password = "password";
+        String confirm = "password";
+        boolean check = test.checkPasswordIsEqualToConfirmation(password, confirm);
+        assertEquals(true, check);
+    }
+
+    @Test
     public void checkValidEmail_withBadConfirm() {
         String email = "notAValidEmail";
         boolean check = test.checkValidEmail(email);
